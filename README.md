@@ -17,6 +17,7 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 
-# get it "git clone https://github.com/fuckskyku/iCharge.git"
+# get it 
+git clone https://github.com/fuckskyku/iCharge.git
 ```
 
