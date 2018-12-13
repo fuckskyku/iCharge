@@ -1,6 +1,6 @@
-# familyxcx
+# iCharge
 
-> 家长端小程序
+> 充电桩小程序
 
 ## Build Setup
 
@@ -16,6 +16,7 @@ npm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
+
+# get it "git clone https://github.com/fuckskyku/iCharge.git"
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
