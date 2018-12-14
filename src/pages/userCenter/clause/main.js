@@ -9,6 +9,7 @@ export default {
     config: {
         navigationBarTitleText: '法律条款',
         "enablePullDownRefresh": false,
-        "navigationBarBackgroundColor":'#FFEA55',
+        "navigationBarBackgroundColor":'#ffffff',
+        "navigationBarTextStyle": 'black',
     }
 }

@@ -19,40 +19,39 @@
         <cover-view class=" weui-cells weui-cells_after-title">
           <cover-view class="weui-cell" @click="skip('search')">
             <cover-view class="weui-cell__hd">
-                <cover-image src="/static/img/cut/site_icon.png" class="wh60" style="width:60px; height: 60px;"/>
+                <cover-image :src="form.icon" class="wh60" style="width:60px; height: 60px;"/>
             </cover-view>
             <cover-view class="weui-cell__bd h120">
-              <cover-view style="" class="title">鹭景加油站附属充电桩</cover-view> 
+              <cover-view style="" class="title">{{form.title}}</cover-view> 
               <cover-view class="" >
-                <cover-image src="/static/img/cut/site_icon.png" style="width:10px; height: 10px;" class="font13 wh10"/>
-                <cover-view class="font13 address" title="123" style="">厦门市湖里区安岭路987号高新技术园汇金湖里大厦</cover-view>
+                <cover-image src="/static/img/cut/ic_address.png" style="width:8px; height: 10px;" class="font13 wh10"/>
+                <cover-view class="font13 address" title="123" style="">{{form.address}}</cover-view>
               </cover-view>
             </cover-view>
             <!-- <div class="weui-cell__fd">  
               <div><img src="/static/img/cut/site_icon.png" style="width:10px; height: 10px;">adasd</div>
             </div> -->
           </cover-view>
-          <!--  -->
+          <!-- 边框 -->
           <cover-view class="weui-cell" style="padding: 0 0 0 30rpx;">
-            <cover-view class="weui-cell__bd font13">
-              <button  style="height:1px;"></button>
+            <cover-view class="weui-cell__bd" style="height:1px;background:#E5E5E5;">
             </cover-view>
           </cover-view>
           <!--  -->
           <cover-view class="weui-cell">
             <cover-view class="weui-cell__hd">
-                <cover-image src="/static/img/cut/site_icon.png" style="width:10px; height: 10px;"/>
+                <cover-image src="/static/img/cut/ic_charge.png" style="width:10px; height: 10px;"/>
             </cover-view>
             <cover-view class="weui-cell__bd font13">
-              共<cover-view class="font13">2333</cover-view> 
+              共<cover-view class="font13">{{form.total}}</cover-view> 
               <cover-view class="font13">根充电桩</cover-view> 
-              <cover-view style="color:#FFC000;margin-left:20rpx;" class="font13">23</cover-view> 
+              <cover-view style="color:#FFC000;margin-left:20rpx;" class="font13">{{form.inIdle}}</cover-view> 
               <cover-view class="font13">根闲置中</cover-view> 
             </cover-view>
             <cover-view class="weui-cell__fd">  
               <cover-view class="distance font13">
-                <cover-image src="/static/img/cut/site_icon.png" class="font13" style="width:10px; height: 10px;"/>
-                <cover-view class="font13">1.47</cover-view><cover-view class="font13">km</cover-view>
+                <cover-image src="/static/img/cut/ic_navigation3.png" class="font13" style="width:10px; height: 10px;"/>
+                <cover-view class="font13">{{form.distance}}</cover-view><cover-view class="font13">km</cover-view>
               </cover-view>
             </cover-view>
           </cover-view>
@@ -126,6 +125,36 @@ export default {
       },
       ],
       //
+      tableData: [
+        { 
+          id: 1,
+          title: "咪师加油站附属充电桩",
+          icon: "/static/img/cut/site_icon.png",
+          address: '厦门市湖里区安岭路987号高新技术园汇...',
+          distance: '1.47',
+          total: "2333",
+          inIdle: "3"
+        },
+        {
+          id: 2,
+          title: "睿通加油站附属充电桩",
+          icon: "/static/img/cut/site_icon.png",
+          address: '厦门市湖里区安岭路987号高新技术园汇...',
+          distance: '10.47',
+          total: "1222",
+          inIdle: "23"
+        },
+        {
+          id: 3,
+          title: "鹭景加油站附属充电桩",
+          icon: "/static/img/cut/site_icon.png",
+          address: '厦门市湖里区安岭路987号高新技术园汇...',
+          distance: '2.33',
+          total: "3444",
+          inIdle: "53"
+        },
+      ],
+      form: {}
     };
   },
 
@@ -142,7 +171,8 @@ export default {
   },
   onLoad () {
     console.log("this.$root.$mp.query",this.$root.$mp.query)
-    this.id = this.$root.$mp.query.id
+    this.$root.$mp.query.id != undefined ? this.id = this.$root.$mp.query.id : this.id = ''
+    
   },
   methods: {
     init() {
@@ -240,8 +270,9 @@ export default {
     this.mapCtx = wx.createMapContext("map");   
   },
   mounted() {
-    //检索marker标记点
+    
     if(this.id != ''){
+      //检索marker标记点
       this.markers.map((item,index)=>{
         console.log(item,this.id)
         if(this.id == item.id){
@@ -249,8 +280,25 @@ export default {
           item.iconPath = '/static/img/cut/ic_park.png'
         }
       })
+      //检索站点信息
+      this.tableData.map((item,index)=>{
+        if(item.id == this.id){
+          this.form = item
+        }
+      })
+    }else{
+      this.form = {
+          id: 2333,
+          title: "库昊加油站附属充电桩",
+          icon: "/static/img/cut/site_icon.png",
+          address: '厦门市同安区洪塘镇苏店村小古宅里30号',
+          distance: '30',
+          total: "3333",
+          inIdle: "33"
+        }
     }
     
+
   }
 };
 </script>
@@ -368,4 +416,5 @@ export default {
   }
   
 }
+
 </style>

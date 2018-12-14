@@ -8,7 +8,6 @@
         <div class="headImg"><open-data class="openImg" type="userAvatarUrl"></open-data></div>
         <div class="nickName">您好，<open-data type="userNickName"></open-data></div>
       </div>
-      
     </div>
     <!-- <div class="userinfo">
       <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
@@ -18,14 +17,21 @@
       <div style="height:1px;width:100%;background:#ccc;"></div>
       <div class="energy">剩余电量:<span style="font-size:40rpx;color:#FF6600;">{{dumpEnergy}}</span><span style="font-size:36rpx;color:#555;">度</span></div>
     </div> -->
+    <!-- 电量 -->
+    <div class="energy flex">
+      <div class="flex dumpEnergy"><img src="/static/img/cut/ic_surplus.png" alt="">剩余电量</div>
+      <div class="flex line"></div>
+      <div class="flex record"><img src="/static/img/cut/ic_record.png" alt="">用电记录</div>
+    </div>
     <!--  -->
     <div class="account-info">
       <ul class="account-list">
-        <li @click="skip('buy')" style="border-bottom: 20rpx solid #F4F4F4;">剩余电量<div class="dumpEnergy"><span class="dump">{{dumpEnergy}} <span style="color:#999;">度</span></span><img  src="/static/img/cut/right.png" alt=""></div></li>
+        <!-- <li @click="skip('buy')" style="border-bottom: 20rpx solid #F4F4F4;">剩余电量<div class="dumpEnergy"><span class="dump">{{dumpEnergy}} <span style="color:#999;">度</span></span><img  src="/static/img/cut/right.png" alt=""></div></li> -->
+        
         <li @click="skip('orders')"><img class="img" style="width:40rpx;height:48rpx;" src="/static/img/cut/ic_order.png" alt="">订单记录<img class="right" src="/static/img/cut/right.png" alt=""></li>
         <li @click="skip('about')"><img class="img" style="width:46rpx;height:48rpx;" src="/static/img/cut/ic_us.png" alt="">关于我们<img class="right" src="/static/img/cut/right.png" alt=""></li>
         <li @click="skip('clause')"><img class="img" style="width:46rpx;height:48rpx;" src="/static/img/cut/ic_falv.png" alt="">法律条款<img class="right" src="/static/img/cut/right.png" alt=""></li>
-        <li @click="skip('inmail')"><img class="img" style="width:48rpx;height:56rpx;" src="/static/img/cut/ic_letter.png" alt="">站内信<img class="right" src="/static/img/cut/right.png" alt=""></li>
+        <li @click="skip('inmail')"><img class="img" style="width:48rpx;height:56rpx;" src="/static/img/cut/ic_letter.png" alt="">站内信<span class="letterTip">{{letterTip}}</span><img class="right" src="/static/img/cut/right.png" alt=""></li>
         <li @click="skip('advice')" style="border: none;"><img class="img" style="width:48rpx;height:52rpx;" src="/static/img/cut/ic_Opinion.png" alt="">意见反馈<img class="right" src="/static/img/cut/right.png" alt=""></li>
       </ul>
     </div>
@@ -54,7 +60,8 @@ export default {
     return {
       userInfo: {},
       showModel: true,
-      dumpEnergy: "2333"
+      dumpEnergy: "2333",
+      letterTip: '99',
     };
   },
   onShow(){
@@ -175,6 +182,42 @@ export default {
     
   }
 }
+.flex{
+  display: flex;
+  align-items: center;      //垂直居中
+  justify-content: center;  //水平居中
+  // align-content: center;   
+}
+.energy{
+  height: 120rpx;
+  color: #333;
+  font-size: 34rpx;
+  border: 1px solid #fff;
+  background: #fff;
+  margin: 0 20rpx;
+  border-radius: 10rpx;
+  position: relative;
+  top: -16rpx;
+  z-index: 999;
+  img{
+    width: 40rpx;
+    height: 40rpx;
+    margin: 0 20rpx;
+    vertical-align: middle;
+  }
+  
+  .dumpEnergy{
+    width: 48%;
+  }
+  .line{
+    height: 50rpx;
+    width: 1px;
+    background: #C7C7CC;
+  }
+  .record{
+    width: 48%;
+  }
+}
 .account-info{
   // border: 1px solid #666;
   .account-list{
@@ -200,6 +243,7 @@ export default {
         right: 120rpx;
         width: 16rpx;
         height: 24rpx;
+        margin-top: -14rpx;
       }
       .dumpEnergy{
         height: 100rpx;
@@ -220,6 +264,22 @@ export default {
       }
     }
   }
+}
+.letterTip{
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  width: 46rpx;
+  height: 46rpx;
+  line-height: 46rpx;
+  text-align: center;
+  background: #DC302B;
+  font-size: 26rpx;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  right: 160rpx;
+  margin-top: -25rpx;
 }
 .btn{
   width: 520rpx;

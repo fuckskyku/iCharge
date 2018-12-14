@@ -7,9 +7,9 @@ app.$mount()
 
 export default {
     config: {
-        navigationBarTitleText: '意见反馈',
+        navigationBarTitleText: '意见与反馈',
         "enablePullDownRefresh": false,
-        "navigationBarBackgroundColor":'#ffffff',
+        "navigationBarBackgroundColor": '#ffffff',
         "navigationBarTextStyle": 'black',
     }
 }

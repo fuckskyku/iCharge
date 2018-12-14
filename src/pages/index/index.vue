@@ -219,7 +219,10 @@ export default {
           console.log(item.id)
           latitude = item.latitude
           longitude = item.longitude
-          this.moveToLocation(latitude,longitude)
+          // this.moveToLocation(latitude,longitude)
+          wx.navigateTo({
+            url: "/pages/search/navigate/main?id=" + item.id
+          });
         }
       })
     
