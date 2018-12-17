@@ -1,6 +1,15 @@
 import fly from './apiConfig'
 import { Z_FULL_FLUSH } from 'zlib';
 
+///api/charge/geStationtList
+/* 充电桩小程序接口抛出 */ 
+//获取电站列表
+export const geStationtList = param => {
+    return fly.get('/api/charge/geStationtList', param)
+}
+
+
+
 
 //登录
 export const login = param => {

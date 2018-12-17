@@ -57,6 +57,7 @@
 
 <script>
 import utils from "@/utils/index";
+import { geStationtList } from "@/api/api";
 
 export default {
   data() {
@@ -72,6 +73,7 @@ export default {
       longitude: '',
       lat: '',
       log: '',
+      ttt: "",
       //地图标记
       markers: [],
       controls: [{
@@ -107,6 +109,16 @@ export default {
   },
   onHide() {
     this.init()
+    // this.geStationtListFun()
+    var that = this
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success(res) {
+        that.latitude = res.latitude
+        that.longitude = res.longitude
+        that.geStationtListFun(res.latitude,res.longitude)
+      }
+    })
   },
   onReady() {
     //使用 wx.createMapContext 获取 map 上下文
@@ -115,6 +127,29 @@ export default {
   },
  
   methods: {
+    geStationtListFun(lat,lng) {
+      geStationtList({
+        distance: 10 * 1000,
+        lat: lat,
+        lng: lng,
+      }).then(res => {
+        this.markers = []
+        console.log("geStationtList",res.data.data.list)
+        var obj = res.data.data.list
+        obj.map((item,index) => {
+          this.markers.push({
+            iconPath: "/static/img/cut/ic_location.png",
+            id: item.staId,
+            width: 33,
+            height: 41,
+            latitude: item.lat,
+            longitude: item.lng,
+            title: item.staName
+          })
+        })
+        console.log("this.markers",this.markers)
+      })
+    },
     init() {
       //初始化标记点
       let marker = [
@@ -126,17 +161,6 @@ export default {
           width: 33,
           height: 41,
           title: "这是哪儿",
-          // label: {
-          //   content: "我是气泡label",
-          //   color: '#FF0000',
-          //   bgColor: "#ffffff",
-          //   fontSize: 16,
-          //   padding: 10,
-          //   display: 'ALWAYS',
-          //   borderRadius: 5,
-          //   anchorX: 40,
-          //   anchorY: 0
-          // }
         },
         {
           iconPath: "/static/img/cut/ic_location.png",
@@ -156,43 +180,36 @@ export default {
           //   borderRadius: 5
           // }
         },
+        {
+          iconPath: "/static/img/cut/ic_location.png",
+          id: 2,
+          latitude: 24.490206579127232,
+          longitude: 118.10824860546873,
+          width: 33,
+          height: 41,
+          title: "我在哪儿",
+        }
       ]
       this.markers = marker
     },
-    // //创建地图
-    // createMap() {
-    //   var qqmapsdk;
-    //   var QQMapWX = require("../../utils/qqmap-wx-jssdk.min.js")
-    //   var varMarkers = [];
-    //   qqmapsdk = new QQMapWX({
-    //     key: "AVABZ-EIPWP-7RTDK-L6UQ3-SHYET-V5B6V"
-    //   })
-    //   qqmapsdk.search({
-    //     keyword: '充电桩',
-    //     success: function(res) {
-    //       console.log(res.status, res.message);
-    //     },
-    //     fail: function(res) {
-    //       console.log(res.status, res.message);
-    //     },
-    //     complete: function(res) {
-    //       console.log(res.status, res.message);
-    //     }
-    //   })
-    // },
+    
     //获取地图中心经纬度
     getCenterLocationFun() {
       var that = this
       this.mapCtx.getCenterLocation({
         success: function(res){
+          
           var distance = that.getDistance(res.latitude, res.longitude, that.lat, that.log)
           if(res.latitude == that.latitude && res.longitude == that.longitude || distance < 1){
             return;
           }
+          console.log("fdsfsdfsfs",that.latitude,that.longitude)
           // console.log('res.latitude',res.latitude,'res.longitude',res.longitude)
           //通过经纬度计算距离 当距离小于1公里时， 标记点变化
           // console.log(distance)
-          
+              that.latitude = res.latitude
+              that.longitude = res.longitude
+              that.geStationtListFun(res.latitude,res.longitude)
           // that.moveToLocation(res.latitude,res.longitude) 
         }
       })
@@ -234,6 +251,15 @@ export default {
         console.log(e.mp.controlId)
       }else if(e.mp.controlId == 2){
         wx.createMapContext('map').moveToLocation()
+        var that = this
+        wx.getLocation({
+          type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+          success(res) {
+            that.latitude = res.latitude
+            that.longitude = res.longitude
+            that.geStationtListFun(res.latitude,res.longitude)
+          }
+        })
       }
     },
     //获取当前位置
@@ -266,9 +292,6 @@ export default {
         address:"不知道阿aaa",  //详细地址
       })
     },
-    Distance() {
-
-    },
     getDistance(lat1, lng1, lat2, lng2) {
       lat1 = lat1 || 0;
       lng1 = lng1 || 0;
@@ -290,6 +313,17 @@ export default {
       // }
       this.show = false
       this.tip = false
+    },
+    //百度转腾讯地图经纬度
+    bMapTransQQMap(lng,lat){        
+      let x_pi = 3.14159265358979324 * 3000.0 / 180.0;        
+      let x = lng - 0.0065;        
+      let y = lat - 0.006;        
+      let z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_pi);        
+      let theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_pi);        
+      let lngs = z * Math.cos(theta);        
+      let lats = z * Math.sin(theta);        
+      return {lng: lngs,lat: lats} 
     }
   },
 
@@ -300,7 +334,20 @@ export default {
     this.init()
     //获取地图上下文
     this.mapCtx = wx.createMapContext("map");   
+  },
+  mounted() {
+    var that = this
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success(res) {
+        that.latitude = res.latitude
+        that.longitude = res.longitude
+        that.geStationtListFun(res.latitude,res.longitude)
+      }
+    })
+    
   }
+
 };
 </script>
 

@@ -45,7 +45,7 @@ fly.interceptors.response.use(
 
 
 //fly.config.baseURL = "https://admin.school.mseenet.com"
-fly.config.baseURL = ""
+fly.config.baseURL = "http://192.168.2.5:8099"
 
 fly.config.headers = {
   'content-type': 'application/x-www-form-urlencoded'
