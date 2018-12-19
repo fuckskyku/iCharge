@@ -1,25 +1,78 @@
 <template>
   <div id="order" class="order">
     <div class="container">
-      <div class="record" v-for="(item,index) in tableData" :key="index" @click="skip('orderDetails',item.id)">
-        <div class="title">
-          <div class="hd">购买电量</div>
-          <div class="bd">+{{item.buyingPower}}度</div>
-          <div class="fd">{{item.price}}元</div>
-        </div>
+      <div class="record">
         <div class="subTitle">
-          <div class="hd">{{item.useTime}}</div>
-          <div class="fd ">{{item.createTime}}</div>
+          <div class="hd">流水号</div>
+          <div class="fd ">{{form.seralNumber}}</div>
         </div>
         <div class="underLine"></div>
-      </div>
+      </div> 
+      <div class="record">
+        <div class="subTitle">
+          <div class="hd">类型</div>
+          <div class="fd ">{{form.type}}</div>
+        </div>
+        <div class="underLine"></div>
+      </div> 
+      <div class="record">
+        <div class="subTitle">
+          <div class="hd">资金备注</div>
+          <div class="fd ">{{form.remark}}</div>
+        </div>
+        <div class="underLine"></div>
+      </div> 
+      <div class="record">
+        <div class="subTitle">
+          <div class="hd">资金金额</div>
+          <div class="fd ">{{form.sum}}</div>
+        </div>
+        <div class="underLine"></div>
+      </div> 
+      <div class="record">
+        <div class="subTitle">
+          <div class="hd">支付方式</div>
+          <div class="fd ">{{form.pay}}</div>
+        </div>
+        <div class="underLine"></div>
+      </div> 
+      <div class="record">
+        <div class="subTitle">
+          <div class="hd">时间</div>
+          <div class="fd ">{{form.createTime}}</div>
+        </div>
+        <div class="underLine"></div>
+      </div> 
+      <div class="record">
+        <div class="subTitle">
+          <div class="hd">桩站名称</div>
+          <div class="fd ">{{form.staName}}</div>
+        </div>
+        <div class="underLine"></div>
+      </div> 
+      <div class="record">
+        <div class="subTitle">
+          <div class="hd">电量</div>
+          <div class="fd ">{{form.energy}}</div>
+        </div>
+        <div class="underLine"></div>
+      </div> 
+      <div class="record">
+        <div class="subTitle">
+          <div class="hd">之前剩余电量</div>
+          <div class="fd ">{{form.beforeEnergy}}</div>
+        </div>
+        <div class="underLine"></div>
+      </div> 
+      <div class="record">
+        <div class="subTitle">
+          <div class="hd">剩余电量</div>
+          <div class="fd ">{{form.dumpEnergy}}</div>
+        </div>
+        <div class="underLine"></div>
+      </div> 
       
     </div>
-    <view class="weui-loadmore loadmore">
-      <view class="tips">没有更多了</view>
-      <div class="line pl"></div>
-      <div class="line pr"></div>
-    </view>    
   </div>
 </template>
 <script>
@@ -28,39 +81,34 @@ export default {
   data() {
     return {
       id: '',
-      tableData: [
-        {
-          id: 1,
-          buyingPower: '150',
-          price: '103.86',
-          useTime: '鹭景充电桩（忙时）',
-          createTime: '1510818902',
-        },
-        {
-          id: 2,
-          buyingPower: '230',
-          price: '233.98',
-          useTime: '五缘充电桩（闲时）',
-          createTime: '1541451902',
-        },
-        {
-          id: 3,
-          buyingPower: '100',
-          price: '72.98',
-          useTime: '睿通充电桩（忙时）',
-          createTime: '1545186893',
-        }
-      ]
+      form: {
+        seralNumber: '2018091200093443219',
+        type: '买电',
+        remark: '购买充电电量',
+        sum: '109元',
+        pay: '微信 ',
+        createTime: '2017-11-16 15:55:02',
+        staName: '鹭景充电桩站',
+        energy: '200度',
+        useTime: '(忙时)',
+        beforeEnergy: '63.78度',
+        dumpEnergy: '263.78度'
+      },
+      tableData: []
     };
+  },
+  onHide() {
+    
   },
   onShow() {
     console.log("this.$root.$mp.query",this.$root.$mp.query)
     this.$root.$mp.query.id != undefined ? this.id = this.$root.$mp.query.id : this.id = ''
+    this.tableData = []
   },
   mounted() {
-    this.tableData.map((item)=> {
-      item.createTime = this.ToTime(item.createTime)
-    })
+    // this.tableData.map((item)=> {
+    //   item.createTime = this.ToTime(item.createTime)
+    // })
   },
   methods: {
     ToTime(timestamp) {
@@ -79,9 +127,9 @@ export default {
       return Y + M + D + h + m + s;
     },
     //页面路由跳转
-    skip(type,pramas) {
+    skip(type) {
       wx.navigateTo({
-        url: "/pages/userCenter/" + type + "/main?id=" + pramas
+        url: "/pages/" + type + "/main"
       });
     },
   },
@@ -138,16 +186,17 @@ export default {
   .subTitle{
     display: flex;
     flex: 2;
-    padding: 0 30rpx 30rpx;
-    font-size: 24rpx;
-    color: #666666;
+    padding: 30rpx;
+    font-size: 32rpx;
     .hd{
       width: 100%;
       text-align: left;
+      color: #999999;
     }
     .fd{
       width: 100%;
       text-align: right;
+      color: #333333;
     }
   }
   .underLine{
@@ -172,6 +221,7 @@ export default {
     margin: 0 auto;
     font-size: 22rpx;
     color: #888888;
+
   }
   .line{
     width: 100rpx;

@@ -3,8 +3,8 @@
     <map 
       id="map" 
       :scale="14"
-      :latitude="latitude"
-      :longitude="longitude"
+      :latitude="form.lat"
+      :longitude="form.lng"
       :controls="controls" 
       @controltap="controltap" 
       @end="regionchange"
@@ -19,13 +19,13 @@
         <cover-view class=" weui-cells weui-cells_after-title">
           <cover-view class="weui-cell" @click="skip('search')">
             <cover-view class="weui-cell__hd">
-                <cover-image :src="form.icon" class="wh60" style="width:60px; height: 60px;"/>
+                <cover-image :src="form.coverImg" class="wh60" style="width:60px; height: 60px;"/>
             </cover-view>
             <cover-view class="weui-cell__bd h120">
-              <cover-view style="" class="title">{{form.title}}</cover-view> 
+              <cover-view style="" class="title">{{form.staName}}</cover-view> 
               <cover-view class="" >
                 <cover-image src="/static/img/cut/ic_address.png" style="width:8px; height: 10px;" class="font13 wh10"/>
-                <cover-view class="font13 address" title="123" style="">{{form.address}}</cover-view>
+                <cover-view class="font13 address" title="123" style="">{{form.staAdress}}</cover-view>
               </cover-view>
             </cover-view>
             <!-- <div class="weui-cell__fd">  
@@ -43,15 +43,15 @@
                 <cover-image src="/static/img/cut/ic_charge.png" style="width:10px; height: 10px;"/>
             </cover-view>
             <cover-view class="weui-cell__bd font13">
-              共<cover-view class="font13">{{form.total}}</cover-view> 
+              共<cover-view class="font13">{{form.totalClient}}</cover-view> 
               <cover-view class="font13">根充电桩</cover-view> 
-              <cover-view style="color:#FFC000;margin-left:20rpx;" class="font13">{{form.inIdle}}</cover-view> 
+              <cover-view style="color:#FFC000;margin-left:20rpx;" class="font13">{{form.freeClient}}</cover-view> 
               <cover-view class="font13">根闲置中</cover-view> 
             </cover-view>
             <cover-view class="weui-cell__fd">  
               <cover-view class="distance font13">
                 <cover-image src="/static/img/cut/ic_navigation3.png" class="font13" style="width:10px; height: 10px;"/>
-                <cover-view class="font13">{{form.distance}}</cover-view><cover-view class="font13">km</cover-view>
+                <cover-view class="font13">{{form.distance / 1000}}</cover-view><cover-view class="font13">km</cover-view>
               </cover-view>
             </cover-view>
           </cover-view>
@@ -70,7 +70,8 @@
 </template>
 
 <script>
-
+import utils from "@/utils/index";
+import { geStationtInfo } from "@/api/api";
 
 export default {
   data() {
@@ -129,30 +130,12 @@ export default {
         { 
           id: 1,
           title: "咪师加油站附属充电桩",
-          icon: "/static/img/cut/site_icon.png",
+          coverImg: "/static/img/cut/site_icon.png",
           address: '厦门市湖里区安岭路987号高新技术园汇...',
-          distance: '1.47',
-          total: "2333",
-          inIdle: "3"
-        },
-        {
-          id: 2,
-          title: "睿通加油站附属充电桩",
-          icon: "/static/img/cut/site_icon.png",
-          address: '厦门市湖里区安岭路987号高新技术园汇...',
-          distance: '10.47',
-          total: "1222",
-          inIdle: "23"
-        },
-        {
-          id: 3,
-          title: "鹭景加油站附属充电桩",
-          icon: "/static/img/cut/site_icon.png",
-          address: '厦门市湖里区安岭路987号高新技术园汇...',
-          distance: '2.33',
-          total: "3444",
-          inIdle: "53"
-        },
+          distance: '1470',
+          totalClient: "2333",
+          freeClient: "3"
+        }
       ],
       form: {}
     };
@@ -161,43 +144,67 @@ export default {
   components: {
     
   },
-  onHide() {
+  onShow() {
     this.init()
-  },
-  onReady() {
     //使用 wx.createMapContext 获取 map 上下文
     this.mapCtx = wx.createMapContext('map')
-    
+    this.geStationtInfoFun()
+    console.log("from",this.form)
+    this.latitude = this.form.lat
+    this.longitude = this.form.lng
   },
-  onLoad () {
+  onLoad() {
     console.log("this.$root.$mp.query",this.$root.$mp.query)
     this.$root.$mp.query.id != undefined ? this.id = this.$root.$mp.query.id : this.id = ''
-    
   },
   methods: {
-    init() {
-      //初始化标记点
-      let marker = [
-        {
-          iconPath: "/static/img/cut/ic_location.png",
-          id: 1,
-          latitude: 24.490206579127232,
-          longitude: 118.10824860546873,
+    geStationtInfoFun() {
+      var that = this
+      let latitude = '';
+      let longitude = '';
+      console.log(this.id)
+      wx.getLocation({
+        type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+        success (res) {
+          utils.wxSetStorageSync("latitude",res.latitude)
+          utils.wxSetStorageSync("longitude",res.longitude)
+        }
+      })
+      latitude = utils.wxGetStorage("latitude")
+      longitude = utils.wxGetStorage("longitude")
+      geStationtInfo({
+        id: that.id,
+        lat: latitude,
+        lng: longitude
+      }).then(res=>{
+        
+        that.form = res.data.data
+        this.markers.push({
+          iconPath: "/static/img/cut/ic_location2.png",
+          id: that.form.staId,
+          latitude: that.form.lat,
+          longitude: that.form.lng,
           width: 33,
           height: 41,
-          title: "我在哪儿",
-          callout: {
-            content: "我是气泡",
-            color: '#FF0000',
-            bgColor: "#ffffff",
-            fontSize: 16,
-            padding: 10,
-            display: 'ALWAYS',
-            borderRadius: 5
-          }
-        },
-      ]
-      this.markers = marker
+        })
+        console.log('that.form',that.form)
+      })
+      //end
+      
+    },
+    init() {
+      //初始化标记点
+      // let marker = [
+      //   {
+      //     iconPath: "/static/img/cut/ic_location2.png",
+      //     id: 1,
+      //     latitude: 24.490206579127232,
+      //     longitude: 118.10824860546873,
+      //     width: 33,
+      //     height: 41,
+      //   },
+      // ]
+      this.markers = []
     },
     
     //视野发生变化时触发
@@ -210,18 +217,35 @@ export default {
     },
     //标记点
     markertap(e) {
-      console.log(e.mp)
-      //获取标记点的经纬度
-      let latitude = ""
-      let longitude = ""
-      this.markers.map(item => {
-        if(e.mp.markerId == item.id){
-          console.log(item.id)
-          latitude = item.latitude
-          longitude = item.longitude
-          this.moveToLocation(latitude,longitude)
+      var that = this
+      wx.getLocation({
+        type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+        success (res) {
+          let distance = that.getDistance(res.latitude,res.longitude,form.latitude,form.longitude)
+          // if(distance <= 1000){
+            wx.navigateTo({
+              url: "/pages/search/chooseParking/main?id=" + that.id
+            });
+          // }else{
+          //   that.gps = true
+          // }
         }
       })
+      
+      
+      // console.log(e.mp)
+      // //获取标记点的经纬度
+      // let latitude = ""
+      // let longitude = ""
+      // this.markers.map(item => {
+      //   if(e.mp.markerId == item.id){
+      //     console.log(item.id)
+      //     latitude = item.latitude
+      //     longitude = item.longitude
+      //     this.moveToLocation(latitude,longitude)
+      //   }
+      // })
+      
     },
     moveToLocation(latitude,longitude) {
       latitude = 24.490206579127232
@@ -259,6 +283,18 @@ export default {
         url: "/pages/" + type + "/chooseParking/main?id=" + this.id
       });
     },
+    getDistance(lat1, lng1, lat2, lng2) {
+      lat1 = lat1 || 0;
+      lng1 = lng1 || 0;
+      lat2 = lat2 || 0;
+      lng2 = lng2 || 0;
+      var rad1 = lat1 * Math.PI / 180.0;
+      var rad2 = lat2 * Math.PI / 180.0;
+      var a = rad1 - rad2;
+      var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+      var r = 6378137;      
+      return (r * 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(rad1) * Math.cos(rad2) * Math.pow(Math.sin(b / 2), 2)))).toFixed(0)
+    },
   },
 
   created () {
@@ -276,16 +312,10 @@ export default {
       this.markers.map((item,index)=>{
         console.log(item,this.id)
         if(this.id == item.id){
-          console.log(111)
-          item.iconPath = '/static/img/cut/ic_park.png'
+          item.iconPath = '/static/img/cut/ic_location2.png'
         }
       })
-      //检索站点信息
-      this.tableData.map((item,index)=>{
-        if(item.id == this.id){
-          this.form = item
-        }
-      })
+      
     }else{
       this.form = {
           id: 2333,
@@ -293,12 +323,10 @@ export default {
           icon: "/static/img/cut/site_icon.png",
           address: '厦门市同安区洪塘镇苏店村小古宅里30号',
           distance: '30',
-          total: "3333",
-          inIdle: "33"
+          totalClientClient: "3333",
+          freeClient: "33"
         }
     }
-    
-
   }
 };
 </script>

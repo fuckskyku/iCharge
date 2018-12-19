@@ -27,6 +27,8 @@ export default {
       'pages/userCenter/orders/main',
       'pages/userCenter/electricityRecord/main',
       'pages/userCenter/electricityRecordDetails/main',
+      'pages/userCenter/energyBalance/main',
+      'pages/userCenter/energyBalanceDetails/main',
       'pages/userCenter/advice/main',
       'pages/userCenter/editAdvice/main',
       'pages/userCenter/adviceDetails/main',

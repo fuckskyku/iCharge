@@ -1,17 +1,20 @@
 <template>
-  <div id="order" class="order">
+  <div id="index" class="index">
     <div class="container">
-      <div class="record" v-for="(item,index) in tableData" :key="index" @click="skip('orderDetails',item.id)">
-        <div class="title">
-          <div class="hd">购买电量</div>
-          <div class="bd">+{{item.buyingPower}}度</div>
-          <div class="fd">{{item.price}}元</div>
+      <div class="record" v-for="(item,index) in tableData" :key="index" @click="skip('energyBalanceDetails',item.staId)">
+        <div class="hd">
+          鹭景充电站
         </div>
-        <div class="subTitle">
-          <div class="hd">{{item.useTime}}</div>
-          <div class="fd ">{{item.createTime}}</div>
+        <div class="bd">
+          <div class="bd_l">
+            <div class="title">忙时剩余电量</div>
+            <div class="subTitle">739.62度</div>
+          </div>
+          <div class="bd_r">
+            <div class="title">闲时剩余电量</div>
+            <div class="subTitle">139.62度</div>
+          </div> 
         </div>
-        <div class="underLine"></div>
       </div>
       
     </div>
@@ -30,37 +33,32 @@ export default {
       id: '',
       tableData: [
         {
-          id: 1,
-          buyingPower: '150',
-          price: '103.86',
-          useTime: '鹭景充电桩（忙时）',
-          createTime: '1510818902',
+          staId: 1,
+          staName: '鹭景充电站',
+          busyEnergy: '239.62',
+          idleEnergy: '49.62', 
         },
         {
-          id: 2,
-          buyingPower: '230',
-          price: '233.98',
-          useTime: '五缘充电桩（闲时）',
-          createTime: '1541451902',
+          staId: 2,
+          staName: '天华充电站',
+          busyEnergy: '539.62',
+          idleEnergy: '34.52', 
         },
         {
-          id: 3,
-          buyingPower: '100',
-          price: '72.98',
-          useTime: '睿通充电桩（忙时）',
-          createTime: '1545186893',
+          staId: 3,
+          staName: '咪师充电站',
+          busyEnergy: '233.98',
+          idleEnergy: '32.23', 
         }
       ]
     };
   },
   onShow() {
-    console.log("this.$root.$mp.query",this.$root.$mp.query)
-    this.$root.$mp.query.id != undefined ? this.id = this.$root.$mp.query.id : this.id = ''
+    
   },
   mounted() {
-    this.tableData.map((item)=> {
-      item.createTime = this.ToTime(item.createTime)
-    })
+    console.log("this.$root.$mp.query",this.$root.$mp.query)
+    this.$root.$mp.query.id != undefined ? this.id = this.$root.$mp.query.id : this.id = ''
   },
   methods: {
     ToTime(timestamp) {
@@ -98,7 +96,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.order{
+.index{
   width: 100%;
   height: 100%;
   position: absolute;
@@ -112,57 +110,42 @@ export default {
 .record{
   background: #ffffff;
   position: relative;
-  .title{
-    display: flex;
-    flex: 3;
-    padding: 30rpx;
-    .hd{
-      font-size: 34rpx;
-      color: #333333;
-      text-align: left;
-      width: 100%;
-    }
-    .bd{
-      color: #FFC000;
-      font-size: 36rpx;
-      text-align: center;
-      width: 100%;
-    }
-    .fd{
-      width: 100%;
-      font-size: 34rpx;
-      color: #333333;
-      text-align: right;
-    }
+  margin-bottom: 20rpx;
+  .hd{
+    padding: 24rpx 30rpx 0;
   }
-  .subTitle{
+  .bd{
+    color: lightblue;//
+    padding: 24rpx 0;
     display: flex;
     flex: 2;
-    padding: 0 30rpx 30rpx;
-    font-size: 24rpx;
-    color: #666666;
-    .hd{
+    .bd_l{
       width: 100%;
-      text-align: left;
+      margin: 0 24rpx;
+      background-image: url("http://pic.qiantucdn.com/58pic/28/33/02/94C58PICi94_1024.jpg!qtwebp324"); //http://pic.qiantucdn.com/58pic/27/72/66/57h58PICN7g_1024.jpg!qtwebp324
+      background-size: cover;
     }
-    .fd{
+    .bd_r{
       width: 100%;
+      margin: 0 24rpx;
+      background: url("http://pic.qiantucdn.com/58pic/27/72/66/57h58PICN7g_1024.jpg!qtwebp324") no-repeat; //
+      background-size: cover;
+    }
+    .title{
+      font-size: 32rpx;
+    }
+    .subTitle{
+      font-size: 40rpx;
       text-align: right;
     }
   }
-  .underLine{
-    width: 96%;
-    height: 2rpx;
-    background: #f4f4f4;
-    position: absolute;
-    right: 0;
-    bottom: 0;
+  .bd>div{
+    border-radius: 10rpx;
+    padding: 20rpx;
   }
   
 }
-.record:last-child .underLine{
-  background: transparent;
-}
+
 
 .loadmore{
   position: relative;

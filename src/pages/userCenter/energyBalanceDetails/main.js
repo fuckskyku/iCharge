@@ -7,7 +7,7 @@ app.$mount()
 
 export default {
     config: {
-        navigationBarTitleText: '消费记录',
+        navigationBarTitleText: '电量余额详情',
         "enablePullDownRefresh": false,
         "navigationBarBackgroundColor":'#ffffff',
         "navigationBarTextStyle": 'black',

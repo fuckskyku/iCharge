@@ -14,9 +14,11 @@
         </div>
       </div>
       <div class="footer">
-        <view class="weui-loadmore weui-loadmore_line">
-          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多了</view>
-        </view>    
+        <view class="weui-loadmore loadmore">
+          <view class="tips">没有更多了</view>
+          <div class="line pl"></div>
+          <div class="line pr"></div>
+        </view>   
       </div>
     </div>
     
@@ -166,5 +168,28 @@ export default {
 }
 .footer{
   margin-top: 90rpx;
+  .loadmore{
+    position: relative;
+    .tips{
+      // width: 50%;
+      text-align: center;
+      margin: 0 auto;
+      font-size: 22rpx;
+      color: #888888;
+    }
+    .line{
+      width: 100rpx;
+      height: 2rpx;
+      background: #C7C7C7;  
+      position: absolute;
+      top: 50%;
+    }
+    .pl{
+      left: 80rpx;
+    }
+    .pr{
+      right: 80rpx;
+    }
+  }
 }
 </style>

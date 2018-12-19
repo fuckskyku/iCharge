@@ -100,7 +100,7 @@ export function showDialog(keyval, fn) {
   wx.showToast({
     title: keyval,
     icon: 'none',
-    duration: 3000,
+    duration: 2000,
     mask: true
   })
   if (fn != null) {

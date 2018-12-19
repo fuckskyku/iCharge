@@ -2,7 +2,7 @@
   <div id="index" class="container">
     <map 
       id="map" 
-      :scale="14"
+      :scale="13"
       :latitude="latitude"
       :longitude="longitude"
       :controls="controls" 
@@ -45,11 +45,11 @@
         </cover-view> 
         <cover-view class="place_info_btn" v-if="arrive == true">
           <cover-image class="img_back" src="/static/img/cut/arrive.png" alt="" />
-          <cover-view class="tip_bg"><button @click="skip('index')" class="tip_btn">立刻打开</button></cover-view>
+          <cover-view class="tip_bg"><button @click="skip('search/navigate')" class="tip_btn">立刻打开</button></cover-view>
           <!-- <cover-view class="tip_bg"><cover-view class="tip_btn" @click="skip('index')">立刻打开</cover-view></cover-view> -->
         </cover-view>   
       </cover-view>  
-    
+      
     </map>
       
   </div>
@@ -62,6 +62,7 @@ import { geStationtList } from "@/api/api";
 export default {
   data() {
     return {
+      id: "",
       show: false,
       tip: false,
       step: 1,
@@ -69,33 +70,23 @@ export default {
       longCome: false,
       mapCtx: "",
       //地图属性
-      latitude: '',
+      latitude: '',  //地图中心经纬度
       longitude: '',
       lat: '',
       log: '',
-      ttt: "",
       //地图标记
       markers: [],
+      form: {},
       controls: [{
         id: 1,
         iconPath: '/static/img/position.png', //地图中心定位
-        position: {
-          left: wx.getSystemInfoSync().windowWidth / 2 - 5.5,
-          top: wx.getSystemInfoSync().windowHeight / 2 - 28,
-          width: 11,
-          height: 28
-        },
+        position: {left: wx.getSystemInfoSync().windowWidth / 2 - 5.5,top: wx.getSystemInfoSync().windowHeight / 2 - 28,width: 11,height: 28},
         clickable: false
       },
       {
         id: 2,
         iconPath: '/static/img/location.png',
-        position: {
-          left: wx.getSystemInfoSync().windowWidth - 63,
-          top: wx.getSystemInfoSync().windowHeight - 180,
-          width: 45,
-          height: 45
-        },
+        position: {left: wx.getSystemInfoSync().windowWidth - 63,top: wx.getSystemInfoSync().windowHeight - 180,width: 45,height: 45},
         clickable: true
       },
       ],
@@ -107,112 +98,144 @@ export default {
   components: {
     
   },
-  onHide() {
+  onShow() {
     this.init()
-    // this.geStationtListFun()
     var that = this
     wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
       success(res) {
         that.latitude = res.latitude
         that.longitude = res.longitude
-        that.geStationtListFun(res.latitude,res.longitude)
+        console.log(that.latitude,res.longitude)
+        that.geStationtListFun(that.latitude,that.longitude,undefined)
       }
     })
   },
-  onReady() {
-    //使用 wx.createMapContext 获取 map 上下文
-    this.mapCtx = wx.createMapContext('map')
-    
-  },
- 
   methods: {
-    geStationtListFun(lat,lng) {
+    geStationtListFun(lat,lng,wolaile) {
+      console.log(lat,lng,wolaile)
       geStationtList({
         distance: 10 * 1000,
         lat: lat,
         lng: lng,
       }).then(res => {
         this.markers = []
-        console.log("geStationtList",res.data.data.list)
-        var obj = res.data.data.list
-        obj.map((item,index) => {
-          this.markers.push({
-            iconPath: "/static/img/cut/ic_location.png",
-            id: item.staId,
-            width: 33,
-            height: 41,
-            latitude: item.lat,
-            longitude: item.lng,
-            title: item.staName
-          })
-        })
-        console.log("this.markers",this.markers)
+        console.log("geStationtList",res.data)
+        if(res.data.code == 200){
+          // var msg = `距离指定位置10公里共${res.data.data.totalCount}座充电桩`
+          // utils.showDialog(msg)
+          var obj = res.data.data.list
+          obj.map((item,index) => {
+            this.markers.push({
+              iconPath: "/static/img/cut/ic_location.png",
+              id: item.staId,
+              width: 33,
+              height: 41,
+              latitude: item.lat,
+              longitude: item.lng,
+              title: item.staName,
+              distance: item.distance
+            })
+          })      
+          if(wolaile != undefined){
+            var num = []
+            this.markers.map((item,index) =>{
+              if(item.distance < 10000){
+                num.push(item.distance)
+                console.log("daola",item.title)  
+              }
+            }) 
+            console.log("item.distance",num)
+            if(num != []){
+              var min = Math.min.apply(Math, num);//取最小距离
+              console.log("min",min)
+              this.markers.map((item,index) =>{
+                if(item.distance == min){
+                  console.log("我是最近的哈哈哈",item.staName)
+                  this.id = item.id
+                  //当前的位置在桩站范围时才弹出
+                  // this.tip = true       //附近有桩站时提示打开桩站
+                  // this.arrive = true
+                  item.iconPath = "/static/img/cut/ic_location2.png"
+                }
+              }) 
+            }
+          }
+        }
+        if (wolaile == undefined){
+          var num = []
+          this.markers.map((item,index) =>{
+            if(item.distance < 10000){
+              num.push(item.distance)
+              console.log("daola",item.title)  
+            }
+          }) 
+          console.log("item.distance",num)
+          if(num != []){
+            var min = Math.min.apply(Math, num);//取最小距离
+            console.log("min",min)
+            this.markers.map((item,index) =>{
+              if(item.distance == min){
+                console.log("我是最近的哈哈哈",item.staName)
+                this.id = item.id
+                //当前的位置在桩站范围时才弹出
+                this.tip = true       //附近有桩站时提示打开桩站
+                this.arrive = true
+                item.iconPath = "/static/img/cut/ic_location2.png"
+              }
+            }) 
+          }
+          //end
+        }
+        
+        // console.log("this.markers",this.markers)
       })
     },
     init() {
       //初始化标记点
       let marker = [
-        {
-          iconPath: "/static/img/cut/ic_location.png",
-          id: 0,
-          latitude: 24.500204093431726,
-          longitude: 118.16043366406248,
-          width: 33,
-          height: 41,
-          title: "这是哪儿",
+        {iconPath: "/static/img/cut/ic_location.png",id: 0,latitude: 24.500204093431726,longitude: 118.16043366406248,width: 33,height: 41,title: "这是哪儿",
         },
-        {
-          iconPath: "/static/img/cut/ic_location.png",
-          id: 1,
-          latitude: 24.490206579127232,
-          longitude: 118.10824860546873,
-          width: 33,
-          height: 41,
-          title: "我在哪儿",
-          // callout: {
-          //   content: "我是气泡",
-          //   color: '#FF0000',
-          //   bgColor: "#ffffff",
-          //   fontSize: 16,
-          //   padding: 10,
-          //   display: 'ALWAYS',
-          //   borderRadius: 5
-          // }
+        {iconPath: "/static/img/cut/ic_location.png",id: 1,latitude: 24.490206579127232,longitude: 118.10824860546873,width: 33,height: 41,title: "我在哪儿",
         },
-        {
-          iconPath: "/static/img/cut/ic_location.png",
-          id: 2,
-          latitude: 24.490206579127232,
-          longitude: 118.10824860546873,
-          width: 33,
-          height: 41,
-          title: "我在哪儿",
+        {iconPath: "/static/img/cut/ic_location.png",id: 2,latitude: 24.490206579127232,longitude: 118.10824860546873,width: 33,height: 41,title: "我在哪儿",
         }
       ]
       this.markers = marker
+      //使用 wx.createMapContext 获取 map 上下文
+      this.mapCtx = wx.createMapContext('map')
     },
     
     //获取地图中心经纬度
     getCenterLocationFun() {
       var that = this
-      this.mapCtx.getCenterLocation({
-        success: function(res){
-          
-          var distance = that.getDistance(res.latitude, res.longitude, that.lat, that.log)
-          if(res.latitude == that.latitude && res.longitude == that.longitude || distance < 1){
-            return;
-          }
-          console.log("fdsfsdfsfs",that.latitude,that.longitude)
-          // console.log('res.latitude',res.latitude,'res.longitude',res.longitude)
-          //通过经纬度计算距离 当距离小于1公里时， 标记点变化
-          // console.log(distance)
-              that.latitude = res.latitude
-              that.longitude = res.longitude
-              that.geStationtListFun(res.latitude,res.longitude)
-          // that.moveToLocation(res.latitude,res.longitude) 
+      let latitude,longitude;
+      wx.getLocation({
+        type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+        success(res) {
+          latitude = res.latitude
+          longitude = res.longitude
+          that.mapCtx.getCenterLocation({
+            success: function(res){
+              var distance = that.getDistance( latitude, longitude, res.latitude, res.longitude)
+              if(res.latitude == that.latitude && res.longitude == that.longitude || distance < 1){
+                return;
+              }
+              console.log('distance',distance)
+              // console.log("fdsfsdfsfs",that.latitude,that.longitude)
+              // console.log('res.latitude',res.latitude,'res.longitude',res.longitude)
+              //通过经纬度计算距离 当距离小于1公里时， 标记点变化
+              // console.log(distance)
+                  that.latitude = res.latitude
+                  that.longitude = res.longitude
+                  that.geStationtListFun(res.latitude,res.longitude,"laodi")
+                  
+              // that.moveToLocation(res.latitude,res.longitude) 
+            }
+          })
         }
       })
+      
     },
     clickHandle (msg, ev) {
       console.log('clickHandle:', msg, ev)
@@ -220,9 +243,13 @@ export default {
     //视野发生变化时触发
     regionchange(e) {
       var that = this
-      // console.log("regionchange:",e.type)
+      
       if(e.type == "end"){
+        console.log("regionchange:",e.type)
+      
         this.getCenterLocationFun()
+ 
+        
       }
     },
     //标记点
@@ -234,8 +261,8 @@ export default {
       this.markers.map(item => {
         if(e.mp.markerId == item.id){
           console.log(item.id)
-          latitude = item.latitude
-          longitude = item.longitude
+          this.lat = item.latitude
+          this.log = item.longitude
           // this.moveToLocation(latitude,longitude)
           wx.navigateTo({
             url: "/pages/search/navigate/main?id=" + item.id
@@ -277,8 +304,9 @@ export default {
     },
     //页面路由跳转
     skip(type) {
+      console.log(this.id,2333)
       wx.navigateTo({
-        url: "/pages/" + type + "/main"
+        url: "/pages/" + type + "/main?id=" + this.id
       });
     },
     //移动到当前定位点
@@ -313,6 +341,8 @@ export default {
       // }
       this.show = false
       this.tip = false
+      this.arrive = false
+      this.longCome = false
     },
     //百度转腾讯地图经纬度
     bMapTransQQMap(lng,lat){        
@@ -329,22 +359,14 @@ export default {
 
   created () {
     //获取当前地理位置
-    this.getLocation()
+    // this.getLocation()
     //初始化
-    this.init()
-    //获取地图上下文
-    this.mapCtx = wx.createMapContext("map");   
+    // this.init()
+    // //获取地图上下文
+    // this.mapCtx = wx.createMapContext("map");   
   },
   mounted() {
-    var that = this
-    wx.getLocation({
-      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-      success(res) {
-        that.latitude = res.latitude
-        that.longitude = res.longitude
-        that.geStationtListFun(res.latitude,res.longitude)
-      }
-    })
+    
     
   }
 
@@ -502,4 +524,40 @@ page{
   //
   
 }
+
 </style>
+/*
+                        ::
+                      :;J7, :,                        ::;7:
+                      ,ivYi, ,                       ;LLLFS:
+                      :iv7Yi                       :7ri;j5PL
+                     ,:ivYLvr                    ,ivrrirrY2X,
+                     :;r@Wwz.7r:                :ivu@kexianli.
+                    :iL7::,:::iiirii:ii;::::,,irvF7rvvLujL7ur
+                   ri::,:,::i:iiiiiii:i:irrv177JX7rYXqZEkvv17
+                ;i:, , ::::iirrririi:i:::iiir2XXvii;L8OGJr71i
+              :,, ,,:   ,::ir@mingyi.irii:i:::j1jri7ZBOS7ivv,
+                 ,::,    ::rv77iiiriii:iii:i::,rvLq@huhao.Li
+             ,,      ,, ,:ir7ir::,:::i;ir:::i:i::rSGGYri712:
+           :::  ,v7r:: ::rrv77:, ,, ,:i7rrii:::::, ir7ri7Lri
+          ,     神兽保佑iiir;r::        ,永无BUG::,, ,iv7Luur:
+        ,,     i78MBBi,:,:::,:,  :7FSL: ,iriii:::i::,,:rLqXv::
+        :      iuMMP: :,:::,:ii;2GY7OBB0viiii:i:iii:i:::iJqL;::
+       ,     ::::i   ,,,,, ::LuBBu BBBBBErii:i:i:i:i:i:i:r77ii
+      ,       :       , ,,:::rruBZ1MBBqi, :,,,:::,::::::iiriri:
+     ,               ,,,,::::i:  @arqiao.       ,:,, ,:::ii;i7:
+    :,       rjujLYLi   ,,:::::,:::::::::,,   ,:i,:,,,,,::i:iii
+    ::      BBBBBBBBB0,    ,,::: , ,:::::: ,      ,,,, ,,:::::::
+    i,  ,  ,8BMMBBBBBBi     ,,:,,     ,,, , ,   , , , :,::ii::i::
+    :      iZMOMOMBBM2::::::::::,,,,     ,,,,,,:,,,::::i:irr:i:::,
+    i   ,,:;u0MBMOG1L:::i::::::  ,,,::,   ,,, ::::::i:i:iirii:i:i:
+    :    ,iuUuuXUkFu7i:iii:i:::, :,:,: ::::::::i:i:::::iirr7iiri::
+    :     :rk@Yizero.i:::::, ,:ii:::::::i:::::i::,::::iirrriiiri::,
+     :      5BMBBBBBBSr:,::rv2kuii:::iii::,:i:,, , ,,:,:i@petermu.,
+          , :r50EZ8MBBBBGOBBBZP7::::i::,:::::,: :,:,::i;rrririiii::
+              :jujYY7LS0ujJL7r::,::i::,::::::::::::::iirirrrrrrr:ii:
+           ,:  :@kevensun.:,:,,,::::i:i:::::,,::::::iir;ii;7v77;ii;i,
+           ,,,     ,,:,::::::i:iiiii:i::::,, ::::iiiir@xingjief.r;7:i,
+        , , ,,,:,,::::::::iiiiiiiiii:,:,:::::::::iiir;ri7vL77rrirri::
+         :,, , ::::::::i:::i:::i:i::,,,,,:,::i:i:::iir;@Secbone.ii:::
+*/

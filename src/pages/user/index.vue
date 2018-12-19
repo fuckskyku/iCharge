@@ -19,7 +19,7 @@
     </div> -->
     <!-- 电量 -->
     <div class="energy flex">
-      <div class="flex dumpEnergy" @click="skip('dumpEnergy')"><img src="/static/img/cut/ic_surplus.png" alt="">剩余电量</div>
+      <div class="flex dumpEnergy" @click="skip('energyBalance')"><img src="/static/img/cut/ic_surplus.png" alt="">剩余电量</div>
       <div class="flex line"></div>
       <div class="flex record" @click="skip('electricityRecord')"><img src="/static/img/cut/ic_record.png" alt="">用电记录</div>
     </div>
