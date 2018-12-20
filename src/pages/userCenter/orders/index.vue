@@ -107,7 +107,6 @@ export default {
 }
 .container{
   padding: 10rpx 0 40rpx 0;
-
 }
 .record{
   background: #ffffff;

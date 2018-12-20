@@ -71,7 +71,7 @@ export function wxSetStorage(key, data, fn) {
 
 /**
  * 
- * @param {存储key}} key 
+ * @param {存储key} key 
  * @param {存储value} data 
  * 微信同步存储数据
  */
@@ -91,6 +91,18 @@ export function wxGetStorage(keyval) {
     return wx.getStorageSync(keyval)
   }
 }
+
+
+/**
+ *
+ * @param {移除key} key
+ * 微信同步从本地缓存中移除指定 key
+ */
+export function removeStorageSync(key) {
+  wx.removeStorageSync(key);
+}
+
+
 //提示弹出框
 /**
  * 

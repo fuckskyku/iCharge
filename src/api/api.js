@@ -14,6 +14,14 @@ export const geStationtInfo = param => {
     return fly.get('/api/charge/geStationtInfo', param)
 }
 
+//
+
+/**
+   * 
+   * 
+   * 
+   * 
+   */
 //登录
 export const login = param => {
     return fly.post('/api/login', param);

@@ -43,6 +43,7 @@ export default {
       'pages/search/chargeMode/stopCharge/main',
       'pages/search/opening/main',
       'pages/search/opened/main',
+      'pages/search/openedInsert/main',
       //协议
       'pages/useAgreement/main'
     ],

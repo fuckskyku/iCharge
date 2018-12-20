@@ -2,7 +2,7 @@
   <div id="index" class="container">
     <map 
       id="map" 
-      :scale="14"
+      :scale="scale"
       :latitude="form.lat"
       :longitude="form.lng"
       :controls="controls" 
@@ -19,7 +19,7 @@
         <cover-view class=" weui-cells weui-cells_after-title">
           <cover-view class="weui-cell" @click="skip('search')">
             <cover-view class="weui-cell__hd">
-                <cover-image :src="form.coverImg" class="wh60" style="width:60px; height: 60px;"/>
+                <cover-image :src="form.coverImg==''?'/static/img/cut/site_icon.png':form.coverImg" class="wh60" style="width:60px; height: 60px;"/>
             </cover-view>
             <cover-view class="weui-cell__bd h120">
               <cover-view style="" class="title">{{form.staName}}</cover-view> 
@@ -51,7 +51,7 @@
             <cover-view class="weui-cell__fd">  
               <cover-view class="distance font13">
                 <cover-image src="/static/img/cut/ic_navigation3.png" class="font13" style="width:10px; height: 10px;"/>
-                <cover-view class="font13">{{form.distance / 1000}}</cover-view><cover-view class="font13">km</cover-view>
+                <cover-view class="font13">{{form.distance}}</cover-view><cover-view class="font13">km</cover-view>
               </cover-view>
             </cover-view>
           </cover-view>
@@ -62,7 +62,7 @@
       <cover-view class="dialog" v-if="gps == true" @click="gps=false">
         <cover-view class="dialog_warp" style="">
           <cover-view class="tip" style="pading: 52rpx;">您将打开手机地图APP导航去这个充电桩！</cover-view>
-          <cover-view class="into" @click="moveToLocation" style="">进入导航</cover-view>
+          <cover-view class="into" @click="moveToLocation(latitude,longitude)" style="">进入导航</cover-view>
         </cover-view>   
       </cover-view>
     </map>
@@ -82,6 +82,7 @@ export default {
       //地图属性
       latitude: '',
       longitude: '',
+      scale: 14,
       //地图标记
       markers: [],
       polyline: [
@@ -145,40 +146,36 @@ export default {
     
   },
   onShow() {
+    console.log("this.$root.$mp.query",this.$root.$mp.query)
+    this.$root.$mp.query.id != undefined ? this.id = this.$root.$mp.query.id : this.id = ''
     this.init()
     //使用 wx.createMapContext 获取 map 上下文
     this.mapCtx = wx.createMapContext('map')
     this.geStationtInfoFun()
     console.log("from",this.form)
-    this.latitude = this.form.lat
-    this.longitude = this.form.lng
+    
   },
   onLoad() {
-    console.log("this.$root.$mp.query",this.$root.$mp.query)
-    this.$root.$mp.query.id != undefined ? this.id = this.$root.$mp.query.id : this.id = ''
+    
   },
   methods: {
     geStationtInfoFun() {
       var that = this
-      let latitude = '';
-      let longitude = '';
       console.log(this.id)
       wx.getLocation({
         type: 'gcj02', //返回可以用于wx.openLocation的经纬度
         success (res) {
-          utils.wxSetStorageSync("latitude",res.latitude)
-          utils.wxSetStorageSync("longitude",res.longitude)
+          utils.wxSetStorageSync("currLatitude",res.latitude)
+          utils.wxSetStorageSync("currLongitude",res.longitude)
         }
       })
-      latitude = utils.wxGetStorage("latitude")
-      longitude = utils.wxGetStorage("longitude")
       geStationtInfo({
         id: that.id,
-        lat: latitude,
-        lng: longitude
+        lat: utils.wxGetStorage("currLatitude"),
+        lng: utils.wxGetStorage("currLongitude")
       }).then(res=>{
-        
         that.form = res.data.data
+        that.form.distance = (that.form.distance/1000).toFixed(2)
         this.markers.push({
           iconPath: "/static/img/cut/ic_location2.png",
           id: that.form.staId,
@@ -187,6 +184,8 @@ export default {
           width: 33,
           height: 41,
         })
+        this.latitude = this.form.lat
+        this.longitude = this.form.lng
         console.log('that.form',that.form)
       })
       //end
@@ -231,31 +230,16 @@ export default {
           // }
         }
       })
-      
-      
-      // console.log(e.mp)
-      // //获取标记点的经纬度
-      // let latitude = ""
-      // let longitude = ""
-      // this.markers.map(item => {
-      //   if(e.mp.markerId == item.id){
-      //     console.log(item.id)
-      //     latitude = item.latitude
-      //     longitude = item.longitude
-      //     this.moveToLocation(latitude,longitude)
-      //   }
-      // })
-      
     },
     moveToLocation(latitude,longitude) {
-      latitude = 24.490206579127232
-      longitude = 118.10824860546873
+      console.log('latitude',latitude,'longitude',longitude)
+      var that = this
       wx.openLocation({
         latitude,
         longitude,
         scale: 18,
-        name: "这是哪儿",   //地址标题
-        address:"不知道阿aaa",  //详细地址
+        name: that.form.staName,   //地址标题
+        address: that.form.staAdress,  //详细地址
       })
     },
     //地图上显示控件

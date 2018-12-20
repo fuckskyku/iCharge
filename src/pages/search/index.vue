@@ -1,38 +1,50 @@
 <template>
-  <div id="index">
-    <div class="weui-cells weui-cells_after-title" v-for="(item,index) in tableData" :key="index">      
-      <div class="weui-cell" @click="skip('navigate',item.id)">
-          <div class="weui-cell__hd">
-              <img :src="item.icon==null?icon:item.icon" style="width:40px; height: 40px;">
-          </div>
-          <div class="weui-cell__bd">
-            <div class="title">{{item.title}}</div>
-            <div><img src="/static/img/cut/ic_address.png" style="width:8px; height: 10px;" class="icon">{{item.address}}</div>
-          </div>
-          <!-- <div class="weui-cell__fd">  
-            <div><img src="/static/img/cut/site_icon.png" style="width:10px; height: 10px;">adasd</div>
-          </div> -->
-      </div>
-      <div class="weui-cell">
-          <div class="weui-cell__hd">
-              <img src="/static/img/cut/ic_charge.png" style="width:10px; height: 10px; margin-top: -10rpx;" class="icon">
-          </div>
-          <div class="weui-cell__bd">共<span>{{item.total}}</span> 根充电桩<span style="color:#FFC000;margin-left:20rpx;">{{item.inIdle}}</span> 根闲置中</div>
-          <div class="weui-cell__fd">  
-            <div class="distance">
-              <img src="/static/img/cut/ic_navigation3.png" class="icon" style="width:10px; height: 10px;">
-              <span>{{item.distance}}</span>km
+  <div id="index" class="index">
+    <div class="container">
+      <div class="weui-cells weui-cells_after-title" v-for="(item,index) in tableData" :key="index">      
+        <div class="weui-cell" @click="skip('navigate',item.staId)">
+            <div class="weui-cell__hd">
+                <img :src="item.coverImg==''?icon:item.coverImg" style="width:40px; height: 40px;">
             </div>
-          </div>
+            <div class="weui-cell__bd">
+              <div class="title">{{item.staName}}</div>
+              <div><img src="/static/img/cut/ic_address.png" style="width:8px; height: 10px;" class="icon">{{item.staAdress}}</div>
+            </div>
+            <!-- <div class="weui-cell__fd">  
+              <div><img src="/static/img/cut/site_icon.png" style="width:10px; height: 10px;">adasd</div>
+            </div> -->
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <img src="/static/img/cut/ic_charge.png" style="width:10px; height: 10px; margin-top: -10rpx;" class="icon">
+            </div>
+            <div class="weui-cell__bd">共<span>{{item.totalClient}}</span> 根充电桩<span style="color:#FFC000;margin-left:20rpx;">{{item.freeClient}}</span> 根闲置中</div>
+            <div class="weui-cell__fd">  
+              <div class="distance">
+                <img src="/static/img/cut/ic_navigation3.png" class="icon" style="width:10px; height: 10px;">
+                <span>{{item.distance}}</span>km
+              </div>
+            </div>
+        </div>
       </div>
-    </div>
-    <!-- item end -->
+      <!-- item end -->
+      <view class="weui-loadmore loadmore">
+        <view class="tips">没有更多了</view>
+        <div class="line pl"></div>
+        <div class="line pr"></div>
+      </view> 
+    </div> 
   </div>
 </template>
 <script>
+import utils from "@/utils/index";
+import { geStationtList } from "@/api/api";
+
 export default {
   data() {
     return {
+      latitude: '',
+      longitude: '',
       icon: "/static/img/cut/site_icon.png",
       tableData: [
         { 
@@ -68,6 +80,18 @@ export default {
   computed: {
   
   },
+  onShow() {
+    var that = this
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success(res) {
+        that.latitude = res.latitude
+        that.longitude = res.longitude
+        console.log(that.latitude,res.longitude)
+        that.geStationtListFun(that.latitude,that.longitude)
+      }
+    })
+  },
   mounted() {
 
   },
@@ -75,6 +99,24 @@ export default {
 
   },
   methods: {
+    geStationtListFun(lat,lng) {
+      console.log(lat,lng)
+      geStationtList({
+        distance: 10 * 1000,
+        lat: lat,
+        lng: lng,
+      }).then(res => {
+        console.log("geStationtList",res.data)
+        if(res.data.code == 200){
+          // var msg = `距离指定位置10公里共${res.data.data.totalCount}座充电桩`
+          // utils.showDialog(msg)
+          this.tableData = res.data.data.list
+          this.tableData.map((item) => {
+            item.distance = (item.distance/1000).toFixed(2)
+          })  
+        }
+      })
+    },
     //页面路由跳转
     skip(type,param) {
       // this.$root.$mp.query = param
@@ -91,7 +133,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.index{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #f4f4f4;
+  overflow: scroll;
+}
+.container{
+  padding: 0 0 40rpx 0;
 
+}
 .weui-cells{
   border-top: 20rpx solid #f4f4f4;
   position: static;
@@ -99,6 +151,9 @@ export default {
     margin-right: 5px;
     vertical-align: middle;
   }
+}
+.weui-cells:first-child{
+  border-top: 10rpx solid #f4f4f4;
 }
 .weui-cell__hd{
   
@@ -121,5 +176,33 @@ export default {
 }
 .icon{
   margin-top: -6rpx;
+}
+
+.weui-loadmore {
+  margin:2.5em auto;
+}
+
+.loadmore{
+  position: relative;
+  .tips{
+    // width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 22rpx;
+    color: #888888;
+  }
+  .line{
+    width: 100rpx;
+    height: 2rpx;
+    background: #C7C7C7;  
+    position: absolute;
+    top: 50%;
+  }
+  .pl{
+    left: 80rpx;
+  }
+  .pr{
+    right: 80rpx;
+  }
 }
 </style>

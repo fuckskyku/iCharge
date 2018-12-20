@@ -6,6 +6,7 @@
       :latitude="latitude"
       :longitude="longitude"
       :controls="controls" 
+      subkey="5IQBZ-KXN6S-GQ3OV-6V2ZK-BSYCS-5DFZK"
       @controltap="controltap" 
       @end="regionchange"
       @begin="regionchange"
@@ -72,23 +73,24 @@ export default {
       //地图属性
       latitude: '',  //地图中心经纬度
       longitude: '',
+      scale: 13,
       lat: '',
       log: '',
       //地图标记
       markers: [],
       form: {},
       controls: [{
-        id: 1,
-        iconPath: '/static/img/position.png', //地图中心定位
-        position: {left: wx.getSystemInfoSync().windowWidth / 2 - 5.5,top: wx.getSystemInfoSync().windowHeight / 2 - 28,width: 11,height: 28},
-        clickable: false
-      },
-      {
-        id: 2,
-        iconPath: '/static/img/location.png',
-        position: {left: wx.getSystemInfoSync().windowWidth - 63,top: wx.getSystemInfoSync().windowHeight - 180,width: 45,height: 45},
-        clickable: true
-      },
+          id: 1,
+          iconPath: '/static/img/position.png', //地图中心定位
+          position: {left: wx.getSystemInfoSync().windowWidth / 2 - 5.5,top: wx.getSystemInfoSync().windowHeight / 2 - 28,width: 11,height: 28},
+          clickable: false
+        },
+        {
+          id: 2,
+          iconPath: '/static/img/location.png',
+          position: {left: wx.getSystemInfoSync().windowWidth - 63,top: wx.getSystemInfoSync().windowHeight - 180,width: 45,height: 45},
+          clickable: true
+        },
       ],
       centerLocation: {}
       //
@@ -151,17 +153,16 @@ export default {
               console.log("min",min)
               this.markers.map((item,index) =>{
                 if(item.distance == min){
-                  console.log("我是最近的哈哈哈",item.staName)
+                  console.log("我是最近的哈哈哈",item.title)
                   this.id = item.id
-                  //当前的位置在桩站范围时才弹出
-                  // this.tip = true       //附近有桩站时提示打开桩站
-                  // this.arrive = true
+                  // this.scale = 18
                   item.iconPath = "/static/img/cut/ic_location2.png"
                 }
               }) 
             }
           }
         }
+        //进入小程序页面时判断当前位置附近是否有桩站
         if (wolaile == undefined){
           var num = []
           this.markers.map((item,index) =>{
@@ -172,22 +173,20 @@ export default {
           }) 
           console.log("item.distance",num)
           if(num != []){
-            var min = Math.min.apply(Math, num);//取最小距离
+            var min = Math.min.apply(Math, num);   //取最小距离
             console.log("min",min)
             this.markers.map((item,index) =>{
               if(item.distance == min){
-                console.log("我是最近的哈哈哈",item.staName)
+                console.log("我是最近的哈哈哈",item.title)
                 this.id = item.id
-                //当前的位置在桩站范围时才弹出
-                this.tip = true       //附近有桩站时提示打开桩站
+                this.tip = true                   //当前的位置在桩站范围时才弹出      
                 this.arrive = true
                 item.iconPath = "/static/img/cut/ic_location2.png"
               }
             }) 
           }
           //end
-        }
-        
+        }        
         // console.log("this.markers",this.markers)
       })
     },

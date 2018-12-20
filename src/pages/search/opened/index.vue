@@ -79,11 +79,16 @@
   </div>
 </template>
 <script>
+import utils from "@/utils/index";
+
 export default {
   data() {
     return {
       id: "",
       insert: false,
+      confirmInsert: false,
+      confirm: '',
+      timer: '',
       info: [
         {
           id: '',
@@ -97,24 +102,84 @@ export default {
   computed: {
   
   },
-  onLoad () {
+  onShow() {
+    console.log("timer",utils.wxGetStorage("timer"))
+    
+    if(this.confirmInsert == false || this.confirm == false){
+      // utils.removeStorageSync("beforeTime")  //test
+      // wx.removeStorageSync('beforeTime');
+      //若未插枪或取消充电到期时间未创建，此时创建到期时间戳
+      if(utils.wxGetStorage("beforeTime") != false){    //已创建
+        console.log("timer",utils.wxGetStorage("beforeTime")+1*60*1000)   //到期时间戳 5分钟
+        if(utils.wxGetStorage("beforeTime")+1*60*1000 > Date.parse(new Date()) ){    //若到期时间戳大于当前时间戳才执行倒计时，否则倒计时置0
+          var timeout = utils.wxGetStorage("beforeTime")+1*60*1000
+          this.timer = setInterval(() => {  //倒计时
+            // console.log(timeout - Date.parse(new Date()))   //结束时间减当前时间的时间戳   获得倒计时毫秒数
+            let count = timeout - Date.parse(new Date())
+            if(count <= 0){
+              clearInterval(this.timer)
+              // wx.removeStorageSync('beforeTime');
+              console.log("countqingchu")
+            }
+            this.ToTime(count)
+            console.log(this.ToTime(count))
+          },1000)
+        }else{
+          let count = 0
+          this.ToTime(count)
+          console.log(this.ToTime(count))
+        }
+        
+      }else{    //未创建
+        utils.wxSetStorageSync("beforeTime",Date.parse(new Date()))       
+      }
+
+    }else{ //插枪或取消充电后清除倒计时
+      clearInterval(this.timer)
+      wx.removeStorageSync('beforeTime');
+      console.log(this.confirm)
+    }
+    
+    // utils.wxSetStorageSync("")
+  },
+  onLoad() {
     console.log("this.$root.$mp.query",this.$root.$mp.query)
     this.id = this.$root.$mp.query.id
   },
+  updated() {
+    console.log(this.confirm)
+    if(this.confirm == true || this.insert == true){
+      clearInterval(this.timer)
+      wx.removeStorageSync('beforeTime');
+    }
+  },
   mounted() {
     var that = this
-    setTimeout(() =>{
-      this.insert = true
-    },3000)
+    // setTimeout(() =>{
+    //   this.insert = true
+    // },3000)
   },
   components: {
 
   },
   methods: {
+    ToTime(timestamp) {
+      // console.log(timestamp)   
+      var m = parseInt(timestamp / (60 * 1000));
+      var s = (timestamp % (1000 * 60) / 1000)
+      return m + "分" + s + "秒";
+    },
     skip(params,type) {
-      wx.redirectTo({
-        url: "/pages/search/" + type + params + "/main?id=" + this.id
-      })
+      if(type == ''){
+        this.confirm = true  //为true时为确认取消充电
+        this.insert = true  //为true时为插入电枪
+      }
+      if(type == 'chargeMode/'){
+        this.confirmInsert = true  //为true时为确认充电
+      }
+      // wx.redirectTo({
+      //   url: "/pages/search/" + type + params + "/main?id=" + this.id
+      // })
     }
   },
   watch: {},
@@ -157,7 +222,7 @@ export default {
     margin: 40rpx 0;
   }
   .tip_img{
-    margin: 70rpx 0;
+    margin: 70rpx 0 36rpx 0;
     img{
       height: 58rpx;
       width: 54rpx;

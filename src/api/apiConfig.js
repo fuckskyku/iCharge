@@ -1,9 +1,10 @@
 import store from '@/Store/store'
 //引用工具类
 import utils from '../utils';
-var Fly = require("flyio/dist/npm/wx") //wx.js is your downloaded code
-var fly = new Fly(); //Create an instance of Fly
+var Fly = require("flyio/dist/npm/wx") //wx.js为您下载的源码文件
+var fly = new Fly(); //创建fly实例
 
+//添加响应拦截器，响应拦截器会在then/catch处理之前执行
 fly.interceptors.response.use(
   (response, promise) => {
     wx.showLoading({
@@ -15,7 +16,7 @@ fly.interceptors.response.use(
       response.data = JSON.parse(response.data);
     }
     if (response.data.code == "414" || response.data.code == "412") {
-      var url = '/pages/pages_one/logout/main'
+      var url = '/pages/logout/main'
       //token过期拦截
       // wx.removeStorageSync("token");
       //   ...mapActions(['setClearStore']),
@@ -42,15 +43,13 @@ fly.interceptors.response.use(
 )
 
 // Set the base url
-
-
-//fly.config.baseURL = "https://admin.school.mseenet.com"
 fly.config.baseURL = "https://charge.xmnewlife.com/"
 
 fly.config.headers = {
   'content-type': 'application/x-www-form-urlencoded'
 }
 
+//跨域请求是否发送第三方cookie
 fly.config.withCredentials = true;
 
 export default {
