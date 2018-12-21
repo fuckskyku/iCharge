@@ -41,6 +41,7 @@ export default {
       'pages/search/chargeMode/setupCharge/main',
       'pages/search/chargeMode/chargeing/main',
       'pages/search/chargeMode/stopCharge/main',
+      'pages/search/chargeMode/countCharge/main',
       'pages/search/opening/main',
       'pages/search/opened/main',
       'pages/search/openedInsert/main',

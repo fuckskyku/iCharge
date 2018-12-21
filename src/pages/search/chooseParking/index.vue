@@ -14,7 +14,7 @@
     <div class="section">
       <form>
         <ul class="item">
-          <li v-for="(item,index) in info" :key="index" class="parking"><button @click="check(index)" :class="[item.style,{checked:current == index}]">{{item.num}}</button></li>
+          <li v-for="(item,index) in tableData" :key="index" class="parking"><button @click="check(index)" :class="[item.style,{checked:current == index}]">{{item.parking}}</button></li>
         </ul>
       </form>  
     </div>
@@ -70,6 +70,9 @@
   </div>
 </template>
 <script>
+import utils from "@/utils/index";
+import { getClientList } from "@/api/api";
+
 export default {
   data() {
     return {
@@ -78,18 +81,24 @@ export default {
       use: false,
       dumpEnergy: 11,
       id: "",
+      keyword: '',
       current: '-1', //当前选中的车位
       info: [
         {id: '1',checked: false,num: 'FD-001号',disabled: true,style:'disabled'},{id: '2',checked: false,num: 'FD-002号',disabled: false,style:'enabled'},{id: '3',checked: false,num: 'FD-003号',disabled: false,style:'enabled'},{id: '4',checked: false,num: 'FD-004号',disabled: false,style:'enabled'}
-      ]
+      ],
+      tableData: []
     };
   },
   computed: {
   
   },
-  onLoad () {
+  onShow() {
     console.log("this.$root.$mp.query",this.$root.$mp.query)
     this.id = this.$root.$mp.query.id
+    this.getClientListFun()
+  },
+  onLoad () {
+    
     // if(this.login == false){
     //   wx.setNavigationBarTitle({
     //     title: 'iCharge',
@@ -110,8 +119,38 @@ export default {
 
   },
   methods: {
+    getClientListFun() {
+      var that = this
+      console.log(this.id)
+      wx.getLocation({
+        type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+        success (res) {
+          utils.wxSetStorageSync("currLatitude",res.latitude)
+          utils.wxSetStorageSync("currLongitude",res.longitude)
+        }
+      })
+      getClientList({
+        staId: that.id,
+        keyword: this.keyword
+      }).then(res=>{
+        that.tableData = res.data.data.list
+        that.tableData.map((item)=>{
+          item.checked = false
+          if(item.clientState == 1){
+            item.disabled = false
+            item.style = 'enabled'
+          }
+          if(item.clientState == 2){
+            item.disabled = true
+            item.style = 'disabled'
+          }
+        })
+        console.log('res.data.data.list',that.tableData)
+      })
+      //end
+    },
     check(index){
-      if(this.info[index].disabled != true){
+      if(this.tableData[index].disabled != true){
         this.current = index
       }  
     },
@@ -124,11 +163,11 @@ export default {
     submit() {
       if(this.current != '-1'){
         //do something
-        console.log("submit",this.info[this.current].id)
+        console.log("submit",this.tableData[this.current].clientId)
         //current 查找选中车位的ID
         // this.info[this.current].id
         wx.navigateTo({
-          url: "/pages/search/opening/main?id=" + this.info[this.current].id
+          url: "/pages/search/opening/main?id=" + this.tableData[this.current].clientId
         });
 
       }else{

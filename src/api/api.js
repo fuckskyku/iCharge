@@ -14,7 +14,10 @@ export const geStationtInfo = param => {
     return fly.get('/api/charge/geStationtInfo', param)
 }
 
-//
+//获取电站终端列表
+export const getClientList = param => {
+    return fly.get('/api/charge/getClientList', param)
+}
 
 /**
    * 

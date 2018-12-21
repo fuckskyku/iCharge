@@ -6,6 +6,10 @@
         <div class="currEnergy">{{currEnergy}}%</div>
         <div class="title">正在充电中</div>
       </div>
+      <div class="content">
+        <div class="title">当前已充电</div>
+        <div class="subTitle">{{duration}}</div>
+      </div>
     </div>
     <div class="footer">
       <div class="info">
@@ -15,6 +19,7 @@
             <p class="subEnergy"><span>{{DEG}}</span>度</p>
           </div>
         </div>
+        <div class="vertical"></div>
         <div class="energyInfo pdr20">
           <div>
             <p class="subTitle">您的爱车当前电量</p>
@@ -22,6 +27,7 @@
           </div>
         </div>
       </div>
+      <div class="address">您的爱车当前停在福建省厦门市湖里区湖里高新技术园汇金湖里大厦附近宝龙停车场71号充电桩。</div>
       <div class="tip">充电完成后爱停车将对您进行提示</div>
       <button class="btn cancel" @click="submit()">立刻停止充电</button>
     </div>
@@ -36,8 +42,9 @@ export default {
   data() {
     return {
       id: "",
-      currEnergy: 52,
-      DEG: 52
+      currEnergy: 52,                    //剩余电量
+      DEG: 52,                          //度数
+      duration: '2小时33分钟'           //毫秒
     };
   },
   computed: {
@@ -69,7 +76,7 @@ export default {
           }else{
             console.log('用户点击辅助操作')
             wx.navigateTo({
-              url: "/pages/search/chargeMode/stopCharge/main"
+              url: "/pages/search/chargeMode/countCharge/main"
             });
           }
         }
@@ -86,7 +93,7 @@ export default {
 <style scoped lang="scss">
 .chargeing{
   width: 100%;
-  height: 680rpx;
+  height: 640rpx;
   position: relative;
   img{
     height: 100%;
@@ -96,11 +103,13 @@ export default {
     width: 340rpx;
     height: 340rpx;
     position: absolute;
+    // top: 70rpx;
     top: 0;
-    right: 0;
     bottom: 0;
+    right: 0;
     left: 0;
     margin: auto;
+    // margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -114,21 +123,42 @@ export default {
     }
   }
 }
+.content{
+  height: 100rpx;
+  width: 340rpx;
+  text-align: center;
+  position: absolute;
+  bottom: 94rpx;
+  left: 50%;
+  margin-left: -170rpx;
+  .title{
+    color: #F1FFF2;
+    font-size: 28rpx;
+  }
+  .subTitle{
+    color: #ffffff;
+    font-size: 46rpx;
+  }
+}
 .footer{
   .info{
     width: 100%;
     height: 160rpx;
     display: flex;
-    flex: 2;
+    flex: 3;
     align-items: center;
     align-content: center;
     // text-align: center;
-    padding: 46rpx 0;
+    padding: 10rpx 0;
+    .vertical{
+      height: 100rpx;
+      width: 3px;
+      background: #c7c7c7;
+    } 
     .energyInfo{
-      width: 50%;
+      width: 100%;
       height: 100%;
       padding: 0 23rpx;
-      
       div{
         display: flex;
         flex: 1;
@@ -138,7 +168,7 @@ export default {
         align-content: center;
         height: 100%;
         // border: 1px solid #849289;
-        box-shadow:  0px 0px 10rpx #849289; 
+        // box-shadow:  0px 0px 10rpx #849289; 
         border-radius: 10rpx;
       }
     }
@@ -148,21 +178,29 @@ export default {
     .pdr20{
       padding-right: 46rpx;
     }
-     .subTitle{
-       font-size: 30rpx;
-      color: #999999;
+       
+    .subTitle{
+      font-size: 30rpx;
+    color: #999999;
     }
     .subEnergy{
-      color: #FFC000;
+      color: #14BF6D;
       font-size: 46rpx;
     } 
   }
-  
-  .tip{
+  .address{
+    width: 84%;
+    margin: 0 auto;
     color: #999999;
-    font-size: 30rpx;
+    font-size: 28rpx;
     text-align: center;
     // margin: 0 0 50rpx 0;
+  }
+  .tip{
+    color: #14BF6D;
+    font-size: 32rpx;
+    text-align: center;
+    margin: 40rpx 0 46rpx 0;
   }
 }
 .btn{
