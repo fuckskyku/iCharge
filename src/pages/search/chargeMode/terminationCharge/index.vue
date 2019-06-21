@@ -13,7 +13,7 @@
         </div>
         <div class="weui-cell weui-cell_access" >
           <div class="weui-cell__bd bd">本次最终消耗电量</div>
-          <div class="weui-cell__ft ft tip"><span>131.44</span>度<img src="/static/img/cut/tips_icon.png" alt=""></div>
+          <div class="weui-cell__ft ft tip"><span>131.44</span>度<img src="https://testapi.xmnewlife.com/car/images/cut/tips_icon.png" alt=""></div>
         </div>
         <div class="weui-cell weui-cell_access" >
           <div class="weui-cell__bd bd">当前剩余电量</div>
@@ -66,7 +66,7 @@ export default {
       })
     },
     submit() {
-      wx.navigateTo({
+      wx.reLaunch({
         url: "/pages/index/main"
       });
     }
@@ -78,64 +78,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.stopCharge{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #F4F4F4;
-}
-.title{
-  font-size: 30rpx;
-  color: #333333;
-  padding: 24rpx 30rpx;
-  margin: 0;
-}
-.bd{
-  font-size: 32rpx;
-  color: #999;
-}
-.ft{
-  font-size: 32rpx;
-  color: #333333;
-}
-.tip{
-  img{
-    width: 32rpx;
-    height: 32rpx;
-    vertical-align: middle;
-    margin-top: -4rpx;
-    margin-left: 4rpx;
-  } 
-}
-.subTitle{
-  color: #14BF6D;
-  font-size: 32rpx;
-  text-align: center;
-  margin: 54rpx 0;
-}
-.weui-cells:before {
-  top: 0;
-  border-top: none;
-}
-.weui-cells:after {
-  top: 0;
-  border-bottom: none;
-}
-.btn{
-  width: 520rpx;
-  height: 90rpx;
-  line-height: 90rpx;
-  border-radius: 90rpx;
-  border: none;
-  outline: none;
-  background: linear-gradient(to right,#75D672,#14BF6D);
-  color: #ffffff;
-  margin-top: 98rpx;
-}
-.nav{
-  background: linear-gradient(to right,#FFC000,#FF8A00);
-  margin-top: 42rpx;
-}
+@import "../../../../../static/assets/scss/search/chargeMode/terminationCharge/index.scss";
+
 </style>

@@ -1,0 +1,180 @@
+.refund{
+    .header{
+        display: flex;
+        padding: 40rpx 112rpx;
+        position: relative;
+        border-top: 1rpx solid #E5E5E5;
+        div{
+            display: flex;
+            flex-direction: column;
+            .title{
+                font-size: 48rpx;
+                span{
+                    font-size: 36rpx;
+                }
+            }
+            .sub_title{
+                font-size: 28rpx;
+                color: #999999;
+            }
+        }
+        .lt{
+            
+        }
+        .rt{
+            margin-left: 146rpx;
+        }
+        .dialogBtn{
+            position: absolute;
+            top: 20rpx;
+            right: 40rpx;
+            color: #2ec67d;
+            font-size: 18rpx;
+            
+        }
+    }
+    .content{
+        border-top: 20rpx solid #F4F4F4;
+        padding: 0 30rpx;
+        .item{
+            margin: 40rpx 0;
+            .amount{
+                width: 330rpx;
+                height: 62rpx;
+                border: 1rpx solid #e6e6e6;
+                border-radius: 10rpx;
+                display: inline-block;
+                vertical-align: middle;
+                padding: 5rpx 30rpx;
+            }
+            div{
+                display: flex;
+            }
+            .label{
+                color: #000000;
+                font-size: 32rpx;
+                display: inline-block;
+                margin-right: 20rpx;
+            }
+            .wechat{
+                width: 190rpx;
+                height: 90rpx;
+                line-height: 90rpx;
+                border-radius: 12rpx; 
+                display: inline-block;
+                border: 1rpx solid #2DC57B;
+                font-size: 32rpx;
+                text-align: center;
+                vertical-align: middle;
+                img{
+                    width: 50rpx;
+                    height: 40rpx;
+                    // margin-left: 30rpx;
+                    margin-top: -4rpx;
+                    margin-right: 13rpx;
+                    vertical-align: middle;
+                }  
+
+            }
+        }
+    }
+    .btn{
+        width: 520rpx;
+        height: 90rpx;
+        line-height: 90rpx;
+        border-radius: 90rpx;
+        border: none;
+        outline: none;
+        background: linear-gradient(to right,#75D672,#14BF6D);
+        color: #ffffff;
+        margin-top: 115rpx;
+    }
+    .disabled{
+        color: rgba(255, 255, 255, 0.5) !important;
+    }
+    .cancel{
+        background: transparent;
+        color: #14BF6D;
+        border: 1px solid #14BF6D;
+    }
+    .dialog{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 999;
+        .warp{
+            width: 630rpx;
+            //height: 720rpx;
+            background: #ffffff;
+            padding: 0 30rpx 30rpx;
+            position: absolute;
+            top: 186rpx;
+            left: 50%;
+            margin-left: -345rpx;
+            border-radius: 10rpx;
+}
+        .head{
+            width: 100%;
+            height: 108rpx;
+            .close{
+                width: 34rpx;
+                height: 34rpx;
+                position: absolute;
+                top: 40rpx;
+                right: 40rpx;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    vertical-align: top;
+                }
+            }
+        }
+        .section{
+            p{
+                margin: 20rpx 0;
+            }
+            .context{
+                font-size: 24rpx;
+                color: #333333;
+            }
+            .desc{
+                font-size: 24rpx;
+                color: #333333;
+            }
+            .table{
+                margin-top: 34rpx;
+                border-radius: 5rpx;
+                border: 1rpx solid #e6e6e6;
+                .item{
+                    height: 72rpx;
+                    line-height: 72rpx;
+                    text-align: center;
+                    display: flex;
+                    color: #666666;
+                    font-size: 24rpx;
+                    .cell{
+                        flex: 1; 
+                    }
+                    .cell:last-child{
+                        flex: 1.5; 
+                    }
+                }
+                .item:first-child{
+                    background: #D7F3DB;
+                    color: #333333;
+                }
+            }
+            .tip{
+                color: #666666;
+                font-size: 24rpx;
+                margin-top: 46rpx;
+                span{
+                    color: #FFD146;
+                }
+            }
+        }
+    }
+}

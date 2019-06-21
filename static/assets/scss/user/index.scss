@@ -1,0 +1,216 @@
+.user{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: #F4F4F4;
+  }
+  .userInfo{
+    height: 194rpx;
+    .back{
+      width: 100%;
+      height: 220rpx;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+    .info{
+      position: relative;
+      z-index: 11;
+      margin: 26rpx 0 0 0;
+    }
+    .headImg{
+      width: 120rpx;
+      height: 120rpx;
+      border-radius: 50%;
+      border: 6rpx solid #8CDFA2;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 34rpx;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .nickName{
+      color: #fff;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 36rpx;
+    }
+    .userinfo-avatar{
+      
+    }
+    .userinfo-nickname{
+      
+    }
+  }
+  .flex{
+    display: flex;
+    align-items: center;      //垂直居中
+    justify-content: center;  //水平居中
+    // align-content: center;   
+  }
+  .energy{
+    height: 120rpx;
+    color: #333;
+    font-size: 34rpx;
+    border: 1px solid #fff;
+    background: #fff;
+    margin: 0 20rpx;
+    border-radius: 10rpx;
+    position: relative;
+    top: -16rpx;
+    z-index: 999;
+    img{
+      width: 40rpx;
+      height: 40rpx;
+      margin: 0 20rpx;
+      vertical-align: middle;
+    }
+    
+    .dumpEnergy{
+      width: 48%;
+    }
+    .line{
+      height: 50rpx;
+      width: 1px;
+      background: #C7C7CC;
+    }
+    .record{
+      width: 48%;
+    }
+  }
+  .account-info{
+    // border: 1px solid #666;
+    .account-list{
+      li{
+        position: relative;
+        width: 100%;
+        height: 100rpx;
+        line-height: 100rpx;
+        font-size: 34rpx;
+        background: #fff;
+        padding: 0 40rpx 0;
+        // border-bottom: 1px solid #E5E5E5;
+        .img{
+          width: 44rpx;
+          height: 60rpx; 
+          display: inline-block;
+          vertical-align: middle;
+          margin: -6rpx 34rpx 0 0;
+        }
+        .right{
+          position: absolute;
+          top: 50%;
+          right: 120rpx;
+          width: 16rpx;
+          height: 24rpx;
+          margin-top: -14rpx;
+        }
+        .dumpEnergy{
+          height: 100rpx;
+          position: absolute;
+          top: 50%;
+          right: 120rpx;
+          margin-top: -14rpx;
+          margin-top: -50rpx;
+          img{
+            width: 16rpx;
+            height: 24rpx;
+          }
+          
+        }
+        .dump{
+          font-size: 34rpx;
+          color: #14BF6D;
+          margin-left: 20rpx;
+        }
+      }
+      li::after{
+        content: '';
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 30rpx;
+        border-bottom: 1rpx solid #f4f4f4;
+      }
+    }
+  }
+  .letterTip{
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 50%;
+    width: 46rpx;
+    height: 46rpx;
+    line-height: 46rpx;
+    text-align: center;
+    background: #DC302B;
+    font-size: 26rpx;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    right: 160rpx;
+    margin-top: -25rpx;
+  }
+  .btn{
+    width: 520rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-radius: 90rpx;
+    border: none;
+    outline: none;
+    background: linear-gradient(to right,#75D672,#14BF6D);
+    color: #ffffff;
+    margin-top: 36rpx;
+  }
+  .cancel{
+    background: transparent;
+    color: #14BF6D;
+    border: 1px solid #14BF6D;
+  }
+  .account{
+    display: flex;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 34rpx;
+    background: #ffffff;
+    padding: 0 40rpx 0;
+    .balance{
+      flex: 8;
+    }
+    .dump{
+      font-size: 34rpx;
+      color: #14BF6D;
+      margin-left: 20rpx;
+    }
+    .dumpEnergy{
+      position: static;
+      text-align: right;
+      flex: 2;
+      .recharge{
+        width: 88rpx;
+        height: 40rpx;
+        line-height: 40rpx;
+        text-align: center;
+        border: 1rpx solid #14BF6D;
+        font-size: 34rpx;
+        color: #14BF6D;
+        border-radius: 10rpx;
+        display: inline-block;
+        position: relative;
+        top: 6rpx;
+      }
+    }
+  }
+  .account::after{
+    content: '';
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 30rpx;
+    border-bottom: 1rpx solid #f4f4f4;
+  }

@@ -1,0 +1,26 @@
+.index{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://testapi.xmnewlife.com/car/images/cut/img_bg2.png') no-repeat;
+    background-size: 100% 100%;
+  }
+  .title{
+    font-size:44rpx;
+    font-weight:bold;
+    color:#14BF6D;
+    line-height:54px;
+    text-align: center;
+    margin: 86rpx 0;
+  }
+  .desc{
+    padding: 0 55rpx;
+    font-size: 28rpx;
+    .sub_title{
+      text-indent: 1em;
+      color: #333333;
+      font-size: 30rpx;
+    }
+  }

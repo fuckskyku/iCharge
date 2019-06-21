@@ -1,0 +1,88 @@
+.context{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #f4f4f4;
+    overflow: scroll;
+  }
+  .container{
+    width: 100%;
+    background: transparent;
+    padding: 10rpx 0 150rpx 0;
+  }
+  .btn{
+    width: 80rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    border-radius: 40rpx;
+    text-align: center;
+    background: linear-gradient(to right,#FFC000,#FF8A00);
+    color: #ffffff;
+    font-size: 26rpx;
+    margin: 0 auto;
+  }
+  .cancel{
+    width: 80rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    border-radius: 40rpx;
+    text-align: center;
+    background: #CFCFCF;
+    color: #ffffff;
+    font-size: 26rpx;
+    margin: 0 auto;
+  }
+  .border10{
+    border-bottom: 10rpx solid #f4f4f4;
+    background: #fff;
+  }
+  .box{
+    padding: 30rpx;
+    display: inline-block;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    margin-bottom: 30rpx;
+    .hd{
+      width: 80%;
+      flex-direction: column;
+      .title{
+        width: 96%;
+        text-align: left;
+        color: #333333;
+        font-size: 32rpx;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+      }
+      .subTitle{
+        color: #999999;
+        font-size: 28rpx;
+      }
+    }
+    .fd{
+      width: 20%;
+      font-size: 26rpx;
+      color: #ffffff;
+      .tip{
+  
+      }
+    }
+  }
+  .empty{
+    width: 374rpx;
+    height: 360rpx;
+    font-size: 34rpx;
+    color: #777;
+    text-align:center;
+    position: relative;
+    margin: 0 auto;
+    padding-bottom: 30rpx;
+    img{
+      width: 374rpx;
+      height: 288rpx;
+    }
+  }

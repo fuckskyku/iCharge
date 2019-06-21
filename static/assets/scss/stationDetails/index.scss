@@ -1,0 +1,561 @@
+.stationDetails{
+    background: #f4f4f4;
+  }
+  .header,.section{
+    padding: 30rpx;
+    background: #ffffff;
+    position: relative;
+    top: 16rpx;
+  
+  }
+  .section{
+    padding: 0 10rpx 10rpx;
+    margin-top: 16rpx;
+  }
+  .section_content{
+    padding: 0 30rpx 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 1000rpx;
+  }
+  .card_content{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 1000rpx;
+  }
+  .flex{
+    display: flex;
+  }
+  .hd{
+    .title{
+      flex: 8;
+      font-size: 30rpx;
+      padding-right: 20rpx;
+      color: #333333;
+    }
+    .gps{
+      flex: 2;
+      font-size: 34rpx;
+      color: #14BF6D;
+      text-align: center;
+      line-height: 54rpx;
+      height: 54rpx;
+      border-radius: 8rpx;
+      border: 1px solid #14BF6D;
+    }
+  }
+  .bd{
+    font-size: 30rpx;
+    color: #999999;
+    padding: 14rpx 0;
+  }
+  .fd{
+    div{
+      flex: 1;
+      text-align: center;
+      font-size: 36rpx;
+    }
+  }
+  .weui-tab__content li{
+    position: relative;
+    display: flex;
+    font-size: 30rpx;
+    padding: 26rpx 0;
+  }
+  .lt{
+    flex: 3;
+    color: #999999;
+    padding: 0 80rpx 0 0;
+  }
+  .rt{
+    flex: 7;
+    p{
+      color: #333333;
+    }
+  }
+  .line{
+    width: 98%;
+    height: 2rpx;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #f4f4f4;
+  }
+  .weui-navbar{
+    border: none; 
+  }
+  .weui-navbar{
+    color: #999999;
+  }
+  .weui-navbar__slider {
+    width: 40rpx;
+    height: 8rpx;
+    border-radius: 8rpx;
+  }
+  .weui-panel {
+    overflow: auto;
+  }
+  .weui-tab__content{
+    padding-top: 20rpx;
+    // height: 750rpx;
+    // overflow: scroll !important;
+    // -webkit-overflow-scrolling: touch;
+  }
+  // 车位列表
+  .item{
+    // display: flex;
+    padding-bottom: 30rpx;
+    .parking{
+      display: inline-block;
+      width: 325rpx;
+      height: 200rpx;
+      margin: 20rpx 15rpx 0 22rpx;
+      border: 2rpx solid #14BF6D;
+      border-radius: 10rpx;
+      color: #14BF6D;
+      background: #ffffff;
+      padding: 0;
+      .parkNum{
+        text-align: center;
+        border-bottom: 2rpx solid #14BF6D;
+        padding: 10rpx 0; 
+        border-top-left-radius: 10rpx;
+        border-top-right-radius: 10rpx;
+        background: #EAF8F1;
+      }
+      .park_info{
+        color: #14BF6D;
+        font-size: 22rpx;
+        display: flex;
+        padding: 10rpx 0;
+        .price{
+          color: #FF4E4D;
+        }
+        .left{
+          
+        }
+        .right{
+          text-align: left;
+          p{
+            overflow: hidden;
+            max-width:162rpx;
+          }
+        }
+        div{
+          flex: 1;
+          padding: 0 12rpx;
+          line-height: 52rpx;
+        }
+      }
+    }
+    .parking_disabled{
+      display: inline-block;
+      width: 325rpx;
+      height: 200rpx;
+      margin: 20rpx 15rpx 0 22rpx;
+      border-radius: 10rpx;
+      padding: 0;
+      border: 2rpx solid #B0B0B0;
+      color: #B0B0B0;
+      background: #FFFFFF;
+      .parkNum_disabled{
+        text-align: center;
+        border-bottom: 2rpx solid #B0B0B0;
+        padding: 10rpx 0; 
+        border-top-left-radius: 10rpx;
+        border-top-right-radius: 10rpx;
+        background: #EAEAEA;
+      }
+      .park_info_disabled{
+        color: #B4B4B4;
+        font-size: 24rpx;
+        display: flex;
+        padding: 10rpx 0;
+        background: #ffffff;
+        .price{
+          color: #B4B4B4;
+        }
+        .left{
+          
+        }
+        .right{
+          text-align: left;
+          p{
+            overflow: hidden;
+            max-width:162rpx;
+          }
+        }
+        div{
+          flex: 1;
+          padding: 0 12rpx;
+          line-height: 52rpx;
+        }
+      }
+    }
+  }
+  /*弹出层*/
+  .dialog{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    .dialog_warp{
+      width: 74%;
+      height: 290rpx;
+      background:#fff;
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      margin:300rpx auto;
+      text-align: center;
+      border-radius: 10rpx;
+    }
+    .tip{
+      width: 80%;
+      padding: 42rpx 0 20rpx 0;
+      white-space: normal;
+      font-size: 36rpx;
+      font-weight: 600;
+      font-family: "幼圆";
+      margin: 0 auto;
+    }
+    .into{
+      font-size: 44rpx;
+      color: #1EC172;
+      
+    }
+    
+  }
+  .empty{
+    width: 374rpx;
+    height: 360rpx;
+    font-size: 34rpx;
+    color: #777;
+    text-align:center;
+    position: relative;
+    margin: 0 auto;
+    padding-bottom: 30rpx;
+    img{
+      width: 374rpx;
+      height: 288rpx;
+    }
+  }
+  // overflow
+  .parent{
+    position: absolute;;
+    height:100%;//高度根据需求自行设定
+    width: 100%;
+  }
+  .child{
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;  //left,top,right,bottom都为0，充满整个个页面
+    overflow-y:auto !important;
+    overflow-x:hidden !important; //设置Y轴出现滚动条，X轴隐藏
+    -webkit-overflow-scrolling: touch;
+  }
+  .coupons{
+    width:42px;
+    height:42px;
+    position:absolute;
+    right:24px;
+    bottom:100rpx;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  /* 优惠券弹窗 */ 
+  .dialog2{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999999;
+    .close{
+      width: 60rpx;
+      height: 60rpx;
+      position: absolute;
+      top: 0rpx;
+      right: 0rpx;
+      z-index: 99999;
+    }
+    .dialog_warp{
+      width: 74%;
+      height: 290rpx;
+      background:#ffffff;
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      margin:300rpx auto;
+      text-align: center;
+      border-radius: 10rpx;
+    }
+    .dialog_box_hd{
+      width: 100%;
+      height: 241rpx;
+      margin: 16rpx auto 0;
+      position: relative;
+      text-align: center;
+      .img_head{
+        width: 641rpx;
+        height: 241rpx;
+      }  
+    }
+    .dialog_box{
+      width: 88%;
+      max-height: 1200rpx;
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      margin: 0 auto 0;
+      border-bottom-left-radius: 10rpx;
+      border-bottom-right-radius: 10rpx;
+      .img_bg{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+      .dialog_box_fd{
+        width: 100%;
+        background: #f7f5e6;
+        border-bottom-left-radius: 10rpx;
+        border-bottom-right-radius: 10rpx;
+        border-top-left-radius: 10rpx;
+        border-top-right-radius: 10rpx;
+        position: relative;
+        top: -30rpx;
+        overflow: hidden;
+        .img_title{
+          width: 236rpx;
+          height: 39rpx;
+          display: block;
+          margin: 26rpx auto 6rpx;
+        }
+      }
+      .warp_hd{
+        position: relative;
+        width: 100%;
+        max-height: 400rpx;
+        overflow-y: scroll !important;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+      }
+      .warp_fd{
+        position: relative;
+        width: 100%;
+        max-height: 400rpx;
+        overflow-y: scroll !important;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+      }
+      .box{
+        width: 90%;
+        height: 166rpx;
+        margin: 16rpx auto;
+        background: #ffffff;
+        position: relative;
+        display: flex;
+        border-bottom-left-radius: 10rpx;
+        border-bottom-right-radius: 10rpx;
+        border-top-left-radius: 10rpx;
+        border-top-right-radius: 10rpx;
+        .h_hd{
+          flex: 8;
+          display: flex;
+          position: relative;
+          z-index: 99;
+          .box_lt{
+            flex: 4;
+            color: #FF9C00;
+            position: relative;
+            text-align: center;
+            .center{
+              width: 100%;
+              height: 86rpx;
+              position:absolute;
+              top:0;
+              left:0;
+              right:0;
+              bottom:0;
+              margin:auto;
+              z-index: 99999;
+            }
+            .price{
+              font-size: 66rpx;
+              font-weight: bold;
+              display: inline;
+              margin: 0;
+            }
+          }
+          .box_rt{
+            flex: 6;
+            color: #000000;
+            font-size: 28rpx;
+            position: relative;
+            margin-left: 30rpx;
+            .time{
+              color: #999999;
+              font-size: 22rpx;
+              width: 264rpx;
+            }
+            .center{
+              width: 100%;
+              height: 60rpx;
+              position: absolute;
+              top:0;
+              left:0;
+              right:0;
+              bottom:0;
+              margin: auto;
+              z-index: 99999;
+            }
+          }
+        }
+        .h_fd{
+          flex: 2;
+          position: relative;
+          z-index: 99;
+        }
+        .img_rt{
+          width: 87rpx;
+          height: 100%;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+        .img_bg{
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 0;
+        }
+      }
+    }
+    .couponsTip_dialog{
+      width: 410rpx;
+      height: 320rpx;
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      margin: auto;
+      text-align: center;
+      z-index: 99999;
+      background: rgba(0, 0, 0, 0.7);
+      color: #ffffff;
+      border-bottom-left-radius: 10rpx;
+      border-bottom-right-radius: 10rpx;
+      border-top-left-radius: 10rpx;
+      border-top-right-radius: 10rpx;
+      .img_tip{
+        width: 106rpx;
+        height: 100rpx;
+        margin: 34rpx auto 0;
+      }
+      .title_tip{
+        font-size: 32rpx;
+        color: #ffffff;
+        margin: 22rpx 0 15rpx;
+      }
+      .subTitle_tip{
+        font-size: 24rpx;
+        // cover-view{
+        //   margin: 6rpx 0;
+        // }
+        .light_tip{
+          color: #FFD93B;
+          display: inline;
+        }
+      }
+    }
+    .tip{
+      width: 80%;
+      padding: 42rpx 0 20rpx 0;
+      white-space: normal;
+      font-size: 36rpx;
+      font-weight: 600;
+      font-family: "幼圆";
+      margin: 0 auto;
+    }
+    .into{
+      font-size: 44rpx;
+      color: #1EC172;
+      padding: 46rpx 0;
+    }
+  }
+  .warpper{
+    display: flex;
+    width: 100%;
+    text-align: center;
+    margin-top: 10rpx;
+    .sta_btn{
+      width: 80rpx;
+      height: 46rpx;
+      color: #ffffff;
+      display:inline-block;
+      vertical-align: middle;
+      border-bottom-left-radius: 10rpx;
+      border-bottom-right-radius: 10rpx;
+      border-top-left-radius: 10rpx;
+      border-top-right-radius: 10rpx;
+      text-align: center;
+      line-height: 46rpx;
+      font-size: 28rpx;
+    }
+    .quick{
+      flex: 1;
+      .sta_btn{
+        background: #FF8A00;
+        margin: 0 10rpx;
+        position: relative;
+        top: -1rpx;
+      }
+    }
+    .slow{
+      flex: 1;
+      .sta_btn{
+        background: #14BF6D;
+        margin: 0 10rpx;
+        position: relative;
+        top: -1rpx;
+      }
+    } 
+  }
+  .c_text{
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .width10{
+    width: 14rpx;
+    margin: 0;
+    display: inline;
+  }
+  /*隐藏滚动条*/
+  ::-webkit-scrollbar{
+    display:none
+  }
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+  }

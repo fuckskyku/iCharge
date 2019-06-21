@@ -5,7 +5,12 @@
       <div class="flex line"></div>
       <div class="flex content">内容</div>
     </div>
-    <div class="weui-cells weui-cells_after-title container">
+    <!-- 空空如也 -->
+    <div v-if="empty" class="empty" style="margin-top:220rpx;">
+      <img src="/static/img/cut/empty.png" alt="">
+      空空如也~
+    </div>
+    <div class="weui-cells weui-cells_after-title container"   v-if="!empty">
       <div class="weui-cell weui-cell_access border10" @click="skip('adviceDetails',item.id)" v-for="(item,index) in tableData" :key="index">
         <div class="weui-cell__bd bd">{{item.createTime}}</div>
         <div class="weui-cell__ft ft">{{item.content}}</div>
@@ -15,27 +20,15 @@
   </div>
 </template>
 <script>
+import utils from "@/utils/index";
+import { mapState, mapActions } from 'vuex'
+import { getSuggestionList, addSuggestion } from '@/api/api'  
+
 export default {
   data() {
     return {
-      tableData: [
-      {
-        id: 1,
-        createTime: "1234567891",
-        content: "首充6元"
-      },
-      { 
-        id: 2,
-        createTime: "1234567672",
-        content: "充值2333元"
-      },
-      {
-        id: 3,
-        createTime: "1392567672",
-        content: "充值6666元充值6666元充值6666元充值6666元充值6666元"
-      }
-    ],
-      
+      tableData: [],
+      empty: false
 
     };
   },
@@ -43,9 +36,22 @@ export default {
   
   },
   mounted() {
-    this.tableData.map((item,index)=>{
-      item.createTime = this.ToTime(item.createTime)
+    getSuggestionList({}).then(res=>{
+      if(res.data.code == 200){
+        if(res.data.data.data != null && res.data.data.data != '' ){
+          this.empty = false
+          this.tableData = res.data.data.data
+          this.tableData.map((item,index)=>{
+            item.createTime = this.ToTime(item.createTime)
+          })
+        }else{
+          this.empty = true
+        }
+      }else{
+        utils.showDialog(res.data.message)
+      }
     })
+    
     
   },
   components: {
@@ -54,25 +60,24 @@ export default {
   methods: {
     ToTime(timestamp) {
        //时间戳为10位需*1000，时间戳为13位的话不需乘1000
-       console.log(timestamp)
+       timestamp = timestamp + ""
       if(timestamp.length == 10){
         var date = new Date(timestamp * 1000);
       }else if(timestamp.length == 13){
-        var date = new Date(timestamp);
+        var date = new Date(timestamp * 1000 / 1000);
       }
       var Y = date.getFullYear() + "-";
       var M =
         (date.getMonth() + 1 < 10
           ? "0" + (date.getMonth() + 1)
           : date.getMonth() + 1) + "-";
-      var D = date.getDate() + " ";
+      var D = date.getDate() < 10 ? "0" + date.getDate() + " " : date.getDate() + " ";
       var h = date.getHours() + ":";
       var m = date.getMinutes() + ":";
-      var s = date.getSeconds();
+      var s = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
       return Y + M + D + h + m + s;
     },
     skip(pramas,id) {
-      console.log(id)
       id == undefined ? wx.navigateTo({
         url: "/pages/userCenter/"+ pramas + "/main"
       }) :  wx.navigateTo({
@@ -86,110 +91,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.context{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #f4f4f4;
-  overflow: scroll;
-}
-.container{
-  width: 100%;
-  
-  background: transparent;
-  padding: 120rpx 0 150rpx 0;
-  // position: absolute;
-  // top: 0;
-  // left: 0; 
-}
-.flex{
-  display: flex;
-  align-items: center;      //垂直居中
-  justify-content: center;  //水平居中
-}
-.energy{
-  height: 120rpx;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  color: #fff;
-  font-size: 34rpx;
-  background: linear-gradient(to right,#75D672,#14BF6D);
-  img{
-    width: 40rpx;
-    height: 40rpx;
-    margin: 0 20rpx;
-    vertical-align: middle;
-  }
-  .time{
-    width: 49%;
-  }
-  .line{
-    height: 50rpx;
-    width: 1px;
-    background: #fff;
-  }
-  .content{
-    width: 49%;
-  }
-}
-.btn{
-  width: 520rpx;
-  height: 90rpx;
-  line-height: 90rpx;
-  border-radius: 90rpx;
-  border: none;
-  outline: none;
-  background: linear-gradient(to right,#75D672,#14BF6D);
-  color: #ffffff;
-  position: fixed;
-  bottom: 40rpx;
-  left: 50%;
-  margin-left: -260rpx;
-}
-.border10{
-  border-bottom: 10rpx solid #f4f4f4;
-  background: #fff;
-}
-.weui-cells:before {
-  top: 0;
-  border-top: none;
-}
-.weui-cells:after {
-  top: 0;
-  border-bottom: none;
-}
-.weui-cell:before {
-  content: " ";
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  height: 1px;
-  border-top: none;
-  color: #d9d9d9;
-  left: 15px;
-}
-.bd{
-  width: 50%;
-  font-size: 32rpx;
-  color: #999;
-  text-align: center;
-  overflow: hidden;
-  text-overflow:ellipsis;
-  white-space: nowrap;
-}
-.ft{
-  width: 50%;
-  text-align: center;
-  font-size: 32rpx;
-  color: #333333;
-  overflow: hidden;
-  text-overflow:ellipsis;
-  white-space: nowrap;
-}
+@import "../../../../static/assets/scss/userCenter/advice/index.scss";
+
 </style>

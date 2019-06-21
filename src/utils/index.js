@@ -3,44 +3,6 @@ export function formatNumber(n) {
   return str[1] ? str : `0${str}`
 }
 
-/**
- * 
- * @param {状态} isActive 
- * @param {数据} obj 
- * 
- * 计算高度
- */
-export function countHeight(isActive, obj) {
-  var count = 0;
-  if (isActive == 0) {
-    //新闻
-    obj.forEach((item) => {
-      if (item.titleImgUrl != '') {
-        count++
-      }
-    })
-    return obj.length * 137 + count * 300
-  } else if (isActive == 1) {
-    //作业
-    obj.forEach((item) => {
-      if (item.commAttachList.length > 0) {
-        count++
-      }
-    })
-    return obj.length * 200 + count * 300
-  } else if (isActive == 2) {
-    //推荐
-    obj.forEach((item) => {
-      if (item.titleImgUrl != '') {
-        count++
-      }
-    })
-    return obj.length * 160 + count * 300
-  }
-}
-
-
-
 //微信异步缓存存储
 /**
  * 
@@ -112,7 +74,7 @@ export function showDialog(keyval, fn) {
   wx.showToast({
     title: keyval,
     icon: 'none',
-    duration: 2000,
+    duration: 3000,
     mask: true
   })
   if (fn != null) {
@@ -128,20 +90,9 @@ export function formatImgUrl(imgUlr) {
     if (this.url(imgUlr)) {
       return imgUlr;
     } else {
-      // return "https://admin.school.mseenet.com" + imgUlr;
-       return "" + imgUlr;
+       return "http://upload.mseenet.com" + imgUlr;
     }
   }
-  return '';
-}
-
-//机构图片路径转换
-export function formatImgUrlRetailer(imgUlr) {
-  if (imgUlr != "" && imgUlr != "undefined" && imgUlr) {
-    //return "https://admin.retailer.mseenet.com/" + imgUlr;
-    return "" + imgUlr;
-  }
-  //return 'http://img.mseenet.com/98A1565DACAB23AFB60A0E17EF6C9C49.png';
   return '';
 }
 
@@ -445,10 +396,8 @@ export default {
   wxSetStorageSync,
   showDialog,
   formatImgUrl,
-  formatImgUrlRetailer,
   formatTimeDiff,
   transLocalTime,
-  countHeight,
   parseDate,
   /* 验证 */
   required,

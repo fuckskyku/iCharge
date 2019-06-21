@@ -5,19 +5,38 @@ Vue.use(Vuex);
 //数据
 const state = {
   tasteType: '', //秘钥类型
+  APPid: 'wx875dcc460cfe82ae',     //
+  AppSecret: '88d8aa84e75f5976daf009191eece704',     //
+  code: '',  //登录凭证
   token: '',
-  cookieId: '',
-  judgeChargeType: '',//判断充电类型
-  family: { studentId: '', parentId: '', studentName: '' /*addisFull: ''*/ },
-  
+  readNum: '0',
+  userId: '',
+  timer: '0',
+  canIUse: true,
+  firstInto: true,//首次登录提示
+  isLong: false,//判断充电类型
+  sessionId: '',
+  openId: '',
+  chargeing: '',
+  family: { gunId: '', parentId: '', studentName: '' /*addisFull: ''*/ },
 }
 
 //获取数据（或者说是自定义过滤计算）
 const getters = {
   getTasteType: state => state.tasteType,
+  getAPPid: state => state.APPid,
+  getAppSecret: state => state.AppSecret,
+  getCode: state => state.code,
   gettoKen: state => state.token,
-  getcookieId: state => state.cookieId,
-  getjudgeChargeType: state => state.judgeChargeType,
+  getreadNum: state => state.readNum,
+  getuserId: state => state.userId,
+  gettimer: state => state.timer,
+  getcanIUse: state => state.canIUse,
+  getfirstInto: state => state.firstInto,
+  getisLong: state => state.isLong,
+  getsessionId: state => state.sessionId,
+  getOpenId: state => state.openId,
+  getChargeing: state => state.chargeing,
   getFamily: state => state.family
 }
 
@@ -27,27 +46,55 @@ const mutations = {
   clearStore(state) {
     if (state) {
       state.tasteType = ''
+      state.code = ''
       state.token = ''
-      state.cookieId = ''
-      state.judgeChargeType = ''
+      state.readNum = ''
+      state.userId = ''
+      state.canIUse = ''
+      state.firstInto = ''
+      state.isLong = ''
+      state.timer = ''
+      state.openId = ''
+      state.chargeing = ''
+      state.sessionId = ''
     }
   },
   tasteType(state, value) {
     state.tasteType = value;
   },
+  code(state, value) {
+    state.code = value;
+  },
   token(state, value) {
     state.token = value;
+  },
+  readNum(state, value) {
+    state.readNum = value;
   },
   userId(state, value) {
     state.userId = value;
   },
-  cookieId(state, value) {
-    state.cookieId = value;
+  timer(state, value) {
+    state.timer = value;
   },
-  judgeChargeType(state, value) {
-    state.judgeChargeType = value;
+  canIUse(state, value) {
+    state.canIUse = value;
   },
-  
+  firstInto(state, value) {
+    state.firstInto = value;
+  },
+  isLong(state, value) {
+    state.isLong = value;
+  },
+  sessionId(state, value) {
+    state.sessionId = value;
+  },
+  openId(state, value) {
+    state.openId = value;
+  },
+  chargeing(state, value) {
+    state.chargeing = value;
+  },
   family(state, obj) {
     obj.forEach((item) => {
       Vue.set(state.family, item.key, item.value);
@@ -65,14 +112,41 @@ const actions = {
   setTasteType(state, value) {
     state.commit('tasteType', value);
   },
+  setAPPid(state, value) {
+    state.commit('APPid', value);
+  },
+  setAppSecret(state, value) {
+    state.commit('AppSecret', value);
+  },
   setToKen(state, value) {
     state.commit('token', value)
   },
-  setCookieId(state, value) {
-    state.commit('cookieId', value)
+  setReadNum(state, value) {
+    state.commit('readNum', value)
   },
-  setjudgeChargeType(state, value) {
-    state.commit("judgeChargeType", value);
+  setUserId(state, value) {
+    state.commit('userId', value)
+  },
+  setTimer(state, value) {
+    state.commit('timer', value)
+  },
+  setCanIUse(state, value) {
+    state.commit('canIUse', value)
+  },
+  setFirstInto(state, value) {
+    state.commit('firstInto', value)
+  },
+  setIsLong(state, value) {
+    state.commit("isLong", value);
+  },
+  setSessionId(state, value) {
+    state.commit("sessionId", value);
+  },
+  setOpenId(state, value) {
+    state.commit("openId", value);
+  },
+  setChargeing(state, value) {
+    state.commit("chargeing", value);
   },
   setFamily(state, obj) {
     state.commit("family", obj);

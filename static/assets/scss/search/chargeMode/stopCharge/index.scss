@@ -1,0 +1,125 @@
+.stopCharge{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #F4F4F4;
+  }
+  .info{
+    text-align: center;
+    background: #fff;
+    overflow: hidden;
+    .img{
+      width: 300rpx;
+      height: 164rpx;
+      margin: 70rpx auto 0;
+      img{
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+      }
+    }
+    .img_charge{
+      width: 100%;
+      height: 680rpx;
+      margin: 0;
+      img{
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+      }
+    }
+    .content{
+      font-size: 30rpx;
+      color: #333333;
+      padding: 0 30rpx;
+      margin: 0;
+      text-align: left;
+      text-indent: 2em;
+      view{
+        margin:40rpx auto 50rpx;
+      }
+    }
+  }
+  .footer{
+    margin-top: 98rpx;
+  }
+  .fd{
+    margin-top: 40rpx;
+  }
+  .btn{
+    width: 520rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-radius: 90rpx;
+    border: none;
+    outline: none;
+    background: linear-gradient(to right,#75D672,#14BF6D);
+    color: #ffffff;
+    
+  }
+  .cancel{
+    width: 260rpx;
+    border: 1px solid #14BF6D;
+    background: #ffffff;
+    color:#14BF6D;
+    margin: 30rpx auto 54rpx;
+  }
+  .nav{
+    background: linear-gradient(to right,#FFC000,#FF8A00);
+    margin-top: 42rpx;
+  }
+  /*弹出层*/
+  .dialog{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    .dialog_warp{
+      width: 74%;
+      height: 290rpx;
+      background:#fff;
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      margin:300rpx auto;
+      text-align: center;
+      border-radius: 10rpx;
+    }
+    .tip{
+      width: 80%;
+      padding: 42rpx 0 20rpx 0;
+      white-space: normal;
+      font-size: 36rpx;
+      font-weight: 600;
+      font-family: "幼圆";
+      margin: 0 auto;
+    }
+    .into{
+      font-size: 44rpx;
+      color: #1EC172;
+      padding: 46rpx 0;
+    }  
+  }
+  .timeOut{
+    color: #333333;
+    font-size: 30rpx;
+    text-align: center;
+    // padding: 40rpx 0;
+    overflow: hidden;
+    span{
+      color: #14BF6D;
+      font-size: 72rpx;
+      display: inline-block;
+      vertical-align: baseline;
+      margin: 0 10rpx; 
+      position: relative;
+      top: 4rpx;
+    }
+  }

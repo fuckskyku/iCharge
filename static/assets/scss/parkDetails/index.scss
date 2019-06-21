@@ -1,0 +1,222 @@
+.parent{
+    position: absolute;;
+    height:100%;//高度根据需求自行设定
+    width: 100%;
+    background: #F4F4F4;
+  }
+  .child{
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;  //left,top,right,bottom都为0，充满真个页面
+    overflow-y:auto;
+    overflow-x:hidden; //设置Y轴出现滚动条，X轴隐藏
+    -webkit-overflow-scrolling:touch;
+  }
+  .title{
+    background: linear-gradient(to right,#75D672,#15BF6D);
+    width: 100%;
+    height: 110rpx;
+    text-align: center;
+    line-height: 110rpx;
+    color: #ffffff;
+  }
+  .line{
+    width: 95%;
+    height: 1px;
+    background: #f4f4f4;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .box{
+    margin-bottom: 30rpx;
+    background: #ffffff;
+  }
+  .item{
+    display: flex;
+    font-size: 32rpx;
+    position: relative;
+    padding: 30rpx;
+    .hd{
+      flex: 1;
+      color: #999999;
+      text-align: left;
+    }
+    .fd{
+      flex: 1;
+      color: #333333;
+      text-align: right;
+    }
+  }
+  .footer{
+    background: #ffffff;
+    font-size: 32rpx;
+    color: #333333;
+    .f_hd{
+      position: relative;
+      padding: 30rpx;
+      .price{
+        img{
+          width: 24rpx;
+          height: 30rpx;
+          margin-top: -5rpx;
+          vertical-align: middle;
+        }
+      }
+      .introduce{
+        color: #4273FF;
+        display: inline;
+      }
+    }
+    .f_fd{
+      padding: 30rpx 30rpx 0;
+      .balance{
+        img{
+          width: 24rpx;
+          height: 24rpx;
+          vertical-align: middle;
+          margin-top: -5rpx;
+        }
+      }
+      .recharge{
+        flex: 2;
+        height: 44rpx;
+        line-height: 44rpx;
+        text-align: center;
+        border: 1px solid #14BF6D;
+        color: #14BF6D;
+        border-radius: 10rpx;
+      }
+      .price{
+        flex: 12;
+        
+        
+      }
+    }
+    .info{
+      padding-left: 30rpx 30rpx 0;
+      p:first-child,div{
+        margin: 10rpx 0;
+      }
+    }
+    .flex{
+      display: flex;
+    }
+    
+  }
+  .btn{
+    width: 520rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-radius: 90rpx;
+    border: none;
+    outline: none;
+    background: linear-gradient(to right,#75D672,#14BF6D);
+    color: #ffffff;
+    margin-top: 80rpx;
+    margin-bottom: 80rpx;
+    padding: none;
+  }
+  .cancel{
+    background: transparent;
+    color: #14BF6D;
+    border: 1px solid #14BF6D;
+    margin-top: 40rpx;
+    margin-bottom: 60rpx;
+  }
+  // tip
+  .tip{
+    padding: 30rpx;
+    display: flex;
+    .lt{
+      flex: 1;
+      img{
+        width: 24rpx;
+        height: 24rpx;
+        vertical-align: top;
+        margin-top: 10rpx;
+      }
+    }
+    .tip_desc{
+      flex: 18;
+      color: #333333;
+      font-size: 32rpx;
+      text-align: left;
+      word-break: break-all;
+    }
+  }
+  .timeOut{
+    color: #333333;
+    font-size: 30rpx;
+    text-align: center;
+    // padding: 40rpx 0;
+    overflow: hidden;
+    span{
+      color: #14BF6D;
+      font-size: 72rpx;
+      display: inline-block;
+      vertical-align: baseline;
+      margin: 0 10rpx; 
+      position: relative;
+      top: 4rpx;
+    }
+  }
+  .insert_title{
+    font-size: 32rpx;
+    color: #14BF6D;
+    text-align: center;
+  }
+  .mg40_btn{
+    margin: 40rpx auto;
+  
+  }
+  .dialog{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ffffff;
+  }
+  .tip_flex{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #B0B0B0;
+    font-size: 30rpx;
+    img{
+      width: 288rpx;
+      height: 284rpx;
+      margin-top: 100rpx;
+      margin-bottom: 20rpx;
+    }
+    .tip{
+      margin: 20rpx;
+    }
+  }
+  .loading{
+    width: 66rpx;
+    height: 66rpx;
+    margin: 200rpx auto;
+    img{
+      width: 100%;
+      height: 100%;
+      // transition: all 0.5s;
+      // animation-name: rotate;
+      // // animation-duration: 0.5s;
+      // animation: rotate 2s infinite;
+    }
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }

@@ -7,7 +7,7 @@ app.$mount()
 
 export default {
     config: {
-        navigationBarTitleText: 'iCharge',
+        navigationBarTitleText: '新活充电',
         "enablePullDownRefresh": false,
         "navigationBarBackgroundColor":'#ffffff',
         "navigationBarTextStyle": 'black',

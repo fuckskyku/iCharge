@@ -1,0 +1,80 @@
+// overflow
+.parent{
+    position: absolute;;
+    height:100%;//高度根据需求自行设定
+    width: 100%;
+    background: #f4f4f4;
+  }
+  .child{
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;  //left,top,right,bottom都为0，充满真个页面
+    overflow-y:auto !important;
+    overflow-x:hidden !important; //设置Y轴出现滚动条，X轴隐藏
+    -webkit-overflow-scrolling: touch;
+  }
+  .info{
+    position: relative;
+    background: #ffffff;
+    padding: 20rpx 30rpx;
+    overflow: hidden;
+    .hd{
+      width: 100rpx;
+      height: 84rpx;
+      line-height: 84rpx;
+      color: #333333;
+      font-size: 34rpx;
+      float: left;
+    }
+    .fd{
+      width: 300rpx;
+      height: 84rpx;
+      line-height: 84rpx;
+      color: #999999;
+      font-size: 34rpx;
+      float: right;
+      text-align: right;
+    }
+    .headImg{
+      width: 84rpx;
+      height: 84rpx;
+      vertical-align: middle;
+    }
+    .right{
+      width: 16rpx;
+      height: 24rpx;
+      vertical-align: middle;
+      margin-left: 20rpx;
+    }
+  }
+  .info::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 30rpx;
+    border: 1rpx solid #f4f4f4;
+    width: 100%;
+  }
+
+  .btn{
+    width: 520rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-radius: 90rpx;
+    border: none;
+    outline: none;
+    background: linear-gradient(to right,#75D672,#14BF6D);
+    color: #ffffff;
+    margin-top: 36rpx;
+    position: absolute;
+    bottom: 150rpx;
+    left: 50%;
+    margin-left: -260rpx;
+  }
+  .cancel{
+    background: transparent;
+    color: #14BF6D;
+    border: 1px solid #14BF6D;
+  }

@@ -1,0 +1,46 @@
+.img_box{
+    width: 378rpx;
+    height: 210rpx;
+    margin: 120rpx auto 0;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .section{
+    .title{
+      font-size: 40rpx;
+      color: #14BF6D;
+      text-align: center;
+      font-weight: 600;
+      margin: 44rpx 0 34rpx;
+    }  
+    .content{
+      text-align: center;
+      font-size: 30rpx;
+      color: #B0B0B0;
+      .price{
+        color: red;
+      }
+    }
+  }
+  .fd{
+    text-align: center;
+  }
+  .btn{
+    width: 260rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-radius: 90rpx;
+    border: none;
+    outline: none;
+    background: linear-gradient(to right,#75D672,#14BF6D);
+    color: #ffffff;
+    display: inline-block;
+    margin: 64rpx 16rpx;
+  }
+  .cancel{
+    background: #fff;
+    color: #14BF6D;
+    border: 1px solid #14BF6D;
+  }

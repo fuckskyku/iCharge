@@ -35,11 +35,11 @@
         </div>
         <div class="cell ">
           查看买电记录
-          <img src="/static/img/cut/right.png" alt="">
+          <img src="https://testapi.xmnewlife.com/car/images/cut/right.png" alt="">
         </div>
         <div class="cell ">
           查看用电记录
-          <img src="/static/img/cut/right.png" alt="">
+          <img src="https://testapi.xmnewlife.com/car/images/cut/right.png" alt="">
         </div>
       </div>
       <button class="btn" @click="submit()">买电</button>
@@ -76,7 +76,6 @@ export default {
     
   },
   mounted() {
-    console.log("this.$root.$mp.query",this.$root.$mp.query)
     this.$root.$mp.query.id != undefined ? this.id = this.$root.$mp.query.id : this.id = ''
     wx.setNavigationBarTitle({
       title: '当前页面'
@@ -133,67 +132,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.index{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-color: #f4f4f4;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
-}
-.container{
-  padding: 10rpx 0 40rpx 0;
-
-}
-.record{
-
-}
-.cell{
-  background: #ffffff;
-  padding: 30rpx 24rpx;
-  position: relative;
-  .title{
-    color: #999999;
-    font-size: 30rpx;
-    padding-bottom: 10rpx;
-  }
-  .subTitle{
-    color: #333333;
-    font-size: 34rpx;
-  }
-  .underLine{
-    width: 96%;
-    height: 2rpx;
-    background: #f4f4f4;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-  }
-  img{
-    position: absolute;
-    right: 24rpx;
-    top: 50%;
-    height: 26rpx;
-    width: 15rpx;
-    margin-top: -13rpx;
-  }
-}
-.btn{
-  width: 520rpx;
-  height: 90rpx;
-  line-height: 90rpx;
-  border-radius: 90rpx;
-  border: none;
-  outline: none;
-  background: linear-gradient(to right,#75D672,#14BF6D);
-  color: #ffffff;
-  margin-top: 98rpx;
-}
-.nav{
-  background: linear-gradient(to right,#FFC000,#FF8A00);
-  margin-top: 42rpx;
-}
-
+@import "../../../../static/assets/scss/userCenter/energyBalanceDetails/index.scss";
 
 </style>
 

@@ -10,8 +10,8 @@ export default {
   data() {
     return {
       zong: [1, 2, 3, 4, 5],
-      nor: '/static/img/Star_nor@2x.png',
-      sel: '/static/img/Star_sel@2x.png'
+      nor: 'https://testapi.xmnewlife.com/car/images/Star_nor@2x.png',
+      sel: 'https://testapi.xmnewlife.com/car/images/Star_sel@2x.png'
     }
   },
   mounted() {}

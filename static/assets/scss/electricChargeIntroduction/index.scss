@@ -1,0 +1,77 @@
+.parent{
+    position: absolute;;
+    height:100%;
+    width: 100%;
+    background: #f4f4f4;
+  }
+  .child{
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;  //left,top,right,bottom都为0，充满整个页面
+    overflow-y:auto;
+    overflow-x:hidden; //设置Y轴出现滚动条，X轴隐藏
+  }
+  .title{
+    height: 110rpx;
+    line-height: 110rpx;
+    text-align: center;
+    font-size: 40rpx;
+    color:#ffffff;
+    font-weight: bold;
+    background: linear-gradient(to right,#75D672,#15BF6D);
+  }
+  .content{
+    background: #ffffff;
+    p.line{
+      padding: 30rpx;
+      .sub_title{
+        color: #333333;
+        position: relative;
+        padding: 0 30rpx;
+      }   
+      .sub_title::after{
+        content: '';
+        position: absolute;
+        height: 30rpx;
+        width: 10rpx;
+        left: 0;
+        top: 10rpx;
+        display: block;
+        border-left: 10rpx solid #14BF6D; 
+      } 
+    }
+    .desc{
+        display: flex;
+        padding: 30rpx;
+        .lt{
+          flex: 4;
+          color: #999999;
+          font-size: 28rpx;
+  
+        }
+        .rt{
+          flex: 6;
+          text-align: right;
+          color: #333333;
+          font-size: 30rpx;
+          display: flex;
+          align-items:center;
+        }
+      }
+  }
+  
+  .line{
+    position: relative;
+  }
+  .line::after{
+    position: absolute;
+    width: 100%;
+    right: -30rpx;
+    bottom: 0;
+    display: block;
+    border: 1rpx solid #f4f4f4;
+    content: '';
+  }
+  

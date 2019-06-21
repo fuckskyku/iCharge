@@ -1,0 +1,47 @@
+.login{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    .tip{
+      width: 380rpx;
+      height: 210rpx;
+      margin: 124rpx auto 44rpx;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .title{
+      padding: 40rpx 0;
+      font-size: 40rpx;
+      color: #14BF6D;
+      text-align: center;
+    }
+    .subTitle{
+      text-align: center;
+      font-size: 30rpx;
+      color: #B0B0B0;
+      .bright{
+        color: #FB910C;
+      }
+    }
+  }
+  
+  .btn{
+    width: 520rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-radius: 90rpx;
+    border: none;
+    outline: none;
+    background: linear-gradient(to right,#75D672,#14BF6D);
+    color: #ffffff;
+    margin-top: 80rpx;
+  }
+  .cancel{
+    background: #fff;
+    color: #14BF6D;
+    border: 1px solid #14BF6D;
+  }

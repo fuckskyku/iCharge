@@ -5,12 +5,12 @@
     </div>
     <div class="section">
       <div class="sel" @click="skip('chargeing')">
-        <img src="/static/img/cut/img_6.png" alt="">
+        <img src="https://testapi.xmnewlife.com/car/images/cut/img_6.png" alt="">
         <p>充满为止</p>        
       </div>
       <div class="line"></div>
       <div class="sel" @click="skip('setupCharge')">        
-        <img src="/static/img/cut/img_7.png" alt="">
+        <img src="https://testapi.xmnewlife.com/car/images/cut/img_7.png" alt="">
         <p>充固定电量</p>
       </div>
     </div>
@@ -52,33 +52,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../../../../../static/assets/scss/search/chargeMode/selectChargeType/index.scss";
 
-.title{
-  width: 100%;
-  font-size: 36rpx;
-  color: #000;
-  text-align: center;
-  padding: 42rpx 0 0 0;
-}
-.sel{
-  border-radius: 50%;
-  margin: 100rpx 180rpx;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  img{
-    width: 226rpx;
-    height: 226rpx;
-  }
-}
-.line{
-  height: 2rpx;
-  width: 94%;
-  margin: 0 auto;
-  background: #E5E5E5;
-}
 
 </style>

@@ -1,67 +1,79 @@
 <template>
   <div id="index" class="context">
-    <div class="container">
-      <div class="box" v-for="(item,index) in tableData" :key="index" @click="skip('inMailDetails',item.id)"> 
+    <!-- 空空如也 -->
+    <div v-if="empty" class="empty" style="margin-top:60rpx;">
+      <img src="/static/img/cut/empty.png" alt="">
+      空空如也~
+    </div>
+    <div class="container" v-if="!empty">
+      <div class="box" v-for="(item,index) in tableData" :key="index" @click="toDetails(item)"> 
         <div class="hd">
           <div class="title">{{item.title}}</div>
           <div class="subTitle">{{item.createTime}}</div>
         </div>
         <div class="fd">
-          <div class="btn" :class="[style,{cancel: item.status == 1}]">{{item.statusName}}</div>
+          <div class="btn" v-if="item.status == 0" :class="[style,{cancel: item.status == 1}]">{{item.status == "0" ? "未读" : "已读"}}</div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import utils from "@/utils/index";
+import { getNoticeList, updateStatus } from '@/api/api'  
+import { mapState, mapActions } from 'vuex'
+
 export default {
   data() {
     return {
-      tableData: [
-        {
-          id: 1,
-          status: 0,
-          statusName: '未读',
-          createTime: "1234567891",
-          title: "咪师感恩十年回馈大礼包！",
-          content: "尊敬的谷歌公司:咪师为您汇总了2018年10月份的财务报告，请前往查阅：2018年10月份账户报告注：以上信息仅供参考，最终以平台实际信息为准。"
-        },
-        { 
-          id: 2,
-          status: 0,
-          statusName: '未读',
-          createTime: "1234567672",
-          title: "咪师感恩十年回馈大礼包！咪师感恩十年回馈大礼包！",
-          content: "尊敬的百度公司:咪师为您汇总了2018年11月份的财务报告，请前往查阅：2018年11月份账户报告注：以上信息仅供参考，最终以平台实际信息为准。"
-        },
-        {
-          id: 3,
-          status: 0,
-          statusName: '未读',
-          createTime: "1392567672",
-          title: "咪师感恩十年回馈大礼包咪师感恩十年回馈大礼包！！",
-          content: "尊敬的space公司:咪师为您汇总了2018年12月份的财务报告，请前往查阅：2018年12月份账户报告注：以上信息仅供参考，最终以平台实际信息为准。"
-        }
-      ],
-      style: "btn" 
-
+      tableData: [],
+      style: "btn", 
+      empty: false,
     };
   },
   computed: {
   
   },
-  mounted() {
-    this.tableData.map((item,index)=>{
-      item.createTime = this.ToTime(item.createTime)
+  onShow() {
+    var that = this
+    getNoticeList({}).then(res=> {
+      if(res.data.code == 200){
+        if(res.data.data != ''){
+          this.empty = false
+          this.tableData = res.data.data.data
+          
+          this.tableData.map((item,index)=>{
+            // console.log("this.tableData",this.tableData)
+            item.createTime = that.ToTime(item.createTime)
+          })
+          
+        }else{
+          this.empty = true
+        }
+      }
     })
+    
   },
   components: {
 
   },
   methods: {
+    ...mapActions([
+      'setIsRead'
+    ]),
+    toDetails(item) {
+      updateStatus({
+        noticeId: item.id
+      }).then(res =>{
+        if(res.data.code == 200){
+          utils.wxSetStorageSync('mailDetail', item)
+          this.skip('inMailDetails',item.id)
+        }
+      })
+    },
     ToTime(timestamp) {
-      //时间戳为10位需*1000，时间戳为13位的话不需乘1000
-      console.log(timestamp)
+      //时间戳为10位需*1000，时间戳为13位的话不需乘1000 
+      timestamp = timestamp + ""
       if(timestamp.length == 10){
         var date = new Date(timestamp * 1000);
       }else if(timestamp.length == 13){
@@ -75,23 +87,14 @@ export default {
       var s = (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
       return Y + M + D + h + m + s;
     },
-    skip(pramas,id) {
-      console.log(id)
-      if(this.tableData != ''){
-        this.tableData.map(item=>{
-          if(item.id == id){
-            item.status = 1
-            item.statusName = '已读'
-            console.log('item',item)
-          }
-        })
-      }
-      id == undefined ? wx.navigateTo({
-        url: "/pages/userCenter/"+ pramas + "/main"
-      }) :  wx.navigateTo({
-              url: "/pages/userCenter/"+ pramas + "/main?id=" + id
-            });
+    skip(type,pramas) {
+      wx.navigateTo({
+        url: "/pages/userCenter/"+ type + "/main?id=" + pramas
+      });
     }
+  },
+  computed: {
+    ...mapState(['isRead' ])
   },
   watch: {},
 
@@ -99,78 +102,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.context{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #f4f4f4;
-  overflow: scroll;
-}
-.container{
-  width: 100%;
-  background: transparent;
-  padding: 10rpx 0 150rpx 0;
-}
-.btn{
-  width: 80rpx;
-  height: 40rpx;
-  line-height: 40rpx;
-  border-radius: 40rpx;
-  text-align: center;
-  background: linear-gradient(to right,#FFC000,#FF8A00);
-  color: #ffffff;
-  font-size: 26rpx;
-  margin: 0 auto;
-}
-.cancel{
-  width: 80rpx;
-  height: 40rpx;
-  line-height: 40rpx;
-  border-radius: 40rpx;
-  text-align: center;
-  background: #CFCFCF;
-  color: #ffffff;
-  font-size: 26rpx;
-  margin: 0 auto;
-}
-.border10{
-  border-bottom: 10rpx solid #f4f4f4;
-  background: #fff;
-}
-.box{
-  padding: 30rpx;
-  display: inline-block;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  background: #ffffff;
-  margin-bottom: 30rpx;
-  .hd{
-    width: 80%;
-    flex-direction: column;
-    .title{
-      width: 96%;
-      text-align: left;
-      color: #333333;
-      font-size: 32rpx;
-      overflow: hidden;
-      text-overflow:ellipsis;
-      white-space: nowrap;
-    }
-    .subTitle{
-      color: #999999;
-      font-size: 28rpx;
-    }
-  }
-  .fd{
-    width: 20%;
-    font-size: 26rpx;
-    color: #ffffff;
-    .tip{
+@import "../../../../static/assets/scss/userCenter/inmail/index.scss";
 
-    }
-  }
-}
 </style>

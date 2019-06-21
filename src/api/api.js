@@ -1,282 +1,404 @@
 import fly from './apiConfig'
 import { Z_FULL_FLUSH } from 'zlib';
 
-///api/charge/geStationtList
 /* 充电桩小程序接口抛出 */ 
 
+//测试接口
+export const GetSession = param => {
+    return fly.get('/api/charge/GetSession', param)
+}
+export const testsss = param => {
+    return fly.get('/api/noToken/generalizeStation/car/createToekn', param)
+}
 //获取电站列表
-export const geStationtList = param => {
-    return fly.get('/api/charge/geStationtList', param)
+// export const getStationtList = param => {
+//     return fly.get('/api/charge/getStationtList', param)
+// }
+export const getStationtList = param => {
+    return fly.postJson('/api/noToken/clientHome/car/mapStation', param)
 }
 
-//获取电站信息
-export const geStationtInfo = param => {
-    return fly.get('/api/charge/geStationtInfo', param)
+// 搜一搜显示桩站列表
+export const stationtList = param => {
+    return fly.postJson('/api/noToken/clientHome/car/stationList', param)
 }
 
-//获取电站终端列表
+//获取电站信息 
+// export const getStationtInfo = param => {
+//     return fly.get('/api/charge/getStationtInfo', param)
+// }
+export const getStationtInfo = param => {
+    return fly.postJson('/api/noToken/clientHome/car/stationDetail', param)
+}
+
+//用户端充电站详情
+export const stationDetail = param => {
+    return fly.postJson('/api/noToken/clientStation/car/stationDetail', param)
+}
+
+//获取电站终端列表  
+// export const getClientList = param => {
+//     return fly.get('/api/charge/getClientList', param)
+// }
 export const getClientList = param => {
-    return fly.get('/api/charge/getClientList', param)
+    return fly.postJson('/api/noToken/clientStation/car/truckSpaceList', param)
 }
 
-/**
-   * 
-   * 
-   * 
-   * 
-   */
+//验证用户
+export const checkToken = param => {
+    return fly.post('/api/charge/checkToken', param)
+}
+
+//注册
+// export const register = param => {
+//     return fly.post('/api/charge/register', param)
+// }
+export const register = param => {
+    return fly.postJson('/api/login/car/weiChatRegisterLogin', param)
+}
+
 //登录
+// export const login = param => {
+//     return fly.post('/api/charge/login', param)
+// }
 export const login = param => {
-    return fly.post('/api/login', param);
+    return fly.postJson('/api/login/car/carWeiChatGetLoginParam', param)
 }
 
-//判断手机号手否存在
-export const isStatus = param => {
-    return fly.post('/api/isStatus', param);
+//发送手机验证码
+// export const getPhoneCode = param => {
+//     return fly.get('/api/charge/getPhoneCode', param)
+// }
+export const getPhoneCode = param => {
+    return fly.postJson('/api/noToken/sms/sendNoTokenSms', param)
 }
 
-//获取cookie
-export const getSessionId = param => {
-    return fly.get('/api/getSessionId', param)
+//验证码登录
+// export const mobileLogin = param => {
+//     return fly.post('/api/charge/mobileLogin', param)
+// }
+export const mobileLogin = param => {
+    return fly.postJson('/api/login/car/smsCodeLogin', param)
 }
 
-//激活帐号
-export const sendNoTokenSms = param => {
-    return fly.postCode('/api/sms/sendNoTokenSms', param);
+//获取个人中心
+// export const getUcCenter = param => {
+//     return fly.getHeader('/api/charge/getUcCenter', param)
+// }
+export const getUcCenter = param => {
+    return fly.postJson('/api/carOwner/car/info', param)
 }
 
-//获取图形验证码
-export const captcha = param => {
-    return fly.getCode('/api/captcha', param)
+//获取我的意见建议列表
+// export const getSuggestionList = param => {
+//     return fly.getHeader('/api/charge/getSuggestionList', param)
+// }
+export const getSuggestionList = param => {
+    return fly.postJson('/api/suggestion/car/pageList', param)
 }
 
-//激活
-export const userActive = param => {
-    return fly.post("/api/user/userActive", param);
+//提交意见建议
+// export const addSuggestion = param => {
+//     return fly.postHeader('/api/charge/addSuggestion', param)
+// }
+export const addSuggestion = param => {
+    return fly.postJson('/api/suggestion/car/save', param)
 }
 
-//修改密码
-export const modifyPasswordOnLogin = param => {
-    return fly.postHeader('api/user/modifyPasswordOnLogin', param)
-}
-//找回密码
-export const forgetPwd = param => {
-    return fly.post('api/user/forgetPwd', param)
-}
-
-
-
-//修改手机号码
-export const modifyMobile = param => {
-    return fly.postHeader('api/user/modifyMobile', param)
+//获取站内信列表 
+// export const getNoticeList = param => {
+//     return fly.getHeader('/api/charge/getNoticeList', param)
+// }
+export const getNoticeList = param => {
+    return fly.postJson('/api/notice/car/pageList', param)
 }
 
-//（内页）获取手机验证码
-export const sendSms = param => {
-    return fly.postHeader('api/sms/sendSms', param)
+//获取站内信详情
+export const getnoticedetail = param => {
+    return fly.getHeader('/api/charge/getnoticedetail', param)
 }
 
-//我的子女列表
-export const students = param => {
-    return fly.postHeader('api/userCenter/students', param)
+//获取我的站内信未读总数
+// export const getnewnoticecount = param => {
+//     return fly.getHeader('/api/charge/getnewnoticecount', param)
+// }
+
+//更新已读状态
+export const updateStatus = param => {
+    return fly.postJson('/api/notice/car/updateStatus', param)
 }
 
-
-//获取机构列表
-export const schoolList = param => {
-    return fly.postHeader('api/userCenter/schoolList', param)
+//获取预充值列表
+// export const getprechargvaluelist = param => {
+//     return fly.get('/api/charge/getprechargvaluelist', param)
+// }
+export const getprechargvaluelist = param => {
+    return fly.postJson('/api/preCharge/car/userPageList', param)
 }
 
-//切换机构
-export const switchSchool = param => {
-    return fly.postHeader('api/userCenter/switchSchool', param);
+//获取优惠券列表
+// export const getcouponlist = param => {
+//     return fly.post('/api/charge/getcouponlist', param)
+// }
+export const getcouponlist = param => {
+    return fly.postJson('/api/userCoupon/car/pageList', param)
 }
 
-
-//通知阅读状态更改
-export const info = param => {
-    return fly.postHeader('api/schoolNews/info', param)
+//获取桩站详情展示的可领优惠券列表
+export const getStationCouponlist = param => {
+    return fly.postJson('/api/userCoupon/car/StationAutoList', param)
 }
 
-//学生日历考勤
-export const monthRfidClock = param => {
-    return fly.postHeader('api/rfidMachine/monthRfidClock', param)
+//获取桩站详情展示的可领优惠券列表
+export const getCouponlistNoToken = param => {
+    return fly.postJson('/api/noToken/userCoupon/car/pageList', param)
 }
 
-//(通过原密码修改密码))
-export const modifyPassword = param => {
-    return fly.postHeader('api/user/modifyPassword', param)
+//领取优惠券
+// export const receivecoupon = param => {
+//     return fly.getHeader('/api/charge/receivecoupon', param)
+// }
+export const receivecoupon = param => {
+    return fly.postJson('/api/userCoupon/car/take', param)
 }
 
-//切换学生
-export const studentsParent = param => {
-    return fly.postHeader("/api/userCenter/studentsParent", param)
+//获取我的优惠券列表
+// export const getcouponlistbyuser = param => {
+//     return fly.getHeader('/api/charge/getcouponlistbyuser', param)
+// }
+export const getcouponlistbyuser = param => {
+    return fly.postJson('/api/userCoupon/car/couponList', param)
 }
 
-//修改学生个人信息
-export const updateStudent = param => {
-    return fly.postHeader("/api/student/updateStudent", param)
+//获取我的优惠券详情
+// export const getcoupondetail = param => {
+//     return fly.get('/api/charge/getcoupondetail', param)
+// }
+export const getcoupondetail = param => {
+    return fly.postJson('/api/userCoupon/car/detail', param)
 }
 
-
-//首页
-export const index = (param) => {
-    return fly.postHeader('/api/index/content', param);
+//获取电站电价列表
+// export const getPriceList = param => {
+//     return fly.get('/api/charge/getPriceList', param)
+// }
+export const getPriceList = param => {
+    return fly.postJson('/api/noToken/clientStation/car/timePriceDetail', param)
 }
 
-//通知列表
-export const noticsList = (param) => {
-    return fly.postHeader('/api/schoolNews/noticPage', param);
+//用户充值获取到的最大优惠券 
+// export const getfavorablechargecouponbyuser = param => {
+//     return fly.postHeader('/api/charge/getfavorablechargecouponbyuser', param)
+// }
+export const getfavorablechargecouponbyuser = param => {
+    return fly.postJson('/api/appletWeiChatPay/car/getMaxUsableCoupon', param)
 }
 
-//用户基础信息
-export const userCenter = param => {
-    return fly.postHeader('/api/userCenter/userCenter', param);
+//支付下单
+// export const addpayorder = param => {
+//     return fly.postHeader('/api/charge/addpayorder', param)
+// }
+export const addpayorder = param => {
+    return fly.postJson('/api/appletWeiChatPay/car/createOrder', param)
 }
 
-//获取新闻/通知详情
-export const getSchoolNews = param => {
-    return fly.postHeader('/api/schoolNews/info', param);
+//获取微信支付数据签名验证字段列表
+export const getpaysign = param => {
+    return fly.get('/api/wx/getpaysign', param)
 }
 
-//获取作业详情
-export const getHomework = param => {
-    return fly.postHeader('/api/homework/info', param);
+//修改头像
+// export const editAvatar = param => {
+//     return fly.postHeader('/api/charge/editAvatar', param)
+// }
+export const editAvatar = param => {
+    return fly.postJson('/api/carOwner/car/updateAvatarUrl', param)
 }
 
-//新闻评论列表
-export const getComment = param => {
-    return fly.getHeader('/api/comment/page', param);
+//修改性别 
+// export const editGender = param => {
+//     return fly.postHeader('/api/charge/editGender', param)
+// }
+export const editGender = param => {
+    return fly.postJson('/api/carOwner/car/updateGender', param)
 }
 
-//提交新闻评论
-export const postComment = param => {
-    return fly.postHeader('/api/comment/save', param);
+//修改昵称 
+// export const editNickName = param => {
+//     return fly.postHeader('/api/charge/editNickName', param)
+// }
+export const editNickName = param => {
+    return fly.postJson('/api/carOwner/car/updateNickName', param)
 }
 
-//点赞
-export const markGood = param => {
-    return fly.postHeader('/api/markgood/save', param);
+//开始充电
+export const chargeStart = param => {
+    return fly.postHeader('/api/charge/chargeStart', param)
 }
 
-//取消点赞
-export const cancelMarkGood = param => {
-    return fly.postHeader('/api/markgood/cancelMarkGood', param);
+//结束充电
+export const chargeStop = param => {
+    return fly.postHeader('/api/charge/chargeStop', param)
 }
 
-
-
-/**
- * 
- * 教师端接口抛出
- * 
- */
-
-//教师任课科目
-export const subjects = param => {
-    return fly.postHeader('api/userCenter/subjects', param)
+//获取用户资金流水列表 
+// export const getchargespendloglist = param => {
+//     return fly.getHeader('/api/charge/getchargespendloglist', param)
+// }
+export const getchargespendloglist = param => {
+    return fly.postJson('/api/userAccount/car/rechargeAccountList', param)
 }
 
-//获取我的信息
-export const myRlease = param => {
-    return fly.postHeader('api/userCenter/myRlease', param);
+//获取资金流水详情 
+// export const getchargespendlogdetail = param => {
+//     return fly.getHeader('/api/charge/getchargespendlogdetail', param)
+// }
+
+//用户充电消费详情
+export const getchargespendlogdetail = param => {
+    return fly.postJson('/api/userAccount/car/chargeDetail', param)
 }
 
-//修改个人信息
-export const modifyUserInfo = param => {
-    return fly.postHeader('api/user/modifyUserInfo', param)
+//获取七牛token
+export const GetQiniuToken = param => {
+    return fly.get('/api/charge/GetQiniuToken', param)
 }
 
-//获取教师班级
-export const classTeacher = param => {
-    return fly.postHeader('api/homework/classTeacher', param)
+//获取终端信息 
+// export const getClientInfo = param => {
+//     return fly.getHeader('/api/charge/getClientInfo', param)
+// }
+export const getClientInfo = param => {
+    return fly.postJson('/api/clientStation/car/truckSpaceDetail', param)
 }
 
-//获取数据字典
-export const commonDictList = param => {
-    return fly.postHeader('api/commonDict/list', param)
+//取消车位操作及返回结果 
+export const cancelBinding = param => {
+    return fly.postJson('/api/clientStation/car/cancelBinding', param)
 }
 
-//发布作业
-export const homeworkSave = param => {
-    return fly.postHeader('api/homework/save', param)
+//选定车位操作及返回结果   
+export const bindingParking = param => {
+    return fly.postJson('/api/clientStation/car/bindingParking', param)
 }
 
-//发布新闻
-export const newSave = param => {
-    return fly.postHeader('api/schoolNews/save', param)
+//获取意见反馈详情
+// export const getsuggestiondetail = param => {
+//     return fly.getHeader('/api/charge/getsuggestiondetail', param)
+// }
+export const getsuggestiondetail = param => {
+    return fly.postJson('/api/suggestion/car/info', param)
 }
 
-//发布通知
-
-export const noticeSave = param => {
-    return fly.postHeader('api/schoolNews/saveNotice', param)
+//获取用户余额
+// export const getBalance = param => {
+//     return fly.getHeader('/api/charge/getBalance', param)
+// }
+export const getBalance = param => {
+    return fly.postJson('/api/userAccount/car/rechargeAccountList', param)
 }
 
-//删除作业
-export const deleteHomework = param => {
-    return fly.postHeader('api/userPublish/deleteHomework', param);
+//用户充电消费详情  /api/userAccount/car/chargeDetail
+export const chargeDetail = param => {
+    return fly.postJson('/api/userAccount/car/chargeDetail', param)
 }
 
-//删除新闻通知 
-export const deleteSchoolNews = param => {
-    return fly.postHeader('api/userPublish/deleteSchoolNews', param)
+// 用户账户充值详情 
+export const rechargeDetail = param => {
+    return fly.postJson('/api/userAccount/car/rechargeDetail', param)
 }
 
-
-//设置审批人
-export const departmentUsersTree = param => {
-    return fly.postHeader('api/department/departmentUsersTree', param)
+//用户退款记录详情
+export const refundDetail = param => {
+    return fly.postJson('/api/userAccount/car/refundDetail', param)
 }
 
-//后台默认审批配置
-export const getApprovalCopy = param => {
-    return fly.postHeader('api/approval/getApprovalCopy', param)
+//车主端 微信支付统一下单
+export const unifiedOrder = param => {
+    return fly.postJson('/api/appletWeiChatPay/car/unifiedOrder', param)
 }
 
-//班级数据结构
-export const classGradeTree = param => {
-    return fly.postHeader('api/grade/classGradeTree', param)
+//车主端 微信支付统一下单成功后，查看支付是否成功接口
+export const weiChatPayResult = param => {
+    return fly.postJson('/api/appletWeiChatPay/car/weiChatPayResult', param)
 }
 
-//我的发布 
-export const publishList = param => {
-    return fly.postHeader('api/userPublish/publishList', param)
+//上传单个文件
+export const uploadSingleFile = param => {
+    return fly.postJson('/api/minioRest/uploadSingleFile', param)
 }
 
-//新闻风采草稿列表 
-export const draftSchoolNewsList = param => {
-    return fly.postHeader('api/userPublish/draftSchoolNewsList', param)
+//生成用户退款订单
+export const createOrder = param => {
+    return fly.postJson('/api/weiChatRefund/car/createOrder', param)
 }
 
-//作业草稿列表 
-export const draftHomeworkList = param => {
-    return fly.postHeader('api/userPublish/draftHomeworkList', param)
+//通知微信服务端执行退款操作
+export const weiChatRefund = param => {
+    return fly.postJson('/api/weiChatRefund/car/weiChatRefund', param)
 }
 
-//通知草稿列表 
-export const draftSchoolNoticeList = param => {
-    return fly.postHeader('api/userPublish/draftSchoolNoticeList', param)
+//获取用户资金信息
+export const getAccount = param => {
+    return fly.postJson('/api/weiChatRefund/car/getAccount', param)
 }
 
-//审批列表 
-export const approvalList = param => {
-    return fly.postHeader('api/approval/list', param)
+//退款金额计算方式
+export const formulaMode = param => {
+    return fly.postJson('/api/weiChatRefund/car/formulaMode', param)
 }
 
-//抄送我的列表 
-export const approvalCopyList = param => {
-    return fly.postHeader('api/approval/copyList', param)
+//首页查看充电状态
+export const chargeStatus = param => {
+    return fly.postJson('/api/clientStation/car/chargeStatus', param)
 }
 
-
-//审批详情 
-export const approvalPage = param => {
-    return fly.postHeader('api/approval/approvalPage', param)
+//手动停止充电
+export const stopCharge = param => {
+    return fly.postJson('/api/clientStation/car/stopCharge', param)
 }
 
-//审批 
-export const auditStatus = param => {
-    return fly.postHeader('api/approval/auditStatus', param)
+//插入充电枪后操作
+export const plugInGun = param => {
+    return fly.postJson('/api/clientStation/car/plugInGun', param)
 }
 
+//跳转到充电中
+export const jumpToTimeData = param => {
+    return fly.postJson('/api/clientStation/car/jumpToTimeData', param)
+}
+
+//开始充电
+export const chargeBegin = param => {
+    return fly.postJson('/api/clientStation/car/chargeBegin', param)
+}
+
+// //插入充电枪后操作
+// export const autoStopCharge = param => {
+//     return fly.postJson('/api/clientStation/car/autoStopCharge', param)
+// }
+
+//获取充电数据
+export const getTimeData = param => {
+    return fly.postJson('/api/clientStation/car/getTimeData', param)
+}
+
+//取消订单
+export const cancelOrder = param => {
+    return fly.postJson('/api/appletWeiChatPay/car/cancelOrder', param)
+}
+
+//跳转到用户选定车位界面
+export const jumpToTruckSpaceDetail = param => {
+    return fly.postJson('/api/clientStation/car/jumpToTruckSpaceDetail', param)
+}
+
+//查看充电结束后数据
+export const getChargeLog = param => {
+    return fly.postJson('/api/clientStation/car/getChargeLog', param)
+}
+
+//查看充电结束后数据
+export const StationAutoListNoToken = param => {
+    return fly.postJson('/api/noToken/userCoupon/car/StationAutoList', param)
+}

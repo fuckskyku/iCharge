@@ -13,7 +13,7 @@
 </template>
 <script>
 import utils from "@/utils/index";
-import { login,sendNoTokenSms } from '@/api/api'  
+import { sendNoTokenSms } from '@/api/api'  
 import { mapState, mapActions } from 'vuex'
 
 export default {
@@ -45,13 +45,6 @@ export default {
   },
   methods: {
     dis() {
-      // if(!utils.number(this.DEG)){
-      //   if(this.DEG != ''){
-      //     this.disabled = false;
-      //   }else{
-      //     this.disabled = true;
-      //   }
-      // }
       if(utils.number(this.DEG)){
         if(this.DEG != '' && this.DEG > 10){
           this.disabled = false;
@@ -122,6 +115,9 @@ export default {
       }else{
         this.buy = false
       }
+      wx.redirectTo({
+        url: "/pages/search/chargeMode/chargeing/main"
+      })
     },
     skip(params) {
       wx.redirectTo({
@@ -137,60 +133,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.input{
-  text-align: center;
-  font-size: 34rpx;
-  position: relative;
-  .warning{
-    position: absolute;
-    bottom: -40rpx;
-    left: 40rpx;
-  }
-}
-.deg{
-  width: 600rpx;
-  height: 80rpx;
-  border: 1px solid #D1D1D1;
-  border-radius: 10rpx;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 14rpx;
-  text-align: left;
-  color: #333;
-  padding-left: 22rpx;
-}
-.warning{
-  color: #FF4E4D;
-  font-size: 26rpx;
-}
-.buy{
-  color: #14BF6D;
-  font-size: 26rpx;
-  margin-left: 18rpx;
-}
-.title{
-  width: 100%;
-  font-size: 36rpx;
-  color: #14BF6D;
-  padding: 44rpx 40rpx;
-}
-.btn{
-  width: 520rpx;
-  height: 90rpx;
-  line-height: 90rpx;
-  border-radius: 90rpx;
-  border: none;
-  outline: none;
-  background: linear-gradient(to right,#75D672,#14BF6D);
-  color: #ffffff;
-  margin-top: 180rpx;
-}
-.cancel{
-  background: #fff;
-  color: #14BF6D;
-  border: 1px solid #14BF6D;
-}
-.disabled{
-  color: rgba(255, 255, 255, 0.5) !important;
-}
+@import "../../../../../static/assets/scss/search/chargeMode/setupCharge/index.scss";
+
 </style>

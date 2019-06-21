@@ -1,0 +1,27 @@
+.title{
+    width: 100%;
+    font-size: 36rpx;
+    color: #000;
+    text-align: center;
+    padding: 42rpx 0 0 0;
+  }
+  .sel{
+    border-radius: 50%;
+    margin: 100rpx 180rpx;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    img{
+      width: 226rpx;
+      height: 226rpx;
+    }
+  }
+  .line{
+    height: 2rpx;
+    width: 94%;
+    margin: 0 auto;
+    background: #E5E5E5;
+  }

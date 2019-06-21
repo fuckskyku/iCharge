@@ -1,6 +1,6 @@
 <template>
   <div id="login" class="login">
-    <div class="tip"><img src="/static/img/cut/ic_right.png" alt=""></div>
+    <div class="tip"><img src="https://testapi.xmnewlife.com/car/images/cut/ic_right.png" alt=""></div>
     <div class="title">登录成功</div>
     <div class="subTitle">登录成功!<span class="bright">{{countdown}}</span>秒后自动进入</div>
     <button class="btn" @click="into()">立即进入</button>
@@ -8,13 +8,16 @@
 </template>
 <script>
 import utils from "@/utils/index";
-
+import { getUcCenter } from '@/api/api'  
+import { mapState, mapActions } from 'vuex'
+var timer = ""
 export default {
   data() {
     return {
       msg: '',
       time: "12:01",
       countdown: 3,
+      userInfo: {},
       isAgree: false,
       disabled: true,
       style: "btn"
@@ -23,18 +26,33 @@ export default {
   onLaunch() {
 
   },
-  created() {
-    
-    
+  onShow() {
+    var that = this
+    // this.userInfo = utils.wxGetStorage("userInfo")
+    getUcCenter({}).then(res =>{
+      if(res.data.code == 200) {
+        that.userInfo = res.data.data
+        utils.wxSetStorageSync('userInfo',that.userInfo)
+      }
+      // that.userInfo = res.data.data
+      // this.$set(this.userInfo,'userId',res.data.data.userId)
+      // this.$set(this.userInfo,'nickName',res.data.data.nickName)
+      // this.$set(this.userInfo,'avatar',res.data.data.avatarUrl)
+      // this.$set(this.userInfo,'balance',res.data.data.balance)
+      // this.$set(this.userInfo,'gender',res.data.data.gender)
+      // this.$set(this.userInfo,'newNotice',res.data.data.noticeCount)
+      // utils.wxSetStorageSync('userInfo',that.userInfo)
+      // utils.wxSetStorageSync("close","open")
+    })
   },
   mounted() {
     this.countdown = 3
-    var timer = setInterval(() => {
+    timer = setInterval(() => {
       console.log(this.countdown)
       this.countdown--
       if(this.countdown == 0){
         clearInterval(timer)
-        wx.navigateTo({
+        wx.reLaunch({
           url: "/pages/index/main"
         });
       }
@@ -42,7 +60,8 @@ export default {
   },
   methods: {
     into(){
-      wx.navigateTo({
+      clearInterval(timer)
+      wx.reLaunch({
         url: "/pages/index/main"
       });
     }
@@ -61,52 +80,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.login{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  .tip{
-    width: 380rpx;
-    height: 210rpx;
-    margin: 124rpx auto 44rpx;
-    img{
-      width: 100%;
-      height: 100%;
-    }
-  }
-  .title{
-    padding: 40rpx 0;
-    font-size: 40rpx;
-    color: #14BF6D;
-    text-align: center;
-  }
-  .subTitle{
-    text-align: center;
-    font-size: 30rpx;
-    color: #B0B0B0;
-    .bright{
-      color: #FB910C;
-    }
-  }
-}
+@import "../../../../static/assets/scss/login/loginSuccess/index.scss";
 
-.btn{
-  width: 520rpx;
-  height: 90rpx;
-  line-height: 90rpx;
-  border-radius: 90rpx;
-  border: none;
-  outline: none;
-  background: linear-gradient(to right,#75D672,#14BF6D);
-  color: #ffffff;
-  margin-top: 80rpx;
-}
-.cancel{
-  background: #fff;
-  color: #14BF6D;
-  border: 1px solid #14BF6D;
-}
 
 </style>

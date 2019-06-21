@@ -18,13 +18,32 @@ export default {
   config: {
     // 页面前带有 ^ 符号的，会被编译成首页，其他页面可以选填，我们会自动把 webpack entry 里面的入口页面加进去
     pages: [
-      'pages/welcome/main',
+      'pages/testCode/main',
       '^pages/index/main',
+      'pages/authorization/main',
+      'pages/stationDetails/main',
+      'pages/parkDetails/main',
+      'pages/pay/main',
+      'pages/pay/payDescription/main',
+      'pages/pay/paySuccess/main',
+      'pages/pay/paymentFailed/main',
       'pages/search/main',
       'pages/user/main',
       'pages/login/main',
+      'pages/loginOut/main',
+      'pages/loginSelect/main',
       'pages/login/loginSuccess/main',
+      'pages/userCenter/personalInfo/main',
+      'pages/userCenter/editPersonalInfo/main',
       'pages/userCenter/orders/main',
+      'pages/userCenter/accountBalance/main',
+      'pages/userCenter/balanceRefund/main',
+      'pages/userCenter/accountBalanceDetails/main',
+      'pages/userCenter/refundSchedule/main',
+      'pages/userCenter/refundSuccess/main',
+      'pages/userCenter/refundFailed/main',
+      'pages/userCenter/coupons/main',
+      'pages/userCenter/couponsDetails/main',
       'pages/userCenter/electricityRecord/main',
       'pages/userCenter/electricityRecordDetails/main',
       'pages/userCenter/energyBalance/main',
@@ -42,34 +61,27 @@ export default {
       'pages/search/chargeMode/chargeing/main',
       'pages/search/chargeMode/stopCharge/main',
       'pages/search/chargeMode/countCharge/main',
+      'pages/search/chargeMode/confirmCharge/main',
+      'pages/search/chargeMode/fillCharge/main',
+      'pages/search/chargeMode/fixedCharge/main',
       'pages/search/opening/main',
       'pages/search/opened/main',
       'pages/search/openedInsert/main',
-      //协议
-      'pages/useAgreement/main'
+      'pages/electricChargeIntroduction/main',
+
     ],
-
-    // tabBar: {
-    //   "list": [{
-    //     "pagePath": "pages/index/main",
-    //     "text": "首页",
-    //     "iconPath": '/static/img/tab/tab_school_nor@3x.png',
-    //     "selectedIconPath": '/static/img/tab/tab_school_sel@3x.png',
-    //   }, {
-    //     "pagePath": "pages/welcome/main",
-    //     "text": "我的",
-    //     "iconPath": '/static/img/tab/tab_me_nor@3x.png',
-    //     "selectedIconPath": '/static/img/tab/tab_me_sel@3x.png',
-    //   }]
-    // },
-
+    "permission": {
+      "scope.userLocation": {
+        "desc": "你的位置信息将用于小程序位置接口的效果展示"
+      }
+    },
     window: {
       backgroundTextStyle: 'dark',
       navigationBarBackgroundColor: '#31C56E',
-      navigationBarTitleText: '咪师校园',
+      navigationBarTitleText: '新活充电',
       navigationBarTextStyle: 'white',
-      "disableScroll": true
-      // enablePullDownRefresh: true
+      "disableScroll": true,
+      enablePullDownRefresh: true,
     }
     , networkTimeout: {
       request: 10000,

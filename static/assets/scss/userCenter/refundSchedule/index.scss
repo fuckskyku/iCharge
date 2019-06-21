@@ -1,0 +1,60 @@
+.refundSchedule{
+    .header{
+        text-align: center;
+        border-top: 1rpx solid #f4f4f4;
+        border-bottom: 20rpx solid #f4f4f4;
+        .icon{
+            margin: 70rpx 0 40rpx;
+        }
+        .title{
+            font-size: 36rpx;
+            margin-bottom: 74rpx;
+        }
+    }
+    .content{ 
+        border-bottom: 1rpx solid #f4f4f4;
+        .list{
+            padding: 0 30rpx;
+            display: flex;
+            font-size: 36rpx;  
+            margin: 44rpx 0; 
+            div{
+                flex: 1;
+            }
+            .lt{
+                color: #333333;
+                span{
+                    color: #666666;
+                }
+            }
+            .rt{
+                text-align: right;
+                color: #666666;
+            }
+        }
+    } 
+    .desc{ 
+        .list{
+            padding: 0 30rpx;
+            font-size: 36rpx;  
+            margin: 40rpx 0; 
+            .lt{
+                color: #333333;
+                span{
+                    color: #666666;
+                }
+            }
+        }
+    } 
+    .btn{
+        width: 520rpx;
+        height: 90rpx;
+        line-height: 90rpx;
+        border-radius: 90rpx;
+        border: none;
+        outline: none;
+        background: linear-gradient(to right,#75D672,#14BF6D);
+        color: #ffffff;
+        margin-top: 115rpx;
+    }
+}

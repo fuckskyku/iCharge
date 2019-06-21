@@ -1,0 +1,98 @@
+.stopCharge{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #F4F4F4;
+  }
+  .child{
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;  //left,top,right,bottom都为0，充满真个页面
+    overflow-y:auto !important;
+    overflow-x:hidden !important; //设置Y轴出现滚动条，X轴隐藏
+    -webkit-overflow-scrolling: touch; 
+  }
+  .title{
+    font-size: 30rpx;
+    color: #333333;
+    padding: 24rpx 30rpx;
+    margin: 0;
+  }
+  .bd{
+    font-size: 32rpx;
+    color: #999;
+  }
+  .ft{
+    font-size: 32rpx;
+    color: #333333;
+  }
+  .tip{
+    img{
+      width: 32rpx;
+      height: 32rpx;
+      vertical-align: middle;
+      margin-top: -4rpx;
+      margin-left: 4rpx;
+    } 
+  }
+  .subTitle{
+    font-size: 32rpx;
+    margin: 20rpx 0;
+    background: #ffffff;
+    padding: 30rpx 34rpx;
+    p:first-child{
+      color: #999999;
+      font-size: 30rpx;
+    }
+    p:last-child{
+      padding-left: 30rpx;
+      margin-top: 10rpx;
+      font-size: 28rpx;
+    }
+    img{
+      width:21rpx;
+      height:26rpx;
+    }
+  }
+  .subTitle_tip{
+    width: 437rpx;
+    height: 83rpx;
+    font-size: 32rpx;
+    font-weight: 500;
+    color: rgba(20,191,109,1);
+    line-height: 52rpx; 
+    margin: 26rpx 0;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .weui-cell{
+    padding: 24rpx 30rpx;
+  }
+  .weui-cells:before {
+    top: 0;
+    border-top: none;
+  }
+  .weui-cells:after {
+    top: 0;
+    border-bottom: none;
+  }
+  .btn{
+    width: 520rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-radius: 90rpx;
+    border: none;
+    outline: none;
+    background: linear-gradient(to right,#75D672,#14BF6D);
+    color: #ffffff;
+    margin-top: 42rpx;
+  }
+  .nav{
+    background: linear-gradient(to right,#FFC000,#FF8A00);
+    margin-top: 42rpx;
+    margin-bottom: 42rpx;
+  }

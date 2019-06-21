@@ -1,0 +1,163 @@
+.order{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #f4f4f4;
+    overflow: scroll;
+  }
+  .header{
+    width: 690rpx;
+    height: 288rpx;
+    padding: 20rpx 30rpx 0;
+    background: #ffffff;
+    position: relative;
+    .bg{
+      width: 100%;
+      height: 288rpx;
+      background: url('https://testapi.xmnewlife.com/car/images/cut/img_green.png') no-repeat;
+      background-size: 100% 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #FFFFFF;
+      p{
+        width: 60%;
+        position: relative;
+        left: 40rpx;
+      }
+      .balance_tip{
+        font-size: 26rpx;
+        top: 20rpx;
+      }
+      .balance{
+        font-size: 100rpx;
+        top: -6rpx;
+        font-weight: 600;
+      }
+      .recharge{
+        width:146rpx;
+        height:66rpx;
+        line-height: 66rpx;
+        text-align: center;
+        font-size:34rpx;
+        font-weight:500;
+        background:rgba(45,197,123,1);
+        border: 3rpx solid rgba(186,255,211,1);
+        border-radius: 10rpx;
+        position: absolute;
+        bottom: 100rpx;
+        right: 76rpx;
+      }
+      .refund{
+        width:108rpx;
+        height: 80rpx;
+        line-height: 80rpx;
+        color: #ffffff;
+        font-size: 24rpx;
+        text-align: center;
+        position: absolute;
+        top: 20rpx;
+        right: 28rpx;
+      }
+    }
+  
+  }
+  .container{
+    padding: 0 0 40rpx 0;
+    
+  }
+  .record{
+    width: 100%;
+    height: 162rpx;
+    background: #ffffff;
+    position: relative;
+    .title{
+      display: flex;
+      flex: 3;
+      padding: 20rpx 30rpx;
+      .hd{
+        font-size: 34rpx;
+        color: #333333;
+        text-align: left;
+        width: 100%;
+      }
+      .bd{
+        color: #FFC000;
+        font-size: 36rpx;
+        text-align: center;
+        width: 100%;
+      }
+      .fd{
+        width: 100%;
+        font-size: 34rpx;
+        color: #FFC000;
+        text-align: right;
+      }
+    }
+    .subTitle{
+      display: flex;
+      flex: 2;
+      padding: 0 30rpx 30rpx;
+      font-size: 24rpx;
+      color: #666666;
+      .hd{
+        width: 100%;
+        text-align: left;
+      }
+      .fd{
+        width: 100%;
+        text-align: right;
+        color: #666666;
+      }
+    }
+    .underLine{
+      width: 96%;
+      height: 2rpx;
+      background: #f4f4f4;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+    
+  }
+  .record:last-child .underLine{
+    background: transparent;
+  }
+  
+  .loadmore{
+    position: relative;
+    .tips{
+      // width: 50%;
+      text-align: center;
+      margin: 0 auto;
+      font-size: 22rpx;
+      color: #888888;
+    }
+    .line{
+      width: 100rpx;
+      height: 2rpx;
+      background: #C7C7C7;  
+      position: absolute;
+      top: 50%;
+    }
+    .pl{
+      left: 80rpx;
+    }
+    .pr{
+      right: 80rpx;
+    }
+  }
+  .empty{
+    width: 374rpx;
+    height: 360rpx;
+    font-size: 34rpx;
+    color: #777;
+    text-align:center;
+    position: relative;
+    margin: 0 auto;
+    padding-bottom: 30rpx;
+    img{
+      width: 374rpx;
+      height: 288rpx;
+    }
+  }

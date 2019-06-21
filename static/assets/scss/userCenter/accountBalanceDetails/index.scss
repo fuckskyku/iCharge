@@ -1,0 +1,32 @@
+.container{
+    width: 100%;
+    height: 100%;
+    background: #f4f4f4;
+    position: absolute;
+    overflow: scroll;
+  }
+  .section{
+    padding-top: 20rpx;
+  }
+  .record{
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #E5E5E5;
+    background: #ffffff;
+    .hd{
+      width: 30%;
+      padding: 30rpx;
+      font-size: 32rpx;
+      color: #999999;
+    }
+    .fd{
+      text-align: right;
+      width: 70%;
+      padding: 30rpx; 
+      font-size: 32rpx;
+      color: #333333;
+    }
+  }
+  .record:last-child{
+    border-bottom: none;
+  }

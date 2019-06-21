@@ -1,0 +1,65 @@
+.page{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #F4F4F4; 
+    
+  }
+  .item{
+    background: #ffffff;
+    padding-top: 0;
+    padding-bottom: 0; 
+  }
+  .title{
+    padding: 30rpx;
+    color: #333333;
+  }
+  .icon{
+    width: 80rpx;
+    height: 80rpx;
+    vertical-align: middle;
+  }
+  .address{
+    color: #333333;
+    font-size: 34rpx;
+  }
+  
+  .footer{
+    text-align: center;
+    .tip{
+      color: #14BF6D;
+      font-size: 36rpx;
+      margin: 40rpx 0;
+    }
+    .tip_img{
+      margin: 70rpx 0;
+      img{
+        height: 58rpx;
+        width: 54rpx;
+      }
+    }
+    .tip_desc{
+      padding: 0 40rpx;
+      color: #333333;
+      font-size: 32rpx;
+      text-align: left;
+      text-indent: 2em;
+    }
+  }
+  .btn{
+    width: 520rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-radius: 90rpx;
+    border: none;
+    outline: none;
+    background: linear-gradient(to right,#75D672,#14BF6D);
+    color: #ffffff;
+    margin-top: 80rpx;
+    padding: none;
+  }
+  .cancel{
+    background: #fff;
+    color: #14BF6D;
+    border: 1px solid #14BF6D;
+  }

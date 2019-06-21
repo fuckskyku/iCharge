@@ -9,7 +9,7 @@
         <view class="weui-panel__bd">
           <view class="weui-media-box weui-media-box_appmsg item" hover-class="weui-cell_active">
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                <img class="weui-media-box__thumb icon" src="/static/img/cut/ic_navigation.png" />
+                <img class="weui-media-box__thumb icon" src="https://testapi.xmnewlife.com/car/images/cut/ic_navigation.png" />
             </view>
             <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
               <view class="weui-media-box__desc address">福建省厦门市湖里区湖里高新技术园汇金湖里大厦附近宝龙停车场</view>
@@ -17,7 +17,7 @@
           </view>
           <view class="weui-media-box weui-media-box_appmsg item" hover-class="weui-cell_active">
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-              <img class="weui-media-box__thumb icon" src="/static/img/cut/ic_park.png" />
+              <img class="weui-media-box__thumb icon" src="https://testapi.xmnewlife.com/car/images/cut/ic_park.png" />
             </view>
             <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
               <view class="weui-media-box__title">71号充电桩停车闸</view>
@@ -29,7 +29,7 @@
       <div class="footer">
         <ul>
           <li class="tip">请将车停入车位,并且插入充电器，开始充电。</li>
-          <li class="tip_img"><img src="/static/img/cut/ic_tips.png" alt=""></li>
+          <li class="tip_img"><img src="https://testapi.xmnewlife.com/car/images/cut/ic_tips.png" alt=""></li>
           <li class="tip_desc"><p>您有五分钟的时间插入充电枪，若无需充电，请手动点击取消充电使用并将车开出车位让其他用户使用。</p></li>
           <li class="tip_desc"><p>超过五分钟未插入充电器或取消充电，系统将开始扣除您账户上的电量。</p></li>
         </ul>
@@ -45,7 +45,7 @@
         <view class="weui-panel__bd">
           <view class="weui-media-box weui-media-box_appmsg item" hover-class="weui-cell_active">
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                <img class="weui-media-box__thumb icon" src="/static/img/cut/ic_navigation.png" />
+                <img class="weui-media-box__thumb icon" src="https://testapi.xmnewlife.com/car/images/cut/ic_navigation.png" />
             </view>
             <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
               <view class="weui-media-box__desc address">福建省厦门市湖里区湖里高新技术园汇金湖里大厦附近宝龙停车场</view>
@@ -53,7 +53,7 @@
           </view>
           <view class="weui-media-box weui-media-box_appmsg item" hover-class="weui-cell_active">
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-              <img class="weui-media-box__thumb icon" src="/static/img/cut/ic_park.png" />
+              <img class="weui-media-box__thumb icon" src="https://testapi.xmnewlife.com/car/images/cut/ic_park.png" />
             </view>
             <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
               <view class="weui-media-box__title">71号充电桩停车闸</view>
@@ -68,7 +68,7 @@
             <p>您确认要开始充电吗？</p>
             <p>确认后将开始从您账户上扣除剩余电费。</p>
           </li>
-          <!-- <li class="tip_img"><img src="/static/img/cut/ic_tips.png" alt=""></li>
+          <!-- <li class="tip_img"><img src="https://testapi.xmnewlife.com/car/images/cut/ic_tips.png" alt=""></li>
           <li class="tip_desc"><p>您有五分钟的时间插入充电枪，若无需充电，请手动点击取消充电使用并将车开出车位让其他用户使用。</p></li>
           <li class="tip_desc"><p>超过五分钟未插入充电器或取消充电，系统将开始扣除您账户上的电量。</p></li> -->
         </ul>
@@ -104,7 +104,6 @@ export default {
   },
   onShow() {
     console.log("timer",utils.wxGetStorage("timer"))
-    
     if(this.confirmInsert == false || this.confirm == false){
       // utils.removeStorageSync("beforeTime")  //test
       // wx.removeStorageSync('beforeTime');
@@ -129,25 +128,21 @@ export default {
           this.ToTime(count)
           console.log(this.ToTime(count))
         }
-        
       }else{    //未创建
         utils.wxSetStorageSync("beforeTime",Date.parse(new Date()))       
       }
-
     }else{ //插枪或取消充电后清除倒计时
       clearInterval(this.timer)
       wx.removeStorageSync('beforeTime');
       console.log(this.confirm)
     }
-    
-    // utils.wxSetStorageSync("")
   },
   onLoad() {
-    console.log("this.$root.$mp.query",this.$root.$mp.query)
+    //console.log("this.$root.$mp.query",this.$root.$mp.query)
     this.id = this.$root.$mp.query.id
   },
   updated() {
-    console.log(this.confirm)
+    //console.log(this.confirm)
     if(this.confirm == true || this.insert == true){
       clearInterval(this.timer)
       wx.removeStorageSync('beforeTime');
@@ -188,69 +183,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.page{
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: #F4F4F4; 
-  
-}
-.item{
-  background: #ffffff;
-  padding-top: 0;
-  padding-bottom: 0; 
-}
-.title{
-  padding: 30rpx;
-  color: #333333;
-}
-.icon{
-  width: 80rpx;
-  height: 80rpx;
-  vertical-align: middle;
-}
-.address{
-  color: #333333;
-  font-size: 34rpx;
-}
+@import "../../../../static/assets/scss/search/opened/index.scss";
 
-.footer{
-  text-align: center;
-  .tip{
-    color: #14BF6D;
-    font-size: 36rpx;
-    margin: 40rpx 0;
-  }
-  .tip_img{
-    margin: 70rpx 0 36rpx 0;
-    img{
-      height: 58rpx;
-      width: 54rpx;
-    }
-  }
-  .tip_desc{
-    padding: 0 40rpx;
-    color: #333333;
-    font-size: 32rpx;
-    text-align: left;
-    text-indent: 2em;
-  }
-}
-.btn{
-  width: 520rpx;
-  height: 90rpx;
-  line-height: 90rpx;
-  border-radius: 90rpx;
-  border: none;
-  outline: none;
-  background: linear-gradient(to right,#75D672,#14BF6D);
-  color: #ffffff;
-  margin-top: 80rpx;
-  padding: none;
-}
-.cancel{
-  background: #fff;
-  color: #14BF6D;
-  border: 1px solid #14BF6D;
-}
 </style>

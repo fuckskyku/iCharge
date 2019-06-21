@@ -10,5 +10,6 @@ export default {
         navigationBarTitleText: '我的',
         "enablePullDownRefresh": false,
         "navigationBarBackgroundColor":'#14BF6D',
+        // "enablePullDownRefresh": true,
     }
 }

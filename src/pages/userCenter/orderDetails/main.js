@@ -7,7 +7,7 @@ app.$mount()
 
 export default {
     config: {
-        navigationBarTitleText: '资金流水',
+        navigationBarTitleText: '充值详情',
         "enablePullDownRefresh": false,
         "navigationBarBackgroundColor":'#ffffff',
         "navigationBarTextStyle": 'black',

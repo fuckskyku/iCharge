@@ -1,0 +1,131 @@
+.coupons{
+    .content{  
+      background: #f4f4f4;
+    }
+    .box{
+      width: 704rpx;
+      height: 880rpx;
+      border-radius: 10rpx;
+      margin: 40rpx auto;
+      position: relative;
+      text-align: center;
+      background: #ffffff;
+      background: url('https://testapi.xmnewlife.com/car/images/cut/coupons_details/img_d1-1.png') no-repeat;
+      background-size: 100% 100%;
+      .btn{
+        width: 520rpx;
+        height: 90rpx;
+        line-height: 90rpx;
+        border-radius: 90rpx;
+        border: none;
+        outline: none;
+        background: linear-gradient(to right,#75D672,#14BF6D);
+        color: #ffffff;
+        margin-top: 60rpx;
+      }
+      .hd{
+        width: 100%;
+        height: 300rpx;
+        .price{
+          color: #14BF6D;
+          font-size: 42rpx;
+          span{
+            font-size: 120rpx;
+          }
+        }
+        .price_desc{
+          color: #333333;
+          font-size: 30rpx;
+        }
+      }
+      .fd{
+        width: 100%;
+        height: 600rpx;
+        text-align: left;
+        // padding: 52rpx 0 80rpx;
+        p{
+          color: #999999;
+          font-size: 28rpx;
+          padding: 20rpx 86rpx;
+          span{
+            color: #333333;
+            font-size: 28rpx;
+          }
+        }
+      }
+    }
+    // 充电券样式
+    .charge{
+      width: 704rpx;
+      height: 880rpx;
+      border-radius: 10rpx;
+      margin: 40rpx auto;
+      position: relative;
+      text-align: center;
+      background: #ffffff;
+      background: url('https://testapi.xmnewlife.com/car/images/cut/coupons_details/img_d1-2.png') no-repeat;
+      background-size: 100% 100%;
+      .btn{
+        width: 520rpx;
+        height: 90rpx;
+        line-height: 90rpx;
+        border-radius: 90rpx;
+        border: none;
+        outline: none;
+        background: linear-gradient(to right,#75D672,#14BF6D);
+        color: #ffffff;
+        margin-top: 45rpx;
+      }
+      .hd{
+        width: 100%;
+        height: 300rpx;
+        .price{
+          color: #FF9C00 !important;
+          font-size: 42rpx;
+          span{
+            font-size: 120rpx;
+          }
+        }
+        .price_desc{
+          color: #333333;
+          font-size: 30rpx;
+        }
+      }
+      .fd{
+        width: 100%;
+        height: 620rpx;
+        text-align: left;
+        // padding: 52rpx 0 80rpx;
+        p{
+          color: #999999;
+          font-size: 28rpx;
+          padding: 20rpx 86rpx;
+          span{
+            color: #333333;
+            font-size: 28rpx;
+          }
+        }
+      }
+    }
+    .used{
+      color: #999999 !important;
+    }
+  }
+  
+  // overflow
+  .parent{
+    position: absolute;
+    height:100%;//高度根据需求自行设定
+    width: 100%;
+    background: #f4f4f4;
+  }
+  .child{
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;  //left,top,right,bottom都为0，充满真个页面
+    overflow-y:auto !important;
+    overflow-x:hidden !important; //设置Y轴出现滚动条，X轴隐藏
+    -webkit-overflow-scrolling: touch; 
+  }

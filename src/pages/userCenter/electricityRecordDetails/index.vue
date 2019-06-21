@@ -62,7 +62,6 @@ export default {
   
   },
   onLoad () {
-    console.log("this.$root.$mp.query",this.$root.$mp.query)
     this.id = this.$root.$mp.query.id
   },
   mounted() {
@@ -80,7 +79,6 @@ export default {
   methods: {
     ToTime(timestamp) {
       //时间戳为10位需*1000，时间戳为13位的话不需乘1000
-      console.log(timestamp)
       if(timestamp.length == 10){
         var date = new Date(timestamp * 1000);
       }else if(timestamp.length == 13){
@@ -103,38 +101,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container{
-  width: 100%;
-  height: 100%;
-  background: #f4f4f4;
-  position: absolute;
-  overflow: scroll;
-}
-.section{
-  padding-top: 20rpx;
-}
-.record{
-  width: 100%;
-  display: flex;
-  border-bottom: 1px solid #E5E5E5;
-  background: #ffffff;
-  .hd{
-    width: 30%;
-    padding: 30rpx;
-    font-size: 32rpx;
-    color: #999999;
-  }
-  .fd{
-    text-align: right;
-    width: 70%;
-    padding: 30rpx; 
-    font-size: 32rpx;
-    color: #333333;
-  }
-}
-.record:last-child{
-  border-bottom: none;
-}
+@import "../../../../static/assets/scss/userCenter/electricityRecordDetails/index.scss";
+
 
 
 </style>
