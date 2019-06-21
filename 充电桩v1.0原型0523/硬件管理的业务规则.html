@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>硬件管理的业务规则</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/硬件管理的业务规则/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/prototypePre.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/prototypePost.js"></script>
+    <script src="files/硬件管理的业务规则/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (矩形) -->
+      <div id="u616" class="ax_default _文本段落">
+        <div id="u616_div" class=""></div>
+        <div id="u616_text" class="text ">
+          <p style="font-size:18px;"><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;">车位编号</span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">仅需保持电站内唯一即可，格式：字母+数字，长度：不超过10个字符；</span></p><p style="font-size:18px;"><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;"><br></span></p><p style="font-size:18px;"><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;">充电桩编号</span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">桩编号需要全平台唯一，生成规则：由电站编号（4位）+电站类型（1位）+自然编号组成（3位）。</span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">电站编号基于平台范围做自增长，每新增一个电站，编号+1；</span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">电站类型分为：公用（0），专用（1），私人（2），一期都是专用：1。</span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">自然编号由系统生成，自增长，是基于电站编号+电站类型下进行自增长，而不是全平台范围的自增长。</span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">生成时间点：在添加充电桩，点击保存时，根据规则生成，不支持编辑。</span></p><p style="font-size:18px;"><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;"><br></span></p><p style="font-size:18px;"><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;">枪编号的规则</span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">仅需保持在所绑定的充电桩下唯一即可，格式：纯数字，下拉框进行选择：如果对应的桩是单枪，下拉框内容：1</span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">如果对应的桩是双枪，下拉框内容：1和2。</span></p><p style="font-size:18px;"><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;"><br></span></p><p style="font-size:18px;"><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;">车位编辑，删除</span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">车位下若未绑定充电桩/充电枪，可编辑编号和所属桩站信息，若已绑定充电桩/充电枪，所属桩站信息不可编辑，编号可编辑。</span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">车位下若未绑定充电桩/充电枪，可删除，若已绑定充电桩/充电枪，不可删除。</span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;"><br></span></p><p style="font-size:18px;"><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;">充电桩编辑，删除</span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">充电桩若绑定了充电枪，则所属桩站，单双枪类型不可编辑，其他信息可编辑。</span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">充电桩若绑定了充电枪，不可删除，反之可删除。做物理删除</span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;"><br></span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;"><br></span></p><p style="font-size:13px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;"><br></span></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

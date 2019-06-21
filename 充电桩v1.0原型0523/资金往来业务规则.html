@@ -1,0 +1,896 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>资金往来业务规则</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/资金往来业务规则/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/prototypePre.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/prototypePost.js"></script>
+    <script src="files/资金往来业务规则/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (矩形) -->
+      <div id="u468" class="ax_default _三级标题">
+        <div id="u468_div" class=""></div>
+        <div id="u468_text" class="text ">
+          <p><span>订单流水号规则</span></p><p><span>年月日时分+随机码(2)+随机码(3)</span></p><p><span>如：20190411101202054</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u469" class="ax_default _三级标题">
+        <div id="u469_div" class=""></div>
+        <div id="u469_text" class="text ">
+          <p><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;">平台跟桩站端的对账，结算</span></p><p><span style="font-family:'Arial Normal', 'Arial';font-weight:400;"><br></span></p><p><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">对账：系统自动对账，在每天的上午十点，计算出桩站昨天的全部收入，比如200；计算出这200里面，服务费是多少钱，比如100元。按照桩站所属公司的分佣比字段的值，进行相应计算。比如分佣比为：50%；则桩站昨天应得的账单资金为：100+100*（1-50%）=150元；（意味着服务费里面他要分一半的钱给平台，而电费收入全归桩站）。</span></p><p><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">结算：计算出桩站昨天的账单资金后，将该资金放入桩站的用户余额中，该笔钱记为桩站的收入。这是桩站唯一的收入来源。</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u470" class="ax_default _一级标题">
+        <div id="u470_div" class=""></div>
+        <div id="u470_text" class="text ">
+          <p><span>车主端的资金出入情况</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (表格) -->
+      <div id="u471" class="ax_default">
+
+        <!-- Unnamed (单元格) -->
+        <div id="u472" class="ax_default table_cell">
+          <img id="u472_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u472_text" class="text ">
+            <p><span>资金名称</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u473" class="ax_default table_cell">
+          <img id="u473_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u473_text" class="text ">
+            <p><span>类型</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u474" class="ax_default table_cell">
+          <img id="u474_img" class="img " src="images/资金往来业务规则/u474.png"/>
+          <div id="u474_text" class="text ">
+            <p><span>备注</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u475" class="ax_default table_cell">
+          <img id="u475_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u475_text" class="text ">
+            <p><span>何时支付</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u476" class="ax_default table_cell">
+          <img id="u476_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u476_text" class="text ">
+            <p><span>向谁支付</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u477" class="ax_default table_cell">
+          <img id="u477_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u477_text" class="text ">
+            <p><span>支付方式</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u478" class="ax_default table_cell">
+          <img id="u478_img" class="img " src="images/资金往来业务规则/u478.png"/>
+          <div id="u478_text" class="text ">
+            <p><span>计算方式</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u479" class="ax_default table_cell">
+          <img id="u479_img" class="img " src="images/资金往来业务规则/u479.png"/>
+          <div id="u479_text" class="text ">
+            <p><span>折扣率</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u480" class="ax_default table_cell">
+          <img id="u480_img" class="img " src="images/资金往来业务规则/u474.png"/>
+          <div id="u480_text" class="text ">
+            <p><span>折扣金额（优惠券金额）</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u481" class="ax_default table_cell">
+          <img id="u481_img" class="img " src="images/资金往来业务规则/u481.png"/>
+          <div id="u481_text" class="text ">
+            <p><span>用户充值</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u482" class="ax_default table_cell">
+          <img id="u482_img" class="img " src="images/资金往来业务规则/u481.png"/>
+          <div id="u482_text" class="text ">
+            <p><span>账户充值</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u483" class="ax_default table_cell">
+          <img id="u483_img" class="img " src="images/资金往来业务规则/u483.png"/>
+          <div id="u483_text" class="text ">
+            <p><span>充值</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u484" class="ax_default table_cell">
+          <img id="u484_img" class="img " src="images/资金往来业务规则/u481.png"/>
+          <div id="u484_text" class="text ">
+            <p><span>充值时</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u485" class="ax_default table_cell">
+          <img id="u485_img" class="img " src="images/资金往来业务规则/u481.png"/>
+          <div id="u485_text" class="text ">
+            <p><span>平台</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u486" class="ax_default table_cell">
+          <img id="u486_img" class="img " src="images/资金往来业务规则/u481.png"/>
+          <div id="u486_text" class="text ">
+            <p><span>微信支付</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u487" class="ax_default table_cell">
+          <img id="u487_img" class="img " src="images/资金往来业务规则/u487.png"/>
+          <div id="u487_text" class="text ">
+            <p><span>充值金额=充值面额=实得金额；</span></p><p><span>实付金额=充值面额-充值优惠券面额</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u488" class="ax_default table_cell">
+          <img id="u488_img" class="img " src="images/资金往来业务规则/u488.png"/>
+          <div id="u488_text" class="text ">
+            <p><span>实付金额/实得金额</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u489" class="ax_default table_cell">
+          <img id="u489_img" class="img " src="images/资金往来业务规则/u489.png"/>
+          <div id="u489_text" class="text ">
+            <p><span>实得金额*（1-折扣率）</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u490" class="ax_default table_cell">
+          <img id="u490_img" class="img " src="images/资金往来业务规则/u490.png"/>
+          <div id="u490_text" class="text ">
+            <p><span>用户消费</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u491" class="ax_default table_cell">
+          <img id="u491_img" class="img " src="images/资金往来业务规则/u490.png"/>
+          <div id="u491_text" class="text ">
+            <p><span>充电消费</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u492" class="ax_default table_cell">
+          <img id="u492_img" class="img " src="images/资金往来业务规则/u492.png"/>
+          <div id="u492_text" class="text ">
+            <p><span>消费</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u493" class="ax_default table_cell">
+          <img id="u493_img" class="img " src="images/资金往来业务规则/u490.png"/>
+          <div id="u493_text" class="text ">
+            <p><span>充电消费时</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u494" class="ax_default table_cell">
+          <img id="u494_img" class="img " src="images/资金往来业务规则/u490.png"/>
+          <div id="u494_text" class="text ">
+            <p><span>平台</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u495" class="ax_default table_cell">
+          <img id="u495_img" class="img " src="images/资金往来业务规则/u490.png"/>
+          <div id="u495_text" class="text ">
+            <p><span>余额支付</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u496" class="ax_default table_cell">
+          <img id="u496_img" class="img " src="images/资金往来业务规则/u496.png"/>
+          <div id="u496_text" class="text ">
+            <p><span>实付金额=（时段内电费+服务费）*充电度数-用电券面额</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u497" class="ax_default table_cell">
+          <img id="u497_img" class="img " src="images/资金往来业务规则/u497.png"/>
+          <div id="u497_text" class="text ">
+            <p><span>实付金额/应付金额</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u498" class="ax_default table_cell">
+          <img id="u498_img" class="img " src="images/资金往来业务规则/u498.png"/>
+          <div id="u498_text" class="text ">
+            <p><span>应付金额-（1-折扣率）</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u499" class="ax_default table_cell">
+          <img id="u499_img" class="img " src="images/资金往来业务规则/u499.png"/>
+          <div id="u499_text" class="text ">
+            <p><span>用户退款</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u500" class="ax_default table_cell">
+          <img id="u500_img" class="img " src="images/资金往来业务规则/u499.png"/>
+          <div id="u500_text" class="text ">
+            <p><span>余额退款</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u501" class="ax_default table_cell">
+          <img id="u501_img" class="img " src="images/资金往来业务规则/u501.png"/>
+          <div id="u501_text" class="text ">
+            <p><span>退款</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u502" class="ax_default table_cell">
+          <img id="u502_img" class="img " src="images/资金往来业务规则/u499.png"/>
+          <div id="u502_text" class="text ">
+            <p><span>申请退款时</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u503" class="ax_default table_cell">
+          <img id="u503_img" class="img " src="images/资金往来业务规则/u499.png"/>
+          <div id="u503_text" class="text ">
+            <p><span>用户</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u504" class="ax_default table_cell">
+          <img id="u504_img" class="img " src="images/资金往来业务规则/u499.png"/>
+          <div id="u504_text" class="text ">
+            <p><span>企业付款到零钱</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u505" class="ax_default table_cell">
+          <img id="u505_img" class="img " src="images/资金往来业务规则/u505.png"/>
+          <div id="u505_text" class="text ">
+            <p><span>可退款金额=当前余额-（参加了充值优惠的金额-优惠金额中的已使用的金额）</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u506" class="ax_default table_cell">
+          <img id="u506_img" class="img " src="images/资金往来业务规则/u506.png"/>
+          <div id="u506_text" class="text ">
+            <p><span>--</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u507" class="ax_default table_cell">
+          <img id="u507_img" class="img " src="images/资金往来业务规则/u507.png"/>
+          <div id="u507_text" class="text ">
+            <p><span>--</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u508" class="ax_default _一级标题">
+        <div id="u508_div" class=""></div>
+        <div id="u508_text" class="text ">
+          <p><span>桩站端的资金出入情况</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (表格) -->
+      <div id="u509" class="ax_default">
+
+        <!-- Unnamed (单元格) -->
+        <div id="u510" class="ax_default table_cell">
+          <img id="u510_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u510_text" class="text ">
+            <p><span>资金名称</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u511" class="ax_default table_cell">
+          <img id="u511_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u511_text" class="text ">
+            <p><span>类型</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u512" class="ax_default table_cell">
+          <img id="u512_img" class="img " src="images/资金往来业务规则/u474.png"/>
+          <div id="u512_text" class="text ">
+            <p><span>备注</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u513" class="ax_default table_cell">
+          <img id="u513_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u513_text" class="text ">
+            <p><span>何时支付</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u514" class="ax_default table_cell">
+          <img id="u514_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u514_text" class="text ">
+            <p><span>向谁支付</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u515" class="ax_default table_cell">
+          <img id="u515_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u515_text" class="text ">
+            <p><span>支付方式</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u516" class="ax_default table_cell">
+          <img id="u516_img" class="img " src="images/资金往来业务规则/u478.png"/>
+          <div id="u516_text" class="text ">
+            <p><span>计算方式</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u517" class="ax_default table_cell">
+          <img id="u517_img" class="img " src="images/资金往来业务规则/u481.png"/>
+          <div id="u517_text" class="text ">
+            <p><span>桩站卖电</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u518" class="ax_default table_cell">
+          <img id="u518_img" class="img " src="images/资金往来业务规则/u481.png"/>
+          <div id="u518_text" class="text ">
+            <p><span>卖电账单</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u519" class="ax_default table_cell">
+          <img id="u519_img" class="img " src="images/资金往来业务规则/u483.png"/>
+          <div id="u519_text" class="text ">
+            <p><span>卖电收入</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u520" class="ax_default table_cell">
+          <img id="u520_img" class="img " src="images/资金往来业务规则/u481.png"/>
+          <div id="u520_text" class="text ">
+            <p><span>每天自动结算时</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u521" class="ax_default table_cell">
+          <img id="u521_img" class="img " src="images/资金往来业务规则/u481.png"/>
+          <div id="u521_text" class="text ">
+            <p><span>桩站</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u522" class="ax_default table_cell">
+          <img id="u522_img" class="img " src="images/资金往来业务规则/u481.png"/>
+          <div id="u522_text" class="text ">
+            <p><span>数字账户划账</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u523" class="ax_default table_cell">
+          <img id="u523_img" class="img " src="images/资金往来业务规则/u523.png"/>
+          <div id="u523_text" class="text ">
+            <p><span>卖电收入=昨日卖电总收入-昨日服务费总收入*平台分佣比</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u524" class="ax_default table_cell">
+          <img id="u524_img" class="img " src="images/资金往来业务规则/u524.png"/>
+          <div id="u524_text" class="text ">
+            <p><span>桩站流水</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u525" class="ax_default table_cell">
+          <img id="u525_img" class="img " src="images/资金往来业务规则/u524.png"/>
+          <div id="u525_text" class="text ">
+            <p><span>卖电流水</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u526" class="ax_default table_cell">
+          <img id="u526_img" class="img " src="images/资金往来业务规则/u526.png"/>
+          <div id="u526_text" class="text ">
+            <p><span>桩站订单</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u527" class="ax_default table_cell">
+          <img id="u527_img" class="img " src="images/资金往来业务规则/u524.png"/>
+          <div id="u527_text" class="text ">
+            <p><span>--</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u528" class="ax_default table_cell">
+          <img id="u528_img" class="img " src="images/资金往来业务规则/u524.png"/>
+          <div id="u528_text" class="text ">
+            <p><span>--</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u529" class="ax_default table_cell">
+          <img id="u529_img" class="img " src="images/资金往来业务规则/u524.png"/>
+          <div id="u529_text" class="text ">
+            <p><span>--</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u530" class="ax_default table_cell">
+          <img id="u530_img" class="img " src="images/资金往来业务规则/u530.png"/>
+          <div id="u530_text" class="text ">
+            <p><span>--（桩站端仅查看桩站卖电流水）</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u531" class="ax_default _一级标题">
+        <div id="u531_div" class=""></div>
+        <div id="u531_text" class="text ">
+          <p><span>新活平台的资金出入情况</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (表格) -->
+      <div id="u532" class="ax_default">
+
+        <!-- Unnamed (单元格) -->
+        <div id="u533" class="ax_default table_cell">
+          <img id="u533_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u533_text" class="text ">
+            <p><span>资金名称</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u534" class="ax_default table_cell">
+          <img id="u534_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u534_text" class="text ">
+            <p><span>类型</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u535" class="ax_default table_cell">
+          <img id="u535_img" class="img " src="images/资金往来业务规则/u474.png"/>
+          <div id="u535_text" class="text ">
+            <p><span>备注</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u536" class="ax_default table_cell">
+          <img id="u536_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u536_text" class="text ">
+            <p><span>何时支付</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u537" class="ax_default table_cell">
+          <img id="u537_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u537_text" class="text ">
+            <p><span>向谁支付</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u538" class="ax_default table_cell">
+          <img id="u538_img" class="img " src="images/资金往来业务规则/u472.png"/>
+          <div id="u538_text" class="text ">
+            <p><span>支付方式</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u539" class="ax_default table_cell">
+          <img id="u539_img" class="img " src="images/资金往来业务规则/u478.png"/>
+          <div id="u539_text" class="text ">
+            <p><span>计算方式</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u540" class="ax_default table_cell">
+          <img id="u540_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u540_text" class="text ">
+            <p><span>用户充值</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u541" class="ax_default table_cell">
+          <img id="u541_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u541_text" class="text ">
+            <p><span>账户充值</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u542" class="ax_default table_cell">
+          <img id="u542_img" class="img " src="images/资金往来业务规则/u542.png"/>
+          <div id="u542_text" class="text ">
+            <p><span>充值</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u543" class="ax_default table_cell">
+          <img id="u543_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u543_text" class="text ">
+            <p><span>充值时</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u544" class="ax_default table_cell">
+          <img id="u544_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u544_text" class="text ">
+            <p><span>平台</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u545" class="ax_default table_cell">
+          <img id="u545_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u545_text" class="text ">
+            <p><span>微信支付</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u546" class="ax_default table_cell">
+          <img id="u546_img" class="img " src="images/资金往来业务规则/u546.png"/>
+          <div id="u546_text" class="text ">
+            <p><span>充值金额=充值面额=实得金额；</span></p><p><span>实付金额=充值面额-充值优惠券面额</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u547" class="ax_default table_cell">
+          <img id="u547_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u547_text" class="text ">
+            <p><span>用户消费</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u548" class="ax_default table_cell">
+          <img id="u548_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u548_text" class="text ">
+            <p><span>充电消费</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u549" class="ax_default table_cell">
+          <img id="u549_img" class="img " src="images/资金往来业务规则/u542.png"/>
+          <div id="u549_text" class="text ">
+            <p><span>消费</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u550" class="ax_default table_cell">
+          <img id="u550_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u550_text" class="text ">
+            <p><span>充电消费时</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u551" class="ax_default table_cell">
+          <img id="u551_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u551_text" class="text ">
+            <p><span>平台</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u552" class="ax_default table_cell">
+          <img id="u552_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u552_text" class="text ">
+            <p><span>余额支付</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u553" class="ax_default table_cell">
+          <img id="u553_img" class="img " src="images/资金往来业务规则/u546.png"/>
+          <div id="u553_text" class="text ">
+            <p><span>实付金额=（时段内电费+服务费）*充电度数-用电券面额</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u554" class="ax_default table_cell">
+          <img id="u554_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u554_text" class="text ">
+            <p><span>用户退款</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u555" class="ax_default table_cell">
+          <img id="u555_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u555_text" class="text ">
+            <p><span>余额退款</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u556" class="ax_default table_cell">
+          <img id="u556_img" class="img " src="images/资金往来业务规则/u542.png"/>
+          <div id="u556_text" class="text ">
+            <p><span>退款</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u557" class="ax_default table_cell">
+          <img id="u557_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u557_text" class="text ">
+            <p><span>申请退款时</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u558" class="ax_default table_cell">
+          <img id="u558_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u558_text" class="text ">
+            <p><span>用户</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u559" class="ax_default table_cell">
+          <img id="u559_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u559_text" class="text ">
+            <p><span>企业付款到零钱</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u560" class="ax_default table_cell">
+          <img id="u560_img" class="img " src="images/资金往来业务规则/u546.png"/>
+          <div id="u560_text" class="text ">
+            <p><span>可退款金额=当前余额-（参加了充值优惠的金额-已使用的金额）</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u561" class="ax_default table_cell">
+          <img id="u561_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u561_text" class="text ">
+            <p><span>桩站卖电</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u562" class="ax_default table_cell">
+          <img id="u562_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u562_text" class="text ">
+            <p><span>卖电账单</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u563" class="ax_default table_cell">
+          <img id="u563_img" class="img " src="images/资金往来业务规则/u542.png"/>
+          <div id="u563_text" class="text ">
+            <p><span>卖电收入</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u564" class="ax_default table_cell">
+          <img id="u564_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u564_text" class="text ">
+            <p><span>每天自动结算时</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u565" class="ax_default table_cell">
+          <img id="u565_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u565_text" class="text ">
+            <p><span>桩站</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u566" class="ax_default table_cell">
+          <img id="u566_img" class="img " src="images/资金往来业务规则/u540.png"/>
+          <div id="u566_text" class="text ">
+            <p><span>数字账户划账</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u567" class="ax_default table_cell">
+          <img id="u567_img" class="img " src="images/资金往来业务规则/u546.png"/>
+          <div id="u567_text" class="text ">
+            <p><span>卖电收入=昨日卖电总收入-昨日服务费总收入*平台分佣比</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u568" class="ax_default table_cell">
+          <img id="u568_img" class="img " src="images/资金往来业务规则/u524.png"/>
+          <div id="u568_text" class="text ">
+            <p><span>服务费佣金</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u569" class="ax_default table_cell">
+          <img id="u569_img" class="img " src="images/资金往来业务规则/u524.png"/>
+          <div id="u569_text" class="text ">
+            <p><span>服务费佣金</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u570" class="ax_default table_cell">
+          <img id="u570_img" class="img " src="images/资金往来业务规则/u526.png"/>
+          <div id="u570_text" class="text ">
+            <p><span>服务费收入</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u571" class="ax_default table_cell">
+          <img id="u571_img" class="img " src="images/资金往来业务规则/u524.png"/>
+          <div id="u571_text" class="text ">
+            <p><span>--</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u572" class="ax_default table_cell">
+          <img id="u572_img" class="img " src="images/资金往来业务规则/u524.png"/>
+          <div id="u572_text" class="text ">
+            <p><span>--</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u573" class="ax_default table_cell">
+          <img id="u573_img" class="img " src="images/资金往来业务规则/u524.png"/>
+          <div id="u573_text" class="text ">
+            <p><span>--</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u574" class="ax_default table_cell">
+          <img id="u574_img" class="img " src="images/资金往来业务规则/u530.png"/>
+          <div id="u574_text" class="text ">
+            <p><span>服务费收入=昨日桩站服务费总收入*平台分佣比</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u575" class="ax_default _一级标题">
+        <div id="u575_div" class=""></div>
+        <div id="u575_text" class="text ">
+          <p><span>可退款金额案例：</span></p><p><span>第一次充值，实付20，得20（这笔充值类型为充值，可退款）。第二次充值，使用了满70省20的充值优惠券，实付50，得70（这笔充值类型为优惠充值，不退款）。</span></p><p><span>用户充一次电花费了30。</span></p><p><span>按照消费优先原则，优先消费类型为优惠充值的钱，即70里面的30，此时优惠充值的钱中，剩余金额为70-30=40元。</span></p><p><span>用户当前余额=20+70-30=60元，用户优惠充值的剩余金额=70-30=40元，</span></p><p><span>所以可退款金额=用户当前余额-用户优惠充值的剩余金额=60-40=20；</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u576" class="ax_default _一级标题">
+        <div id="u576_div" class=""></div>
+        <div id="u576_text" class="text ">
+          <p><span>折扣率：用户使用充值优惠券或者用电优惠券时，可看成该笔订单是进行了打折的。此时订单新增字段“折扣率”，折扣率的对应计算方式见表格。</span></p><p><span>折扣率和折扣金额（优惠券金额）仅在后台显示，用于财务进行对账，不在桩站端和车主端进行展示。</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u577" class="ax_default _一级标题">
+        <div id="u577_div" class=""></div>
+        <div id="u577_text" class="text ">
+          <p><span>用电优惠券计算案例：</span></p><p><span>用户在A桩站进行了一笔充电消费：电费30，服务费20，合计50；假设桩站与平台服务费的佣金比为50%；</span></p><p><span>情况一：不使用用电优惠券</span></p><p><span>该笔订单，桩站可得：30+20*50%=40元，平台服务费可得：20*50%=10元；</span></p><p><span>情况二：使用桩站A发的用电优惠券，优惠券为：满50省10元</span></p><p><span>该笔订单,用户应付50，实付40，折扣率为：40/50=80%,折扣金额=50*（1-80%）=10元，桩站可得：桩站应得-折扣金额=（30*80%+20*80%*50%）-折扣金额=30元，平台服务费可得：20*0.5=10元；</span></p><p><span>情况三：使用平台发的用电优惠券，优惠券为：满50省10元</span></p><p><span>该笔订单，用户应付50，实付40，折扣率为：40/50=80%，折扣金额=50*（1-80%）=10元，桩站可得：30+20*50%=40元，平台服务费可得：平台服务费应得-折扣金额=20*50%-10=0元</span></p><p><span>每生成一笔卖电账单记录，就生成一笔服务费佣金记录。</span></p><p><span><br></span></p><p><span>&nbsp;总结：优惠券是谁发的，就从谁的收入里面扣除掉折扣金额，可能还会出现收入为负的情况。</span></p><p><span><br></span></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
