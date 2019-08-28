@@ -46,7 +46,7 @@ export default {
         },
         {
           staId: 3,
-          staName: '咪师充电站',
+          staName: '喵喵充电站',
           busyEnergy: '233.98',
           idleEnergy: '32.23', 
         }
