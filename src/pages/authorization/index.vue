@@ -4,7 +4,7 @@
       <div class="bg">
         <img src="https://testapi.xmnewlife.com/car/images/cut/authorization.png" alt="">
       </div>
-      <p class="content">新活充电小程序需要您事先授权定位权限才能正常为您提供服务</p>
+      <p class="content">喵喵充电小程序需要您事先授权定位权限才能正常为您提供服务</p>
       <button class="btn" open-type="openSetting" @opensetting="handler" @click="authorization()">立即授权</button>
     </div>
   </div>

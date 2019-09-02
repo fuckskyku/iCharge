@@ -7,7 +7,7 @@ app.$mount()
 
 export default {
     config: {
-        navigationBarTitleText: '新活充电',
+        navigationBarTitleText: '喵喵充电',
         "enablePullDownRefresh": false,
         "navigationBarBackgroundColor":'#ffffff',
         "navigationBarTextStyle": 'black',

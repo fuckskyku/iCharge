@@ -79,7 +79,7 @@ export default {
             })
           }else{
             wx.setNavigationBarTitle({
-              title: '新活充电'
+              title: '喵喵充电'
             })
           }
           this.chargeObj.actualAmount = this.chargeObj.actualAmount.toFixed(4)

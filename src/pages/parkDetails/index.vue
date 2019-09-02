@@ -121,7 +121,7 @@
             <img src="https://testapi.xmnewlife.com/car/images/cut/swdl.png" alt="">
           </li>
           <li>您当前尚未登录</li>
-          <li>无法使用新活充电的产品服务</li>
+          <li>无法使用喵喵充电的产品服务</li>
         </ul>
       </div>
       <button class="btn cancel" @click="skip('loginSelect')">立即登录</button>

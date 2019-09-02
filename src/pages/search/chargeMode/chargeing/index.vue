@@ -37,7 +37,7 @@
         <!-- <p>{{form.staName}}停车场{{form.clientCode}}号充电桩。</p> -->
       </div>
       <!-- <div class="address">您的爱车当前停在{{form.staName}}停车场{{form.clientCode}}号充电桩。</div> -->
-      <div class="tip">充电完成后新活充电将对您进行提示</div>
+      <div class="tip">充电完成后喵喵充电将对您进行提示</div>
       <button class="btn cancel" @click="submit('handle')">立刻停止充电</button>
     </div>
   </div>
