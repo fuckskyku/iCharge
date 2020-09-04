@@ -12,7 +12,7 @@
   "dependencies": {
     "babel-cli": "^6.26.0",
     "flyio": "^0.6.0",
-    "marked": "^0.4.0",
+    "marked": "^0.7.0",
     "mpvue": "^1.0.11",
     "mpvue-calendar": "^1.0.3",
     "mpvue-wxparse": "^0.6.5",
